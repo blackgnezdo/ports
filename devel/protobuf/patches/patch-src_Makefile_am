@@ -1,0 +1,61 @@
+$OpenBSD$
+--- src/Makefile.am.orig	Fri Jan 27 15:03:40 2017
++++ src/Makefile.am	Sat Apr 22 21:51:00 2017
+@@ -718,11 +718,10 @@ check_PROGRAMS = protoc protobuf-test protobuf-lazy-de
+                  protobuf-lite-test test_plugin protobuf-lite-arena-test \
+                  no-warning-test $(GZCHECKPROGRAMS)
+ protobuf_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
+-                      ../gmock/gtest/lib/libgtest.la              \
+-                      ../gmock/lib/libgmock.la                    \
+-                      ../gmock/lib/libgmock_main.la
+-protobuf_test_CPPFLAGS = -I$(srcdir)/../gmock/gtest/include \
+-                         -I$(srcdir)/../gmock/include
++                      ${LOCALBASE}/lib/libgtest.la       \
++                      ${LOCALBASE}/lib/libgtest_main.la
++protobuf_test_CPPFLAGS = -I${LOCALBASE}/include
++
+ # Disable optimization for tests unless the user explicitly asked for it,
+ # since test_util.cc takes forever to compile with optimization (with GCC).
+ # See configure.ac for more info.
+@@ -805,7 +804,7 @@ nodist_protobuf_test_SOURCES = $(protoc_outputs)
+ # Run cpp_unittest again with PROTOBUF_TEST_NO_DESCRIPTORS defined.
+ protobuf_lazy_descriptor_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la \
+                       libprotoc.la                                   \
+-                      ../gmock/gtest/lib/libgtest.la                 \
++                      ${LOCALBASE}/lib/libgtest.la                 \
+                       ../gmock/lib/libgmock.la                       \
+                       ../gmock/lib/libgmock_main.la
+ protobuf_lazy_descriptor_test_CPPFLAGS = -I$(srcdir)/../gmock/include       \
+@@ -840,7 +838,7 @@ nodist_protobuf_lite_test_SOURCES = $(protoc_lite_outp
+ # gtest when building the test internally our memory sanitizer doesn't detect
+ # memory leaks (don't know why).
+ protobuf_lite_arena_test_LDADD = $(PTHREAD_LIBS) libprotobuf-lite.la \
+-                      ../gmock/gtest/lib/libgtest.la                 \
++                      ${LOCALBASE}/lib/libgtest.la                 \
+                       ../gmock/lib/libgmock.la                       \
+                       ../gmock/lib/libgmock_main.la
+ protobuf_lite_arena_test_CPPFLAGS = -I$(srcdir)/../gmock/include       \
+@@ -853,8 +850,8 @@ nodist_protobuf_lite_arena_test_SOURCES = $(protoc_lit
+ 
+ # Test plugin binary.
+ test_plugin_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
+-                    ../gmock/gtest/lib/libgtest.la
+-test_plugin_CPPFLAGS = -I$(srcdir)/../gmock/gtest/include
++                    ${LOCALBASE}/lib/libgtest.la
++test_plugin_CPPFLAGS = -I${LOCALBASE}/include
+ test_plugin_SOURCES =                                          \
+   google/protobuf/compiler/mock_code_generator.cc              \
+   google/protobuf/testing/file.cc                              \
+@@ -883,9 +880,9 @@ no_warning_test.cc:
+ 	echo "TEST(NoWarningTest, Empty) {}" >> no_warning_test.cc
+ 
+ no_warning_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la      \
+-                        ../gmock/gtest/lib/libgtest.la      \
+-                        ../gmock/gtest/lib/libgtest_main.la
+-no_warning_test_CPPFLAGS = -I$(srcdir)/../gmock/gtest/include
++                        ${LOCALBASE}/lib/libgtest.la        \
++                        ${LOCALBASE}/lib/libgtest_main.la
++no_warning_test_CPPFLAGS =  -I${LOCALBASE}/include
+ no_warning_test_CXXFLAGS = $(PTHREAD_CFLAGS) $(PTHREAD_DEF) $(ZLIB_DEF) \
+                            -Wall -Werror
+ nodist_no_warning_test_SOURCES = no_warning_test.cc $(protoc_outputs)

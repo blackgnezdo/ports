@@ -1,0 +1,31 @@
+$OpenBSD$
+--- Makefile.am.orig	Sat Apr 22 21:26:57 2017
++++ Makefile.am	Sat Apr 22 21:28:06 2017
+@@ -11,16 +11,6 @@ SUBDIRS = . src
+ # Always include gmock in distributions.
+ DIST_SUBDIRS = $(subdirs) src conformance benchmarks
+ 
+-# Build gmock before we build protobuf tests.  We don't add gmock to SUBDIRS
+-# because then "make check" would also build and run all of gmock's own tests,
+-# which takes a lot of time and is generally not useful to us.  Also, we don't
+-# want "make install" to recurse into gmock since we don't want to overwrite
+-# the installed version of gmock if there is one.
+-check-local:
+-	@echo "Making lib/libgmock.a lib/libgmock_main.a in gmock"
+-	@cd gmock && $(MAKE) $(AM_MAKEFLAGS) lib/libgmock.la lib/libgmock_main.la
+-	@cd gmock/gtest && $(MAKE) $(AM_MAKEFLAGS) lib/libgtest.la lib/libgtest_main.la
+-
+ # We would like to clean gmock when "make clean" is invoked.  But we have to
+ # be careful because clean-local is also invoked during "make distclean", but
+ # "make distclean" already recurses into gmock because it's listed among the
+@@ -28,10 +18,6 @@ check-local:
+ # cd to the directory again and "make clean" it will fail.  So, check that the
+ # Makefile exists before recursing.
+ clean-local:
+-	@if test -e gmock/Makefile; then \
+-	  echo "Making clean in gmock"; \
+-	  cd gmock && $(MAKE) $(AM_MAKEFLAGS) clean; \
+-	fi; \
+ 	if test -e conformance/Makefile; then \
+ 	  echo "Making clean in conformance"; \
+ 	  cd conformance && $(MAKE) $(AM_MAKEFLAGS) clean; \

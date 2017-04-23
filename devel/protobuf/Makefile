@@ -1,10 +1,11 @@
 # $OpenBSD: Makefile,v 1.17 2017/05/17 20:23:45 sthen Exp $
 
+#  env AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.15 ./autogen.sh
+
 COMMENT =		c++ protocol buffers
 
-V =			2.4.1
+V =			3.2.0
 DISTNAME =		protobuf-$V
-REVISION =		5
 
 SHARED_LIBS +=		protobuf	1.0   # 7.0
 SHARED_LIBS +=		protoc		1.0   # 7.0
@@ -25,7 +26,8 @@ TEST_DEPENDS =	devel/gtest
 
 SEPARATE_BUILD =	Yes
 USE_GMAKE =		Yes
-CONFIGURE_STYLE =	gnu
+AUTOCONF = 		autoreconf
+CONFIGURE_STYLE =	automake autoconf gnu
 CONFIGURE_ARGS +=	--with-zlib 
 
 .include <bsd.port.mk>
