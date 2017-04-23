@@ -1,7 +1,5 @@
 # $OpenBSD: Makefile,v 1.17 2017/05/17 20:23:45 sthen Exp $
 
-#  env AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.15 ./autogen.sh
-
 COMMENT =		c++ protocol buffers
 
 V =			3.2.0
@@ -26,8 +24,19 @@ TEST_DEPENDS =	devel/gtest
 
 SEPARATE_BUILD =	Yes
 USE_GMAKE =		Yes
-AUTOCONF = 		autoreconf
-CONFIGURE_STYLE =	automake autoconf gnu
+
+CONFIGURE_STYLE =	gnu
 CONFIGURE_ARGS +=	--with-zlib 
+
+AUTOCONF_VERSION=	2.69
+AUTOMAKE_VERSION=	1.15
+BUILD_DEPENDS +=	${MODGNU_AUTOCONF_DEPENDS} \
+			${MODGNU_AUTOMAKE_DEPENDS} \
+			devel/libtool
+pre-configure:
+	cd ${WRKSRC} && \
+		libtoolize && \
+		env AUTOMAKE_VERSION=${AUTOMAKE_VERSION} AUTOCONF_VERSION=${AUTOCONF_VERSION} \
+		autoreconf -fi -Wall,no-obsolete
 
 .include <bsd.port.mk>
