@@ -40,8 +40,8 @@ pre-configure:
 		env AUTOMAKE_VERSION=${AUTOMAKE_VERSION} AUTOCONF_VERSION=${AUTOCONF_VERSION} \
 		autoreconf -fi -Wall,no-obsolete
 
-MODULES =		lang/clang
-MODCLANG_ARCHS =	*
-MODCLANG_LANGS =	c++
+MODULES =		gcc4
+MODGCC4_ARCHS =		*
+MODGCC4_LANGS =		c++
 
 .include <bsd.port.mk>
