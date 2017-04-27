@@ -27,8 +27,6 @@ SEPARATE_BUILD =	Yes
 WANTLIB =		m ${LIBCXX}
 
 MODULES +=		devel/cmake
-CONFIGURE_ARGS =	-DBUILD_SHARED_LIBS=ON
-
-NO_TEST =	Yes
+CONFIGURE_ARGS =	-DBUILD_SHARED_LIBS=ON -Dgtest_build_tests=ON
 
 .include <bsd.port.mk>
