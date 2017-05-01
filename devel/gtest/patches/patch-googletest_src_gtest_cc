@@ -1,0 +1,36 @@
+https://github.com/google/googletest/issues/1075
+$OpenBSD$
+--- googletest/src/gtest.cc.orig
++++ googletest/src/gtest.cc
+@@ -384,13 +384,17 @@ void AssertHelper::operator=(const Message& message) c
+ GTEST_API_ GTEST_DEFINE_STATIC_MUTEX_(g_linked_ptr_mutex);
+ 
+ // A copy of all command line arguments.  Set by InitGoogleTest().
+-::std::vector<testing::internal::string> g_argvs;
++::std::vector<testing::internal::string>& g_argvs() {
++  static ::std::vector<testing::internal::string>* const gargvs =
++      new ::std::vector<testing::internal::string>();
++  return *gargvs;
++}
+ 
+ const ::std::vector<testing::internal::string>& GetArgvs() {
+ #if defined(GTEST_CUSTOM_GET_ARGVS_)
+   return GTEST_CUSTOM_GET_ARGVS_();
+ #else  // defined(GTEST_CUSTOM_GET_ARGVS_)
+-  return g_argvs;
++  return g_argvs();
+ #endif  // defined(GTEST_CUSTOM_GET_ARGVS_)
+ }
+ 
+@@ -5347,9 +5351,9 @@ void InitGoogleTestImpl(int* argc, CharType** argv) {
+ 
+   if (*argc <= 0) return;
+ 
+-  g_argvs.clear();
++  g_argvs().clear();
+   for (int i = 0; i != *argc; i++) {
+-    g_argvs.push_back(StreamableToString(argv[i]));
++    g_argvs().push_back(StreamableToString(argv[i]));
+   }
+ 
+   ParseGoogleTestFlagsOnly(argc, argv);
