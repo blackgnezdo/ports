@@ -1,0 +1,15 @@
+$OpenBSD$
+
+Index: src/google/protobuf/compiler/cpp/cpp_unittest.cc
+--- src/google/protobuf/compiler/cpp/cpp_unittest.cc.orig
++++ src/google/protobuf/compiler/cpp/cpp_unittest.cc
+@@ -493,6 +493,9 @@ TEST(GeneratedMessageTest, NonEmptyMergeFrom) {
+   TestUtil::ExpectAllFieldsSet(message1);
+ }
+ 
++// Older version of protobuf incompatible with new version of gtest.
++// https://groups.google.com/d/msg/protobuf/xgGBG-_WYy8/ruf1MKDr-sIJ
++#undef GTEST_HAS_DEATH_TEST
+ #ifdef GTEST_HAS_DEATH_TEST
+ 
+ TEST(GeneratedMessageTest, MergeFromSelf) {

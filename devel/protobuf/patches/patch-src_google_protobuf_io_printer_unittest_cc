@@ -1,0 +1,15 @@
+$OpenBSD$
+
+Index: src/google/protobuf/io/printer_unittest.cc
+--- src/google/protobuf/io/printer_unittest.cc.orig
++++ src/google/protobuf/io/printer_unittest.cc
+@@ -219,6 +219,9 @@ TEST(Printer, Indenting) {
+   }
+ }
+ 
++// Older version of protobuf incompatible with new version of gtest.
++// https://groups.google.com/d/msg/protobuf/xgGBG-_WYy8/ruf1MKDr-sIJ
++#undef GTEST_HAS_DEATH_TEST
+ // Death tests do not work on Windows as of yet.
+ #ifdef GTEST_HAS_DEATH_TEST
+ TEST(Printer, Death) {
