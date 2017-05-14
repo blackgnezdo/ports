@@ -2,12 +2,12 @@
 
 COMMENT =		c++ protocol buffers
 
-V =			3.2.0
+V =			3.3.0
 DISTNAME =		protobuf-$V
 
-SHARED_LIBS +=		protobuf	1.0   # 7.0
-SHARED_LIBS +=		protoc		1.0   # 7.0
-SHARED_LIBS +=		protobuf-lite	1.0   # 7.0
+SHARED_LIBS +=		protobuf	2.0   # 7.0
+SHARED_LIBS +=		protoc		2.0   # 7.0
+SHARED_LIBS +=		protobuf-lite	2.0   # 7.0
 
 CATEGORIES =		devel
 

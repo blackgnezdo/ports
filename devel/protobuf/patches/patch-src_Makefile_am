@@ -1,7 +1,7 @@
 $OpenBSD$
---- src/Makefile.am.orig	Fri Jan 27 15:03:40 2017
-+++ src/Makefile.am	Sun Apr 23 17:39:15 2017
-@@ -718,11 +718,9 @@ check_PROGRAMS = protoc protobuf-test protobuf-lazy-de
+--- src/Makefile.am.orig
++++ src/Makefile.am
+@@ -748,11 +748,9 @@ check_PROGRAMS = protoc protobuf-test protobuf-lazy-de
                   protobuf-lite-test test_plugin protobuf-lite-arena-test \
                   no-warning-test $(GZCHECKPROGRAMS)
  protobuf_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
@@ -16,7 +16,7 @@ $OpenBSD$
  # Disable optimization for tests unless the user explicitly asked for it,
  # since test_util.cc takes forever to compile with optimization (with GCC).
  # See configure.ac for more info.
-@@ -805,11 +803,8 @@ nodist_protobuf_test_SOURCES = $(protoc_outputs)
+@@ -837,11 +835,8 @@ nodist_protobuf_test_SOURCES = $(protoc_outputs)
  # Run cpp_unittest again with PROTOBUF_TEST_NO_DESCRIPTORS defined.
  protobuf_lazy_descriptor_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la \
                        libprotoc.la                                   \
@@ -30,7 +30,21 @@ $OpenBSD$
                                           -DPROTOBUF_TEST_NO_DESCRIPTORS
  protobuf_lazy_descriptor_test_CXXFLAGS = $(NO_OPT_CXXFLAGS)
  protobuf_lazy_descriptor_test_SOURCES =                        \
-@@ -840,11 +835,8 @@ nodist_protobuf_lite_test_SOURCES = $(protoc_lite_outp
+@@ -862,11 +857,8 @@ COMMON_LITE_TEST_SOURCES =                            
+ # full runtime and we want to make sure this test builds without full
+ # runtime.
+ protobuf_lite_test_LDADD = $(PTHREAD_LIBS) libprotobuf-lite.la \
+-                           ../gmock/gtest/lib/libgtest.la      \
+-                           ../gmock/lib/libgmock.la            \
+-                           ../gmock/lib/libgmock_main.la
+-protobuf_lite_test_CPPFLAGS= -I$(srcdir)/../gmock/include \
+-                             -I$(srcdir)/../gmock/gtest/include
++			   -L${LOCALBASE}/lib -lgtest -lgmock -lgmock_main
++protobuf_lite_test_CPPFLAGS= -I${LOCALBASE}/include
+ protobuf_lite_test_CXXFLAGS = $(NO_OPT_CXXFLAGS)
+ protobuf_lite_test_SOURCES =                                           \
+   google/protobuf/lite_unittest.cc                                     \
+@@ -877,11 +869,8 @@ nodist_protobuf_lite_test_SOURCES = $(protoc_lite_outp
  # gtest when building the test internally our memory sanitizer doesn't detect
  # memory leaks (don't know why).
  protobuf_lite_arena_test_LDADD = $(PTHREAD_LIBS) libprotobuf-lite.la \
@@ -44,7 +58,7 @@ $OpenBSD$
  protobuf_lite_arena_test_CXXFLAGS = $(NO_OPT_CXXFLAGS)
  protobuf_lite_arena_test_SOURCES =       \
    google/protobuf/lite_arena_unittest.cc \
-@@ -853,8 +845,8 @@ nodist_protobuf_lite_arena_test_SOURCES = $(protoc_lit
+@@ -890,8 +879,8 @@ nodist_protobuf_lite_arena_test_SOURCES = $(protoc_lit
  
  # Test plugin binary.
  test_plugin_LDADD = $(PTHREAD_LIBS) libprotobuf.la libprotoc.la \
@@ -55,7 +69,7 @@ $OpenBSD$
  test_plugin_SOURCES =                                          \
    google/protobuf/compiler/mock_code_generator.cc              \
    google/protobuf/testing/file.cc                              \
-@@ -883,9 +875,8 @@ no_warning_test.cc:
+@@ -920,9 +909,8 @@ no_warning_test.cc:
  	echo "TEST(NoWarningTest, Empty) {}" >> no_warning_test.cc
  
  no_warning_test_LDADD = $(PTHREAD_LIBS) libprotobuf.la      \
