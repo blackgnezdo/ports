@@ -2,8 +2,11 @@
 
 COMMENT =		c++ protocol buffers
 
-V =			3.3.0
-DISTNAME =		protobuf-$V
+V=		3.3.1
+GH_ACCOUNT=	google
+GH_PROJECT=	protobuf
+GH_TAGNAME=	v$V
+PKGNAME =	protobuf-$V
 
 SHARED_LIBS +=		protobuf	2.0   # 7.0
 SHARED_LIBS +=		protoc		2.0   # 7.0
@@ -17,8 +20,6 @@ HOMEPAGE =		https://github.com/google/protobuf/
 PERMIT_PACKAGE_CDROM =	Yes
 
 WANTLIB +=	c m pthread ${LIBCXX} z
-
-MASTER_SITES =		https://github.com/google/protobuf/releases/download/v$V/
 
 TEST_DEPENDS =	devel/gtest
 
