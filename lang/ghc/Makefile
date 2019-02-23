@@ -12,12 +12,11 @@ COMMENT =		compiler for the functional language Haskell
 NO_CCACHE =		Yes
 
 DISTNAME =		ghc-${MODGHC_VER}
-REVISION =		2
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		8.2.2.20180330
+BIN_VER =		8.4.2.20190113
 
 # Pull in lang/ghc to get MODGHC_VER and ONLY_FOR_ARCHS, which is maintained
 # in ghc.port.mk. lang/python needed for regression tests.
@@ -37,6 +36,11 @@ LIB_DEPENDS =		converters/libiconv
 BUILD_DEPENDS =		archivers/gtar \
 			textproc/py-sphinx 
 RUN_DEPENDS =
+
+# The bootstrapping compiler needs gcc4, but the new ghc can be built
+# with clang. So we just BUILD_DEPEND on gcc instead of using the gcc4
+# MODULE, because the latter would also add some wrapper scripts
+BUILD_DEPENDS =		lang/gcc/4.9>=4.9,<4.10
 
 # We can't use the wrapper script, because it then gets hardcoded into
 # the packaged ghc. So we explicitely use -Wl,-z,wxneeded (see
@@ -66,30 +70,33 @@ SUPDISTFILES +=		${BINDISTFILE-$m}
 # Substvars for all libraries, assuming that ghc-bnot, ghc-boot-th and
 # ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-	CABAL			2.0.1.0	\
+	CABAL			2.2.0.1		\
 	ARRAY			0.5.2.0		\
-	BASE			4.10.1.0	\
+	BASE			4.11.1.0	\
 	BINARY			0.8.5.1		\
 	BYTESTRING		0.10.8.2	\
-	CONTAINERS		0.5.10.2	\
+	CONTAINERS		0.5.11.0	\
 	DEEPSEQ			1.4.3.0		\
-	DIRECTORY		1.3.0.2		\
-	FILEPATH		1.4.1.2		\
-	GHC			8.2.2		\
+	DIRECTORY		1.3.1.5		\
+	FILEPATH		1.4.2		\
+	GHC			8.4.2		\
 	GHC_COMPACT		0.1.0.0		\
-	GHC_PRIM		0.5.1.1		\
-	HASKELINE		0.7.4.0		\
-	HOOPL			3.10.2.2	\
+	GHC_PRIM		0.5.2.0		\
+	HASKELINE		0.7.4.2		\
 	HPC			0.6.0.3		\
-	INTEGER_GMP		1.0.1.0		\
-	PRETTY			1.1.3.3		\
-	PROCESS			1.6.1.0		\
-	TEMPLATE_HASKELL	2.12.0.0	\
-	TERMINFO		0.4.1.0		\
+	INTEGER_GMP		1.0.2.0		\
+	MTL			2.2.2		\
+	PARSEC			3.1.13.0	\
+	PRETTY			1.1.3.6		\
+	PROCESS			1.6.3.0		\
+	STM			2.4.5.0		\
+	TEMPLATE_HASKELL	2.13.0.0	\
+	TERMINFO		0.4.1.1		\
+	TEXT			1.2.3.0		\
 	TIME			1.8.0.2		\
-	TRANSFORMERS		0.5.2.0		\
+	TRANSFORMERS		0.5.5.0		\
 	UNIX			2.7.2.2		\
-	XHTML			3000.2.2
+	XHTML			3000.2.2.1
 
 .for _i _v in ${GHC_ITEMS}
 ${_i}_VER =	${_v}
@@ -153,8 +160,7 @@ post-patch:
 	LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \
 	CONFIGURE_ENV=${CONFIGURE_ENV} \
 	./configure --prefix=${WRKDIR}/bootstrap \
-	    --with-gcc="${CC}" \
-	    --with-clang="${CC}" && \
+		    CC=${LOCALBASE}/bin/egcc && \
 	LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \
 	${MAKE_PROGRAM} install
 	rm -rf ${WRKDIR}/ghc-${BIN_VER}
@@ -202,7 +208,7 @@ do-test:
 # It doesn't matter wether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20180330
+BOOTSTRAP_DATE =	20190113
 
 # Create a bootstrapper. This compiles a stripped-down version of
 # ghc and creates a `bindist', i.e. a tarball with binaries that
@@ -237,8 +243,8 @@ bootstrap: patch
 
 	env CONFIGURE_ENV=RELEASE=NO ${MAKE} configure
 
-	env MAKE_ENV="AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.4" \
-	${MAKE} build ALL_TARGET="all binary-dist"
+	${MAKE} build ALL_TARGET="all binary-dist" \
+		AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.4
 
 	mkdir -p ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
