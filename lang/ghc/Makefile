@@ -8,7 +8,7 @@ COMMENT =		compiler for the functional language Haskell
 # "non-deterministic", "unresolved symbol", "signature mismatch" etc. to
 # find the appropriate bug tickets)
 
-# ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache 
+# ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
 DISTNAME =		ghc-${MODGHC_VER}
@@ -34,7 +34,7 @@ PERMIT_PACKAGE_CDROM =		Yes
 LIB_DEPENDS =		converters/libiconv
 
 BUILD_DEPENDS =		archivers/gtar \
-			textproc/py-sphinx 
+			textproc/py-sphinx
 RUN_DEPENDS =
 
 # The bootstrapping compiler needs gcc4, but the new ghc can be built
@@ -67,32 +67,33 @@ BINDISTFILE-$m =	ghc-${BIN_VER}-$m-unknown-openbsd.tar.xz:0 \
 SUPDISTFILES +=		${BINDISTFILE-$m}
 .endfor
 
-# Substvars for all libraries, assuming that ghc-bnot, ghc-boot-th and
-# ghci will always have the same version number as ghc.
+# Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
+# ghc-heap, libiserv and ghci will always have the same version number
+# as ghc.
 GHC_ITEMS = \
-	CABAL			2.2.0.1		\
-	ARRAY			0.5.2.0		\
-	BASE			4.11.1.0	\
-	BINARY			0.8.5.1		\
+	CABAL			2.4.0.1		\
+	ARRAY			0.5.3.0		\
+	BASE			4.12.0.0	\
+	BINARY			0.8.6.0		\
 	BYTESTRING		0.10.8.2	\
-	CONTAINERS		0.5.11.0	\
-	DEEPSEQ			1.4.3.0		\
-	DIRECTORY		1.3.1.5		\
-	FILEPATH		1.4.2		\
-	GHC			8.4.2		\
+	CONTAINERS		0.6.0.1		\
+	DEEPSEQ			1.4.4.0		\
+	DIRECTORY		1.3.3.0		\
+	FILEPATH		1.4.2.1		\
+	GHC			8.6.3		\
 	GHC_COMPACT		0.1.0.0		\
-	GHC_PRIM		0.5.2.0		\
-	HASKELINE		0.7.4.2		\
+	GHC_PRIM		0.5.3		\
+	HASKELINE		0.7.4.3		\
 	HPC			0.6.0.3		\
 	INTEGER_GMP		1.0.2.0		\
 	MTL			2.2.2		\
 	PARSEC			3.1.13.0	\
 	PRETTY			1.1.3.6		\
 	PROCESS			1.6.3.0		\
-	STM			2.4.5.0		\
-	TEMPLATE_HASKELL	2.13.0.0	\
-	TERMINFO		0.4.1.1		\
-	TEXT			1.2.3.0		\
+	STM			2.5.0.0		\
+	TEMPLATE_HASKELL	2.14.0.0	\
+	TERMINFO		0.4.1.2		\
+	TEXT			1.2.3.1		\
 	TIME			1.8.0.2		\
 	TRANSFORMERS		0.5.5.0		\
 	UNIX			2.7.2.2		\
