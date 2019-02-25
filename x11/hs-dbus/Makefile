@@ -23,7 +23,6 @@ RUN_DEPENDS =		devel/hs-cereal \
 			devel/hs-network \
 			devel/hs-parsec \
 			devel/hs-random \
-			devel/hs-text \
 			devel/hs-vector \
 			textproc/hs-libxml-sax \
 			textproc/hs-xml-types

@@ -20,7 +20,6 @@ BUILD_DEPENDS =	${RUN_DEPENDS}
 RUN_DEPENDS =	archivers/hs-zlib \
 		devel/hs-mtl \
 		devel/hs-old-time \
-		devel/hs-text>=0.11 \
 		security/hs-digest>=0.0.0.1
 
 .include <bsd.port.mk>

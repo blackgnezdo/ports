@@ -18,9 +18,6 @@ MODGHC_BUILD =		cabal hackage haddock register
 
 MODGHC_PACKAGE_KEY =	43aRZ47jOxKDNgwLEE5ins
 
-RUN_DEPENDS =		devel/hs-text>=0.11.0.5
-BUILD_DEPENDS =		${RUN_DEPENDS}
-
 # Missing dependencies
 NO_TEST =		Yes
 

@@ -21,7 +21,6 @@ MODGHC_PACKAGE_KEY =	9lxGW0LBIfy6urVbDb07Sj
 RUN_DEPENDS =		devel/hs-dlist>=0.5,<0.9 \
 			devel/hs-fgl>=5.4,<5.6 \
 			devel/hs-temporary>=1.1,<1.3 \
-			devel/hs-text \
 			graphics/hs-colour>=2.3.0,<2.4 \
 			textproc/hs-polyparse>=1.9,<1.13 \
 			textproc/hs-wl-pprint-text>=1.1.0.0,<1.2.0.0

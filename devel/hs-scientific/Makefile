@@ -25,7 +25,6 @@ MODGHC_PACKAGE_KEY =	JWnrWS98ixeAp8KdIqhPYx
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-hashable>=1.1.2,<1.3 \
-			devel/hs-text>=0.8,<1.3 \
 			devel/hs-vector>=0.5,<0.13
 
 .include <bsd.port.mk>

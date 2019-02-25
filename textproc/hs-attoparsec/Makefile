@@ -22,8 +22,7 @@ MODGHC_BUILD =		cabal hackage haddock register
 
 MODGHC_PACKAGE_KEY =	37w4jz2uUXs3bEMk7HIEHV
 
-RUN_DEPENDS =		devel/hs-text>=1.1.1.3 \
-			devel/hs-scientific>=0.3.1,<0.4
+RUN_DEPENDS =		devel/hs-scientific>=0.3.1,<0.4
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
 # When built with --enable-tests, haddock fails.

@@ -35,7 +35,6 @@ BUILD_DEPENDS =		archivers/hs-zip-archive>=0.2.3,<0.4 \
 			devel/hs-regex-compat-tdfa>=0.95.1,<0.96 \
 			devel/hs-sandi>=0.4,<0.5 \
 			devel/hs-tar>=0.4,<0.6 \
-			devel/hs-text>=1.2.1.3,<1.3 \
 			devel/hs-transformers-compat>=0.4,<0.6 \
 			devel/hs-unix-compat>=0.1.2,<0.5 \
 			devel/hs-utf8-string>=0.3.6,<1.1 \

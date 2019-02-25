@@ -23,7 +23,6 @@ RUN_DEPENDS =		devel/hs-async \
 			devel/hs-monad-control>=0.3.2,<1.1 \
 			devel/hs-system-fileio<0.4 \
 			devel/hs-system-filepath>=0.4.7,<0.5 \
-			devel/hs-text \
 			devel/hs-transformers-base \
 			devel/hs-unix-compat<0.5
 

@@ -19,8 +19,7 @@ MODGHC_PACKAGE_KEY =	CcttzSMZvrP7n0GTZtYEig
 
 RUN_DEPENDS +=		devel/hs-mtl \
 			devel/hs-old-locale \
-			devel/hs-old-time \
-			devel/hs-text>=0.8
+			devel/hs-old-time
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
 .include <bsd.port.mk>

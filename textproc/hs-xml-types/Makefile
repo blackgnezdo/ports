@@ -19,7 +19,4 @@ MODGHC_BUILD =		cabal hackage haddock register
 
 MODGHC_PACKAGE_KEY =	KBWVauU3pnf3clHxqFFRXL
 
-RUN_DEPENDS =		devel/hs-text
-BUILD_DEPENDS =		${RUN_DEPENDS}
-
 .include <bsd.port.mk>

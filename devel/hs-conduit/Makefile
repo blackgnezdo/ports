@@ -26,7 +26,6 @@ RUN_DEPENDS =		devel/hs-exceptions>=0.6 \
 			devel/hs-mtl \
 			devel/hs-primitive \
 			devel/hs-resourcet>=1.1,<1.2 \
-			devel/hs-text>=0.11 \
 			devel/hs-transformers-base>=0.4.1,<0.5 \
 			devel/hs-transformers-compat>=0.3 \
 			devel/hs-void>=0.5.5
