@@ -10,9 +10,9 @@ lib/ghc/${DISTNAME}/Data/Hashable/Generic.hi
 lib/ghc/${DISTNAME}/Data/Hashable/Generic.p_hi
 lib/ghc/${DISTNAME}/Data/Hashable/Lifted.hi
 lib/ghc/${DISTNAME}/Data/Hashable/Lifted.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-CWI8VZuQTAYWIQTQQtqCV.o
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-CWI8VZuQTAYWIQTQQtqCV.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-CWI8VZuQTAYWIQTQQtqCV_p.a
+lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
