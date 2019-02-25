@@ -6,7 +6,7 @@ COMMENT =		efficient packed Unicode text type
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		text-1.2.1.3
+DISTNAME =		text-1.2.3.1
 REVISION =		3
 CATEGORIES =		devel
 
@@ -19,6 +19,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	5I6D6Lq0QEU97eY5wqs6DJ
+MODGHC_PACKAGE_KEY =	La8HgsbI3z7Ezd75FPHQix
 
 .include <bsd.port.mk>
