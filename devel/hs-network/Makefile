@@ -6,8 +6,7 @@ COMMENT =		Haskell networking library
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		network-2.6.2.1
-REVISION =		3
+DISTNAME =		network-2.8.0.0
 CATEGORIES =		devel net
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -19,6 +18,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	EN7QebdZTnQLy4O4vi1CmV
+MODGHC_PACKAGE_KEY =	AkCJm1aNSYz7ekXKYyI0pF
 
 .include <bsd.port.mk>
