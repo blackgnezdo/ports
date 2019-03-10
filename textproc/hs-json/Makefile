@@ -3,6 +3,7 @@
 COMMENT =		JSON library
 
 DISTNAME =		json-0.9.2
+REVISION =		0
 CATEGORIES =		textproc
 
 MAINTAINER =		Caspar Schutijser <caspar@schutijser.com>
@@ -14,12 +15,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	7rB8qNGKE8tQN0WTAH0G5
+MODGHC_PACKAGE_KEY =	4zIh45kKURG4w9ScBnyxf0
 
-RUN_DEPENDS +=		devel/hs-mtl \
-			devel/hs-parsec \
-			devel/hs-syb>=0.3.3 \
-			devel/hs-text
+RUN_DEPENDS +=		devel/hs-syb>=0.3.3
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
 .include <bsd.port.mk>

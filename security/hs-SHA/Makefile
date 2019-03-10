@@ -3,7 +3,7 @@
 COMMENT =		SHA message digests
 
 DISTNAME =		SHA-1.6.4.2
-REVISION =		3
+REVISION =		4
 
 CATEGORIES =		security
 
@@ -16,6 +16,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	1gNz0XEXVc9D2LWQ8o29zI
+MODGHC_PACKAGE_KEY =	K17FqRah5DD3xPZWh9IJHt
 
 .include <bsd.port.mk>
