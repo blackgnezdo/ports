@@ -13,12 +13,10 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	CcttzSMZvrP7n0GTZtYEig
+MODGHC_PACKAGE_KEY =	4JGGYsaDyuUDyUW9qH2fP2
 
-RUN_DEPENDS +=		devel/hs-mtl \
-			devel/hs-old-locale \
-			devel/hs-old-time \
-			devel/hs-text>=0.8
+RUN_DEPENDS +=		devel/hs-old-locale \
+			devel/hs-old-time
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
 .include <bsd.port.mk>
