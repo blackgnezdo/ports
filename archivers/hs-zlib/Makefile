@@ -7,7 +7,7 @@ COMMENT =		zlib bindings for Haskell
 PORTROACH =		ignore:1
 
 DISTNAME =		zlib-0.5.4.2
-REVISION =		3
+REVISION =		4
 CATEGORIES =		archivers devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -19,6 +19,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	F6BHJqwkis53HpMy7MLAqK
+MODGHC_PACKAGE_KEY =	HAz3cBu5FbW2wE2EcQaa6W
 
 .include <bsd.port.mk>

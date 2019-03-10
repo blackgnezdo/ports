@@ -3,6 +3,7 @@
 COMMENT =		cross-platform echoing terminal input
 
 DISTNAME =		echo-0.1.3
+REVISION =		0
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -14,6 +15,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	BlErO49OOLiLJPizijFtq4
+MODGHC_PACKAGE_KEY =	13B4dlYRuV48K7glAqfTgb
 
 .include <bsd.port.mk>

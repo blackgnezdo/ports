@@ -15,10 +15,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	CWwwLs2Cpr07R9NPn064CX
+MODGHC_PACKAGE_KEY =	4zvThBcDksZKjZMmnQUocC
 
-RUN_DEPENDS =		devel/hs-text>=0.7 \
-			textproc/hs-xml-types>=0.3,<0.4 \
+RUN_DEPENDS =		textproc/hs-xml-types>=0.3,<0.4 \
 			textproc/libxml
 BUILD_DEPENDS =		${RUN_DEPENDS}
 

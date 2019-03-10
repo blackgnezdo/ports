@@ -3,7 +3,7 @@
 COMMENT =		platform independent entropy source
 
 DISTNAME =		entropy-0.2.1
-REVISION =		7
+REVISION =		8
 CATEGORIES =		security
 
 # BSD3
@@ -13,6 +13,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JZfH4MzgSpW7rZ4CqqUMjz
+MODGHC_PACKAGE_KEY =	IfZwtxgTnXI3i1BomgGL89
 
 .include <bsd.port.mk>
