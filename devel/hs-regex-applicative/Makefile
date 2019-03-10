@@ -3,7 +3,7 @@
 COMMENT =		regex-based parsing with applicative interface
 
 DISTNAME =		regex-applicative-0.3.2.1
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel
 
 # BSD
@@ -13,6 +13,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	8f63XDYk2VULuRTTJiHsCz
+MODGHC_PACKAGE_KEY =	7UmNQWPU54DCImdwlvepgi
 
 .include <bsd.port.mk>

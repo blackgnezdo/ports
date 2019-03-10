@@ -3,7 +3,7 @@
 COMMENT =		monad morphisms
 
 DISTNAME =		mmorph-1.0.9
-REVISION =		1
+REVISION =		2
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,11 +15,10 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	8UaKrPqOttEJIi786pOOKJ
+MODGHC_PACKAGE_KEY =	DU2BbOJSeJFHiyI7PLjEka
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
-RUN_DEPENDS =		devel/hs-mtl>=2.0.1,<2.3 \
-			devel/hs-transformers-compat>=0.3,<0.6
+RUN_DEPENDS =		devel/hs-transformers-compat>=0.3,<0.6
 
 .include <bsd.port.mk>
