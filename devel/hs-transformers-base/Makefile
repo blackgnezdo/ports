@@ -13,11 +13,10 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	G4HvRd1GUcNGvZj70uX60w
+MODGHC_PACKAGE_KEY =	1mj2e5MR6zr3cRGVEYdRZ3
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
-RUN_DEPENDS =		devel/hs-stm>=2.3 \
-			devel/hs-transformers-compat>=0.2
+RUN_DEPENDS =		devel/hs-transformers-compat>=0.2
 
 .include <bsd.port.mk>

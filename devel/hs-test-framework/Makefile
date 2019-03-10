@@ -2,8 +2,7 @@
 
 COMMENT =		framework for running and organising tests
 
-DISTNAME =		test-framework-0.8.1.1
-REVISION =		4
+DISTNAME =		test-framework-0.8.2.0
 CATEGORIES =		devel
 
 HOMEPAGE =		http://batterseapower.github.com/test-framework/
@@ -17,7 +16,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	KakqBuIUYoUBZBqwCIlO84
+MODGHC_PACKAGE_KEY =	BsqEY4hQD0p1IH1BKJVmAm
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		net/hs-hostname>=1.0 \

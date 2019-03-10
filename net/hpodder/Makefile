@@ -3,7 +3,7 @@
 COMMENT =		command line podcast aggregator
 
 DISTNAME =		hpodder-1.1.6
-REVISION =		15
+REVISION =		16
 CATEGORIES =		net
 HOMEPAGE =		https://github.com/jgoerzen/hpodder/wiki
 
@@ -20,7 +20,6 @@ LIB_DEPENDS =		converters/libiconv \
 			databases/sqlite3
 
 BUILD_DEPENDS =		devel/hs-ConfigFile \
-			devel/hs-mtl \
 			devel/hs-network-uri \
 			textproc/hs-HaXml>=1.22 \
 			databases/hs-HDBC-sqlite3>=1.1.0

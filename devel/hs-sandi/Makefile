@@ -2,8 +2,7 @@
 
 COMMENT =		data encoding library
 
-DISTNAME =		sandi-0.4.1
-REVISION =		1
+DISTNAME =		sandi-0.5
 CATEGORIES =		devel
 
 # BSD
@@ -17,8 +16,7 @@ MODGHC_PACKAGE_KEY =	IzshKkho05BGGpyRzAGPU7
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
-RUN_DEPENDS =		devel/hs-conduit>=1.2,<1.3 \
-			devel/hs-exceptions>=0.6,<0.9 \
-			textproc/hs-stringsearch>=0.3,<0.4
+RUN_DEPENDS =		devel/hs-conduit>=1.2,<1.4 \
+			devel/hs-exceptions>=0.10,<0.11
 
 .include <bsd.port.mk>

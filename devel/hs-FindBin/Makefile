@@ -13,6 +13,6 @@ PERMIT_PACKAGE =	Yes
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	7YUNl8W6bN9GM4CQnaO2CD
+MODGHC_PACKAGE_KEY =	6QSFjAP4vvy4WhAg9UfF4U
 
 .include <bsd.port.mk>
