@@ -3,7 +3,7 @@
 COMMENT =		Haskell 98 natural numbers
 
 DISTNAME =		nats-0.1
-REVISION =		5
+REVISION =		6
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>

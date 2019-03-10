@@ -3,7 +3,7 @@
 COMMENT =		cryptographic hashes for bytestrings
 
 DISTNAME =		digest-0.0.1.2
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel security
 
 # BSD3
@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	J7cjlUazOWnIwNGrU2CIF8
+MODGHC_PACKAGE_KEY =	93hmxvQ2VB3FeV97QkdTpW
 
 RUN_DEPENDS =		archivers/hs-zlib
 

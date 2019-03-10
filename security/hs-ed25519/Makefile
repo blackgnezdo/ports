@@ -6,7 +6,7 @@ COMMENT=		ed25519 cryptographics signatures
 
 DISTNAME=		ed25519-0.0.5.0
 CATEGORIES=		security
-REVISION=		0
+REVISION=		1
 
 # MIT
 PERMIT_PACKAGE =	Yes
@@ -15,6 +15,6 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	3Sle7uACwGIJ1UEE9iZB8E
+MODGHC_PACKAGE_KEY =	JRZm9qkjuKdJzhMNs9MSTR
 
 .include <bsd.port.mk>

@@ -7,7 +7,7 @@ COMMENT =		interface API for regex-posix,pcre,parsec,tdfa,dfa
 PORTROACH =		ignore:1
 
 DISTNAME =		regex-base-0.93.2
-REVISION =		12
+REVISION =		13
 CATEGORIES =		devel
 
 HOMEPAGE =		http://sourceforge.net/projects/lazy-regex
@@ -21,9 +21,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	rcKBNTI69reeBx0eaPBC
-
-RUN_DEPENDS =		devel/hs-mtl
-BUILD_DEPENDS =		${RUN_DEPENDS}
+MODGHC_PACKAGE_KEY =	8QGsCbNNqfw1S2nCPh78l5
 
 .include <bsd.port.mk>

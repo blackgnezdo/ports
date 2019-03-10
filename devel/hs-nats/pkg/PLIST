@@ -1,14 +1,14 @@
 @comment $OpenBSD: PLIST,v 1.4 2018/01/22 21:42:27 kili Exp $
 lib/ghc/${DISTNAME}/
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
+lib/ghc/${DISTNAME}/HS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ.o
 lib/ghc/${DISTNAME}/Numeric/
 lib/ghc/${DISTNAME}/Numeric/Natural/
 lib/ghc/${DISTNAME}/Numeric/Natural.hi
 lib/ghc/${DISTNAME}/Numeric/Natural.p_hi
 lib/ghc/${DISTNAME}/Numeric/Natural/Internal.hi
 lib/ghc/${DISTNAME}/Numeric/Natural/Internal.p_hi
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ_p.a
 lib/ghc/${DISTNAME}/register.sh
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
@@ -16,13 +16,15 @@ share/doc/hs-${DISTNAME}/html/
 share/doc/hs-${DISTNAME}/html/Numeric-Natural-Internal.html
 share/doc/hs-${DISTNAME}/html/Numeric-Natural.html
 share/doc/hs-${DISTNAME}/html/doc-index.html
-share/doc/hs-${DISTNAME}/html/haddock-util.js
+share/doc/hs-${DISTNAME}/html/haddock-bundle.min.js
 share/doc/hs-${DISTNAME}/html/hslogo-16.png
 share/doc/hs-${DISTNAME}/html/index.html
+share/doc/hs-${DISTNAME}/html/meta.json
 share/doc/hs-${DISTNAME}/html/minus.gif
 share/doc/hs-${DISTNAME}/html/nats.haddock
 share/doc/hs-${DISTNAME}/html/ocean.css
 share/doc/hs-${DISTNAME}/html/plus.gif
+share/doc/hs-${DISTNAME}/html/quick-jump.css
 share/doc/hs-${DISTNAME}/html/synopsis.png
 @exec /usr/bin/env HOME=/nonexistent %D/lib/ghc/${DISTNAME}/register.sh -v0
 @unexec /usr/bin/env HOME=/nonexistent %D/lib/ghc/${DISTNAME}/unregister.sh -v0 --force
