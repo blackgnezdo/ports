@@ -3,7 +3,7 @@
 COMMENT =		library dealing with zip archives
 
 DISTNAME =		zip-archive-0.2.3.7
-REVISION =		2
+REVISION =		3
 CATEGORIES =		archivers devel
 
 # BSD3
@@ -13,14 +13,12 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	KKpluOh2rfxHQP3RVsnoLF
+MODGHC_PACKAGE_KEY =	6jdjvMXj8RmIbIFdQ7caD4
 
 BUILD_DEPENDS =	${RUN_DEPENDS}
 
 RUN_DEPENDS =	archivers/hs-zlib \
-		devel/hs-mtl \
 		devel/hs-old-time \
-		devel/hs-text>=0.11 \
 		security/hs-digest>=0.0.0.1
 
 .include <bsd.port.mk>
