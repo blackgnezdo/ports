@@ -3,7 +3,7 @@
 COMMENT=		fast base16 (hex) encoding and decoding for ByteStrings
 
 DISTNAME=		base16-bytestring-0.1.1.5
-REVISION=		5
+REVISION=		6
 CATEGORIES=		devel
 
 # BSD3
@@ -13,6 +13,6 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	6C0w7pcEjtRYQOqmnwyBO
+MODGHC_PACKAGE_KEY =	Cbny7PPJRBc3NO5kr5Cia8
 
 .include <bsd.port.mk>
