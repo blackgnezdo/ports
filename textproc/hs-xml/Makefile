@@ -3,7 +3,7 @@
 COMMENT =		simple XML library
 
 DISTNAME =		xml-1.3.7
-REVISION =		11
+REVISION =		12
 CATEGORIES =		textproc
 
 MAINTAINER =		Jim Razmus II <jim@openbsd.org>
@@ -15,6 +15,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	8OuiNi8K5z71QeIDJ8eH2P
+MODGHC_PACKAGE_KEY =	8a6ftauAVpI5RUSHz8NtfL
 
 .include <bsd.port.mk>

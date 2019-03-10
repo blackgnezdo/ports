@@ -3,7 +3,7 @@
 COMMENT =		portable POSIX-compatibility layer
 
 DISTNAME =		unix-compat-0.4.1.1
-REVISION =		5
+REVISION =		6
 CATEGORIES =		devel
 
 MAINTAINER =		Jim Razmus II <jim@openbsd.org>
@@ -15,6 +15,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	8FowYqsnywvKDGnEQzk1BX
+MODGHC_PACKAGE_KEY =	3asq9rG2PUDK0iw9Sp7ECL
 
 .include <bsd.port.mk>

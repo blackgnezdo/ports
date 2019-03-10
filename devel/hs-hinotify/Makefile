@@ -3,7 +3,7 @@
 COMMENT =		inotify lib for haskell
 
 DISTNAME =		hinotify-0.3.8.1
-REVISION =		1
+REVISION =		2
 CATEGORIES =		devel
 
 # BSD3
@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JeakPC9kS286yNpujVG5g4
+MODGHC_PACKAGE_KEY =	1TL7DUYG6qt2stVKTb4zoz
 
 MODGHC_SETUP_CONF_ARGS +=	--extra-include-dirs=${LOCALBASE}/include/inotify/ \
 				--extra-lib-dirs=${LOCALBASE}/lib/inotify/
