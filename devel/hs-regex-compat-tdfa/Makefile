@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JndgHkiSvqkF8EA3cAzjcB
+MODGHC_PACKAGE_KEY =	LEgCDcFzCOu8j8alaEwgs6
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 

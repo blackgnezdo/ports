@@ -21,10 +21,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	vWU5STOtMi6yQryYjRhah
+MODGHC_PACKAGE_KEY =	KWHpBxMrkPb1MX7UzruPB9
 
-RUN_DEPENDS =		devel/hs-mtl \
-			devel/hs-regex-base>=0.93 \
+RUN_DEPENDS =		devel/hs-regex-base>=0.93 \
 			devel/hs-regex-posix>=0.95.1
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
