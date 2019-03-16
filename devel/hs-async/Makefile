@@ -20,9 +20,6 @@ MODGHC_BUILD =		cabal hackage haddock register
 
 MODGHC_PACKAGE_KEY =	H3j65XcXMHtBvmNwGCQ80G
 
-BUILD_DEPENDS =		${RUN_DEPENDS}
-RUN_DEPENDS =		devel/hs-stm>=2.2,<2.5
-
 # Needs --enable-test, which will probably set by ghc.port.mk soon
 # (when I have some numbers about build times).
 NO_TEST =		Yes

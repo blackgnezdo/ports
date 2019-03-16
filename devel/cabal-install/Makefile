@@ -25,11 +25,9 @@ BUILD_DEPENDS +=	archivers/hs-zlib>=0.5.3,<0.6 \
 			devel/hs-echo>=0.1.3,<0.2 \
 			devel/hs-edit-distance>=0.2.2,<0.3 \
 			devel/hs-hashable>=1.0,<2 \
-			devel/hs-mtl>=2.0,<3 \
 			devel/hs-network>=2.6,<2.7 \
 			devel/hs-network-uri>=2.6,<2.7 \
 			devel/hs-random>=1,<1.2 \
-			devel/hs-stm>=2.0,<3 \
 			devel/hs-tar>=0.5.0.3,<0.6 \
 			net/hs-HTTP>=4000.1.5,<4000.4 \
 			security/hs-cryptohash-sha256>=0.11,<0.12 \
