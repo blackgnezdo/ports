@@ -4,7 +4,7 @@ COMMENT=		class for types with a default value
 
 DISTNAME=		data-default-0.5.1
 CATEGORIES=		devel
-REVISION=		7
+REVISION=		8
 
 # BSD3
 PERMIT_PACKAGE_CDROM =	Yes
@@ -13,7 +13,7 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	H8DtWiIYInLGBIshsVPXQj
+MODGHC_PACKAGE_KEY =	FoXGioXi2585r8kGFY1MGK
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-dlist \
