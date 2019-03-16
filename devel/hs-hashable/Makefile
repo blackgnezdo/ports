@@ -6,7 +6,7 @@ COMMENT =		class for hashable data types
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		hashable-1.2.6.1
+DISTNAME =		hashable-1.2.7.0
 CATEGORIES =		devel
 
 # BSD3
@@ -16,10 +16,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	43aRZ47jOxKDNgwLEE5ins
-
-RUN_DEPENDS =		devel/hs-text>=0.11.0.5
-BUILD_DEPENDS =		${RUN_DEPENDS}
+MODGHC_PACKAGE_KEY =	CWI8VZuQTAYWIQTQQtqCV
 
 # Missing dependencies
 NO_TEST =		Yes
