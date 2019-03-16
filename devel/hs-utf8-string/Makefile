@@ -3,7 +3,7 @@
 COMMENT =		support for reading and writing UTF8 strings
 
 DISTNAME =		utf8-string-1.0.1.1
-REVISION =		3
+REVISION =		4
 CATEGORIES =		devel
 
 # BSD3
@@ -13,6 +13,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	7sQ7eR5H5ED7poickls5aO
+MODGHC_PACKAGE_KEY =	Geq8jdOv4Q3LkcQoEOWDVv
 
 .include <bsd.port.mk>
