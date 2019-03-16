@@ -3,8 +3,8 @@
 COMMENT-main =		tiling window manager
 COMMENT-lib =		libraries for runtime configuration
 
-DISTNAME =		xmonad-0.13
-REVISION =		1
+DISTNAME =		xmonad-0.15
+
 PKGNAME-main =		${DISTNAME}
 PKGNAME-lib =		${DISTNAME:S,-,-lib-,}
 CATEGORIES =		x11
@@ -22,7 +22,7 @@ WANTLIB-lib =
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage haddock register nort
 
-MODGHC_PACKAGE_KEY =	1dqhBbsPfpPL2BQEiEEfSU
+MODGHC_PACKAGE_KEY =	9L0IDbyIoHf7Mpz81NeFlT
 
 # Required because of the nort tag in MODGHC_BUILD
 SUBST_VARS +=		MODGHC_PACKAGE_KEY
@@ -30,7 +30,6 @@ SUBST_VARS +=		MODGHC_PACKAGE_KEY
 BUILD_DEPENDS =		${RUN_DEPENDS-lib}
 RUN_DEPENDS-lib =	devel/hs-data-default \
 			devel/hs-extensible-exceptions \
-			devel/hs-mtl \
 			devel/hs-utf8-string>=0.3,<1.1 \
 			x11/hs-X11>=1.8,<1.9
 LIB_DEPENDS-main =	converters/libiconv
