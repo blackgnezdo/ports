@@ -25,7 +25,6 @@ BUILD_DEPENDS = 	devel/hs-hinotify>=0.3 \
 			devel/hs-mtl>=2.1,<2.3 \
 			devel/hs-parsec>=3.1,<3.2 \
 			devel/hs-regex-compat \
-			devel/hs-stm>=2.3,<2.5 \
 			net/hs-HTTP>=4000.2.4 \
 			x11/hs-X11>=1.6.1 \
 			x11/hs-X11-xft>=0.2,<0.4 \
