@@ -3,7 +3,7 @@
 COMMENT =		bindings to the X11 graphics library for GHC
 
 DISTNAME =		X11-1.8
-
+REVISITION = 		0
 CATEGORIES =		x11 devel
 
 HOMEPAGE =		http://code.haskell.org/X11/
@@ -16,7 +16,7 @@ PERMIT_PACKAGE =		Yes
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	3udLVcDICGRoTsmLBPd9D
+MODGHC_PACKAGE_KEY =	EmPX88VPoZtDZY5EQwj6Nb
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-data-default \
