@@ -10,7 +10,7 @@ but not in the dist file.
    Ghc-options:        -W -O2
  
 -  build-depends: base >= 4.3 && < 4.9, bytestring >= 0.9
-+  build-depends: base >= 4.3 && < 4.11, bytestring >= 0.9
++  build-depends: base >= 4.3 && < 4.13, bytestring >= 0.9
  
    Extensions:         CPP
    Exposed-modules:    Codec.Binary.UTF8.String
