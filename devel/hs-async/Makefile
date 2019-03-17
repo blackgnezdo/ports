@@ -6,7 +6,7 @@ COMMENT =		asynchronous IO operations
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		async-2.1.1.1
+DISTNAME =		async-2.2.1
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -18,7 +18,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	H3j65XcXMHtBvmNwGCQ80G
+MODGHC_PACKAGE_KEY =	4fWSSJ8SFccIxQJVItkRnX
 
 # Needs --enable-test, which will probably set by ghc.port.mk soon
 # (when I have some numbers about build times).
