@@ -2,8 +2,8 @@
 
 COMMENT =		binary serialization library
 
-DISTNAME =		cereal-0.4.1.0
-REVISION =		5
+DISTNAME =		cereal-0.5.8.0
+
 CATEGORIES =		devel
 
 # BSD3
@@ -13,6 +13,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	J7JNgMSSYgsLRU6KWtlHY0
+MODGHC_PACKAGE_KEY =	6rtfJLvNbgP66iuaPkuxJC
 
 .include <bsd.port.mk>
