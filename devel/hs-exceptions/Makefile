@@ -2,8 +2,8 @@
 
 COMMENT =		extensible optionally-pure exceptions
 
-DISTNAME =		exceptions-0.8.3
-REVISION =		0
+DISTNAME =		exceptions-0.10.0
+
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,9 +15,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	IMG8z9bQ0kKKt0LCvLfr9v
+MODGHC_PACKAGE_KEY =	JiZfwt536PI14yUdSMAaVj
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
-RUN_DEPENDS +=		devel/hs-transformers-compat>=0.3,<0.6
+RUN_DEPENDS +=		devel/hs-transformers-compat>=0.3,<0.7
 
 .include <bsd.port.mk>
