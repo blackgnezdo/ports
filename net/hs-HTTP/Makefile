@@ -6,7 +6,7 @@ COMMENT =		library for client-side HTTP
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		HTTP-4000.3.7
+DISTNAME =		HTTP-4000.3.13
 CATEGORIES =		net devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -18,12 +18,10 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	BrMupjBt6VI5SSxxBJEd3T
+MODGHC_PACKAGE_KEY =	84dyfwBlJKS3ljJTR3NNxp
 
-RUN_DEPENDS =		devel/hs-mtl>=2.0,<2.3 \
-			devel/hs-network-uri>=2.6,<2.7 \
-			devel/hs-network>=2.6,<2.7 \
-			devel/hs-parsec>=2.0,<3.2
+RUN_DEPENDS =		devel/hs-network-uri>=2.6,<2.7 \
+			devel/hs-network>=2.6,<2.7
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
 # Missing dependencies
