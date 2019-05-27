@@ -5,9 +5,9 @@ lib/ghc/${DISTNAME}/Control/Monad/
 lib/ghc/${DISTNAME}/Control/Monad/Trans/
 lib/ghc/${DISTNAME}/Control/Monad/Trans/Control.hi
 lib/ghc/${DISTNAME}/Control/Monad/Trans/Control.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
+lib/ghc/${DISTNAME}/HS${DISTNAME}-AcK9ASuxkE084ciqHOIhwh.o
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-AcK9ASuxkE084ciqHOIhwh.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-AcK9ASuxkE084ciqHOIhwh_p.a
 lib/ghc/${DISTNAME}/register.sh
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
