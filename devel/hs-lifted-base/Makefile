@@ -3,7 +3,7 @@
 COMMENT =		lifted IO operations from the base library
 
 DISTNAME =		lifted-base-0.2.3.6
-REVISION =		3
+REVISION =		4
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,7 +15,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JyuGQmJP35z3JGL0AwuE0h
+MODGHC_PACKAGE_KEY =	918mEcUNLdGJqq8W2JWxxw
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
