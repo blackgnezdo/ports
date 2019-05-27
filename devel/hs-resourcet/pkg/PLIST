@@ -15,6 +15,9 @@ lib/ghc/${DISTNAME}/Data/Acquire.p_hi
 lib/ghc/${DISTNAME}/Data/Acquire/Internal.hi
 lib/ghc/${DISTNAME}/Data/Acquire/Internal.p_hi
 lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
+lib/ghc/${DISTNAME}/UnliftIO/
+lib/ghc/${DISTNAME}/UnliftIO/Resource.hi
+lib/ghc/${DISTNAME}/UnliftIO/Resource.p_hi
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
@@ -25,6 +28,7 @@ share/doc/hs-${DISTNAME}/html/Control-Monad-Trans-Resource-Internal.html
 share/doc/hs-${DISTNAME}/html/Control-Monad-Trans-Resource.html
 share/doc/hs-${DISTNAME}/html/Data-Acquire-Internal.html
 share/doc/hs-${DISTNAME}/html/Data-Acquire.html
+share/doc/hs-${DISTNAME}/html/UnliftIO-Resource.html
 share/doc/hs-${DISTNAME}/html/doc-index.html
 share/doc/hs-${DISTNAME}/html/haddock-bundle.min.js
 share/doc/hs-${DISTNAME}/html/hslogo-16.png
