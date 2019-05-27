@@ -14,7 +14,7 @@ PERMIT_PACKAGE_CDROM =	Yes
 MODULES=	lang/ghc
 MODGHC_BUILD=	cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	DteivQ7CFpbwGPG31oDIM
+MODGHC_PACKAGE_KEY =	KBYiLoPicgH6Xf1j5OrcEY
 
 RUN_DEPENDS=	devel/hs-syb \
 		devel/hs-utf8-string>=0.1 \
