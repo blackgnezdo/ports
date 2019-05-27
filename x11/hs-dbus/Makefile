@@ -3,7 +3,7 @@
 COMMENT =		Haskell implementation of the D-Bus protocol
 
 DISTNAME =		dbus-0.10.13
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel x11
 
 HOMEPAGE =		https://github.com/rblaze/haskell-dbus#readme
@@ -15,13 +15,11 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	IUelLsOGWpyBGcXH63C8d4
+MODGHC_PACKAGE_KEY =	GkT37aCm0RP9JHiW0yK7ST
 
 RUN_DEPENDS =		devel/hs-cereal \
 			devel/hs-network \
-			devel/hs-parsec \
 			devel/hs-random \
-			devel/hs-text \
 			devel/hs-vector \
 			textproc/hs-libxml-sax \
 			textproc/hs-xml-types
