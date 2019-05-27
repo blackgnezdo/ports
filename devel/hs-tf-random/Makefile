@@ -7,7 +7,7 @@ COMMENT =		high-quality splittable PRNG
 PORTROACH =		ignore:1
 
 DISTNAME =		tf-random-0.5
-REVISION =		3
+REVISION =		4
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -19,7 +19,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	ABwehMmciu8CuAFbHLp6To
+MODGHC_PACKAGE_KEY =	3ypV4EIycgb35PKjTYYr5q
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-primitive>=0.3 \
