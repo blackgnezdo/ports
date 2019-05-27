@@ -7,7 +7,7 @@ COMMENT =		Monadic parser combinators
 PORTROACH =		ignore:1
 
 DISTNAME =		parsec-3.1.9
-REVISION =		4
+REVISION =		5
 CATEGORIES =		devel
 HOMEPAGE =		https://github.com/aslatter/parsec
 
@@ -20,10 +20,8 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	444fzLM2idQ5vByZuGIOJ
+MODGHC_PACKAGE_KEY =	J37rm8540ksFDyw3j15L5p
 
-RUN_DEPENDS =		devel/hs-mtl \
-			devel/hs-text>=0.2,<1.3
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
 .include <bsd.port.mk>
