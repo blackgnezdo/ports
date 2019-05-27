@@ -6,7 +6,7 @@ COMMENT =		primitive memory-related operations
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		primitive-0.6.2.0
+DISTNAME =		primitive-0.6.4.0
 CATEGORIES =		devel
 REVISION =		0
 
@@ -17,6 +17,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	EI3NK1Xfv9zEcRtyXK2EwZ
+MODGHC_PACKAGE_KEY =	ILgywxtLpvnAOlEISPpP5b
 
 .include <bsd.port.mk>
