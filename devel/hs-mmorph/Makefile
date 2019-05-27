@@ -3,7 +3,7 @@
 COMMENT =		monad morphisms
 
 DISTNAME =		mmorph-1.0.9
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,7 +15,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	DU2BbOJSeJFHiyI7PLjEka
+MODGHC_PACKAGE_KEY =	5nK9LlJVZhp6HBh22XokjD
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
