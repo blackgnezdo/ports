@@ -3,7 +3,7 @@
 COMMENT =		abstraction layer for SQL relational databases
 
 DISTNAME =		HDBC-2.4.0.2
-REVISION =		2
+REVISION =		3
 CATEGORIES =		databases
 
 # LGPLv2.1
@@ -13,10 +13,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	DIetTSeoFIQN91HViOst9
+MODGHC_PACKAGE_KEY =	aCUjKLHgaF9NnIcxRYPK7
 
 RUN_DEPENDS +=		devel/hs-convertible>=1.1.0.0 \
-			devel/hs-mtl \
 			devel/hs-utf8-string
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
