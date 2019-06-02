@@ -1,0 +1,13 @@
+$OpenBSD$
+
+Index: Data/Graph/Inductive/Monad.hs
+--- Data/Graph/Inductive/Monad.hs.orig
++++ Data/Graph/Inductive/Monad.hs
+@@ -24,7 +24,6 @@ import Control.Monad.Fail
+ import Prelude hiding (fail)
+ #endif
+ 
+-{-# ANN module "HLint: ignore Redundant lambda" #-}
+ 
+ ----------------------------------------------------------------------
+ -- MONADIC GRAPH CLASS

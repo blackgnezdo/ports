@@ -1,0 +1,16 @@
+$OpenBSD$
+
+Avoids bus error crash:
+https://marc.info/?l=openbsd-ports&m=155949514223604&w=2
+
+Index: Data/Graph/Inductive/Query/Dominators.hs
+--- Data/Graph/Inductive/Query/Dominators.hs.orig
++++ Data/Graph/Inductive/Query/Dominators.hs
+@@ -20,7 +20,6 @@ import qualified Data.IntMap                    as I
+ import           Data.Tree                      (Tree (..))
+ import qualified Data.Tree                      as T
+ 
+-{-# ANN iDom "HLint: ignore Use ***" #-}
+ -- | return immediate dominators for each node of a graph, given a root
+ iDom :: (Graph gr) => gr a b -> Node -> [(Node,Node)]
+ iDom g root = let (result, toNode, _) = idomWork g root
