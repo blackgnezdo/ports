@@ -3,7 +3,7 @@
 COMMENT =		versatile logging framework
 
 DISTNAME =		hslogger-1.2.10
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel sysutils
 HOMEPAGE =		https://github.com/jgoerzen/hslogger/wiki
 
@@ -14,10 +14,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	CllZPL4aRtPEC4eix5IrCG
+MODGHC_PACKAGE_KEY =	AeBcxdsqOAhG5ylU0fE0Kf
 
 RUN_DEPENDS +=		devel/hs-network \
-			devel/hs-mtl \
 			devel/hs-old-locale
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
