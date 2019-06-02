@@ -8,8 +8,7 @@ COMMENT =		functional graph library
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		fgl-5.5.2.3
-REVISION =		2
+DISTNAME =		fgl-5.7.0.1
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -21,6 +20,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	E6nTygjgXmbItPqw11u3Y
+MODGHC_PACKAGE_KEY =	CpDtOA8pKQl6hGnWjlttIk
 
 .include <bsd.port.mk>
