@@ -6,8 +6,7 @@ COMMENT =		Wadler/Leijen pretty printer for text values
 # just for avoiding compiler pragmas for certain versions of ghc.
 PORTROACH =		limit:^1\.1\.0\.
 
-DISTNAME =		wl-pprint-text-1.1.0.4
-REVISION =		0
+DISTNAME =		wl-pprint-text-1.2.0.0
 CATEGORIES =		devel textproc
 
 # BSD3
@@ -17,10 +16,9 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	Fw8LgBKInFZ1l1QCzqOPuT
+MODGHC_PACKAGE_KEY =	FRXoAxOVtbG2qLNIZm1tTr
 
-RUN_DEPENDS =		devel/hs-text>=0.11.0.0,<1.3.0.0
-
+RUN_DEPENDS =		devel/hs-base-compat>=0.10
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
 .include <bsd.port.mk>
