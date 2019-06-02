@@ -3,7 +3,7 @@
 COMMENT =		Unicode support version of Text.Regex
 
 DISTNAME =		regex-compat-tdfa-0.95.1.4
-REVISION =		2
+REVISION =		3
 CATEGORIES =		devel
 
 # BSD
@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JndgHkiSvqkF8EA3cAzjcB
+MODGHC_PACKAGE_KEY =	LEgCDcFzCOu8j8alaEwgs6
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 
