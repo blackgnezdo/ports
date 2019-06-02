@@ -7,6 +7,7 @@ COMMENT=		parser generator for Haskell
 PORTROACH =		ignore:1
 
 DISTNAME=		happy-1.19.5
+REVISION=		1
 CATEGORIES=		devel
 
 HOMEPAGE=		http://www.haskell.org/happy/
@@ -20,8 +21,7 @@ MODULES=		lang/ghc
 MODGHC_BUILD=		cabal hackage nort
 
 LIB_DEPENDS=		converters/libiconv
-BUILD_DEPENDS+=		devel/hs-mtl>=1.0 \
-			textproc/docbook-xsl
+BUILD_DEPENDS+=		textproc/docbook-xsl
 
 # Required for building the documentation and for the regression tests:
 USE_GMAKE=		Yes
