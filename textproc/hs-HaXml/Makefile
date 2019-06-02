@@ -2,10 +2,9 @@
 
 COMMENT =		utilities for manipulating XML documents
 
-DISTNAME =		HaXml-1.25.4
+DISTNAME =		HaXml-1.25.5
 CATEGORIES =		textproc
 HOMEPAGE =		http://projects.haskell.org/HaXml/
-REVISION =		2
 
 WANTLIB =		c iconv m pthread util
 
@@ -16,7 +15,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	2gurZTw8cuoHsdfizbIhnS
+MODGHC_PACKAGE_KEY =	6cJLgDXXuHB5KvgaH0eUef
 
 LIB_DEPENDS +=		converters/libiconv
 RUN_DEPENDS +=		devel/hs-random \
