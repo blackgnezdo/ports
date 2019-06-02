@@ -2,8 +2,7 @@
 
 COMMENT =		tar bindings for Haskell
 
-DISTNAME =		tar-0.5.0.3
-REVISION =		0
+DISTNAME =		tar-0.5.1.0
 CATEGORIES =		devel archivers
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,6 +14,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	4RaKOzbHzG1EpSAqFcpBFH
+MODGHC_PACKAGE_KEY =	HaIVxa1LuWJqqT6yxHWqZ
 
 .include <bsd.port.mk>
