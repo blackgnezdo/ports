@@ -2,7 +2,7 @@
 
 COMMENT =	command-line interface for Cabal and Hackage
 
-DISTNAME =	cabal-install-2.0.0.1
+DISTNAME =	cabal-install-2.4.0.0
 CATEGORIES =	devel
 
 HOMEPAGE =	http://www.haskell.org/cabal/
@@ -19,7 +19,11 @@ MODGHC_BUILD =          cabal hackage nort
 
 LIB_DEPENDS =		converters/libiconv
 
+# Avoids the dependency on resolve.
+MODGHC_SETUP_CONF_ARGS += -f-native-dns
+
 BUILD_DEPENDS +=	archivers/hs-zlib>=0.5.3,<0.6 \
+			archivers/hs-zip-archive>=0.3.2.5,<0.5 \
 			devel/hs-async>=2.0,<3 \
 			devel/hs-base16-bytestring>=0.1.1,<0.2 \
 			devel/hs-echo>=0.1.3,<0.2 \
