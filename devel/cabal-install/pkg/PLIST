@@ -1,5 +1,5 @@
 @comment $OpenBSD: PLIST,v 1.2 2017/11/07 21:58:06 kili Exp $
 @bin bin/cabal
+@man man/man1/cabal.1
 @comment share/doc/${DISTNAME}/
 @comment share/doc/${DISTNAME}/LICENSE
-@man man/man1/cabal.1
