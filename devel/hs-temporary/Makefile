@@ -3,7 +3,7 @@
 COMMENT =		portable temporary file and directory support
 
 DISTNAME =		temporary-1.2.1.1
-REVISION =		0
+REVISION =		1
 CATEGORIES =		devel
 
 # BSD3
@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	EaGJD8l9MwE6FMqsytxEjz
+MODGHC_PACKAGE_KEY =	L8AD0JvlPdyGisjg25CQN7
 
 RUN_DEPENDS =		devel/hs-exceptions>=0.6
 
