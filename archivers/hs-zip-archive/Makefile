@@ -2,8 +2,7 @@
 
 COMMENT =		library dealing with zip archives
 
-DISTNAME =		zip-archive-0.2.3.7
-REVISION =		3
+DISTNAME =		zip-archive-0.3.2.5
 CATEGORIES =		archivers devel
 
 # BSD3
@@ -13,7 +12,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	6jdjvMXj8RmIbIFdQ7caD4
+MODGHC_PACKAGE_KEY =	K7dlxFxyZuAELXOeWBrx8D
 
 BUILD_DEPENDS =	${RUN_DEPENDS}
 
