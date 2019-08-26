@@ -33,6 +33,8 @@ PERMIT_PACKAGE =		Yes
 
 WANTLIB += c curses iconv m pthread util
 
+SHARED_LIBS +=  ffi	8.0
+
 LIB_DEPENDS =		converters/libiconv
 
 BUILD_DEPENDS =		archivers/bzip2 \
@@ -43,7 +45,7 @@ RUN_DEPENDS =
 # The bootstrapping compiler needs gcc4, but the new ghc can be built
 # with clang. So we just BUILD_DEPEND on gcc instead of using the gcc4
 # MODULE, because the latter would also add some wrapper scripts
-BUILD_DEPENDS +=	lang/gcc/4.9>=4.9,<4.10
+BUILD_DEPENDS +=	lang/gcc/8>=8,<9
 
 # We can't use the wrapper script, because it then gets hardcoded into
 # the packaged ghc. So we explicitely use -Wl,-z,wxneeded (see
