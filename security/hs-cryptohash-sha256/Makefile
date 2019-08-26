@@ -5,7 +5,7 @@
 COMMENT=		fast, pure and practical SHA-256 implementation
 
 DISTNAME=		cryptohash-sha256-0.11.101.0
-REVISION=		0
+REVISION=		1
 CATEGORIES=		security
 
 # BSD3
