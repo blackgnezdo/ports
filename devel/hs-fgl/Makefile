@@ -9,6 +9,7 @@ COMMENT =		functional graph library
 PORTROACH =		ignore:1
 
 DISTNAME =		fgl-5.7.0.1
+REVISION =		0
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
