@@ -1,20 +1,24 @@
 @comment $OpenBSD: PLIST,v 1.6 2018/01/22 21:40:32 kili Exp $
 lib/ghc/${DISTNAME}/
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
 lib/ghc/${DISTNAME}/System/
 lib/ghc/${DISTNAME}/System/Console/
 lib/ghc/${DISTNAME}/System/Console/ANSI/
+lib/ghc/${DISTNAME}/System/Console/ANSI.dyn_hi
 lib/ghc/${DISTNAME}/System/Console/ANSI.hi
 lib/ghc/${DISTNAME}/System/Console/ANSI.p_hi
+lib/ghc/${DISTNAME}/System/Console/ANSI/Codes.dyn_hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Codes.hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Codes.p_hi
+lib/ghc/${DISTNAME}/System/Console/ANSI/Types.dyn_hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Types.hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Types.p_hi
+lib/ghc/${DISTNAME}/System/Console/ANSI/Unix.dyn_hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Unix.hi
 lib/ghc/${DISTNAME}/System/Console/ANSI/Unix.p_hi
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/

@@ -3,7 +3,7 @@
 COMMENT =		versatile logging framework
 
 DISTNAME =		hslogger-1.2.10
-REVISION =		3
+REVISION =		4
 CATEGORIES =		devel sysutils
 HOMEPAGE =		https://github.com/jgoerzen/hslogger/wiki
 
