@@ -7,7 +7,7 @@ CATEGORIES =		devel
 REVISION =		0
 
 # MIT
-PERMIT_PACKAGE_CDROM =	Yes
+PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/ghc
 
