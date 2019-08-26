@@ -3,7 +3,7 @@
 COMMENT =		portable temporary file and directory support
 
 DISTNAME =		temporary-1.2.1.1
-REVISION =		1
+REVISION =		2
 CATEGORIES =		devel
 
 # BSD3

@@ -2,12 +2,13 @@
 lib/ghc/${DISTNAME}/
 lib/ghc/${DISTNAME}/Data/
 lib/ghc/${DISTNAME}/Data/Void/
+lib/ghc/${DISTNAME}/Data/Void/Unsafe.dyn_hi
 lib/ghc/${DISTNAME}/Data/Void/Unsafe.hi
 lib/ghc/${DISTNAME}/Data/Void/Unsafe.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/

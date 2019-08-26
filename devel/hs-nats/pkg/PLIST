@@ -1,15 +1,18 @@
 @comment $OpenBSD: PLIST,v 1.4 2018/01/22 21:42:27 kili Exp $
 lib/ghc/${DISTNAME}/
-lib/ghc/${DISTNAME}/HS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ.o
 lib/ghc/${DISTNAME}/Numeric/
 lib/ghc/${DISTNAME}/Numeric/Natural/
+lib/ghc/${DISTNAME}/Numeric/Natural.dyn_hi
 lib/ghc/${DISTNAME}/Numeric/Natural.hi
 lib/ghc/${DISTNAME}/Numeric/Natural.p_hi
+lib/ghc/${DISTNAME}/Numeric/Natural/Internal.dyn_hi
 lib/ghc/${DISTNAME}/Numeric/Natural/Internal.hi
 lib/ghc/${DISTNAME}/Numeric/Natural/Internal.p_hi
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-EzvM871Y1t7A7pnuADyiZ_p.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
+lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/
