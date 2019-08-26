@@ -3,6 +3,7 @@
 COMMENT =	command-line interface for Cabal and Hackage
 
 DISTNAME =	cabal-install-2.4.0.0
+REVISION =	1
 CATEGORIES =	devel
 
 HOMEPAGE =	http://www.haskell.org/cabal/
