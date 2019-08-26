@@ -3,7 +3,7 @@
 COMMENT =		abstraction layer for SQL relational databases
 
 DISTNAME =		HDBC-2.4.0.2
-REVISION =		3
+REVISION =		4
 CATEGORIES =		databases
 
 # LGPLv2.1
