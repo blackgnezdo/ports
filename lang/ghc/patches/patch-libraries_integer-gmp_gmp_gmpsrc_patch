@@ -1,0 +1,53 @@
+$OpenBSD$
+
+Forces -fPIC for libgmp to avoid relocation error with LLD:
+ld: error: can't create dynamic relocation R_X86_64_64 against symbol "mp_minv_tab"
+
+Index: libraries/integer-gmp/gmp/gmpsrc.patch
+--- libraries/integer-gmp/gmp/gmpsrc.patch.orig
++++ libraries/integer-gmp/gmp/gmpsrc.patch
+@@ -12,7 +12,7 @@ diff -Naur gmp-6.1.2/configure gmpbuild/configure
+  cc_cflags="-O"
+  cc_64_cflags="-O"
+  
+-@@ -27273,6 +27273,9 @@
++@@ -27273,7 +27273,10 @@
+  	  case $host in
+  	    *-*-darwin*)
+  
+@@ -22,6 +22,15 @@ diff -Naur gmp-6.1.2/configure gmpbuild/configure
+  echo "include_mpn(\`x86_64/darwin.m4')" >> $gmp_tmpconfigm4i
+   ;;
+  	    *-*-mingw* | *-*-cygwin)
++ 
++@@ -27280,4 +27283,7 @@
++ echo "include_mpn(\`x86_64/dos64.m4')" >> $gmp_tmpconfigm4i
++  ;;
++            *-openbsd*)
+++
+++echo "define(<PIC_ALWAYS>,<yes>)" >> $gmp_tmpconfigm4
+++
++ 
+ @@ -28181,7 +28181,7 @@
+  # FIXME: Upcoming version of autoconf/automake may not like broken lines.
+  #        Right now automake isn't accepting the new AC_CONFIG_FILES scheme.
+@@ -66,7 +75,7 @@ diff -Naur gmp-6.1.2/Makefile.in gmpbuild/Makefile.in
+ diff -Naur gmp-6.1.2/configure.ac gmpbuild/configure.ac
+ --- gmp-6.1.2/configure.ac	2016-12-16 10:45:27.000000000 -0500
+ +++ gmpbuild/configure.ac	2017-01-29 22:47:28.469558006 -0500
+-@@ -3698,7 +3698,8 @@
++@@ -3698,10 +3698,12 @@
+            AC_DEFINE(HAVE_HOST_CPU_FAMILY_x86_64)
+  	  case $host in
+  	    *-*-darwin*)
+@@ -75,6 +84,10 @@ diff -Naur gmp-6.1.2/configure.ac gmpbuild/configure.a
+  	    *-*-mingw* | *-*-cygwin)
+  	      GMP_INCLUDE_MPN(x86_64/dos64.m4) ;;
+  	    *-openbsd*)
+++	      GMP_DEFINE_RAW(["define(<PIC_ALWAYS>,<yes>)"])
++ 	      GMP_DEFINE_RAW(["define(<OPENBSD>,1)"]) ;;
++ 	    *-linux*)
++ 	      GMP_DEFINE_RAW(["define(<LINUX>,1)"]) ;;
+ diff -Naur gmp-6.1.2/mpn/asm-defs.m4 gmpbuild/mpn/asm-defs.m4
+ --- gmp-6.1.2/mpn/asm-defs.m4	2016-12-16 10:45:27.000000000 -0500
+ +++ gmpbuild/mpn/asm-defs.m4	2017-01-29 22:46:26.025176258 -0500
