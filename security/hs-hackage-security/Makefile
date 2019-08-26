@@ -5,6 +5,7 @@
 COMMENT=		hackage security library
 
 DISTNAME=		hackage-security-0.5.3.0
+REVISION =		0
 CATEGORIES=		security
 
 # BSD3
