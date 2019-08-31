@@ -16,6 +16,9 @@ PERMIT_PACKAGE =		Yes
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage haddock register
 
+# Works around https://github.com/xmonad/X11/issues/53
+MODGHC_SETUP_CONF_ARGS += --extra-lib-dir=/usr/X11R6/lib
+
 MODGHC_PACKAGE_KEY =	EmPX88VPoZtDZY5EQwj6Nb
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
