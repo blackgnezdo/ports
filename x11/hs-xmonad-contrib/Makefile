@@ -12,13 +12,14 @@ PERMIT_PACKAGE =	Yes
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage register haddock
 
-MODGHC_PACKAGE_KEY =	DOdnbwS5Y9WFrwUnGs2jid
+MODGHC_PACKAGE_KEY =	EzvM871Y1t7A7pnuADyiZ
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-extensible-exceptions \
 			devel/hs-old-locale \
 			devel/hs-old-time \
 			devel/hs-random \
+			devel/hs-semigroups \
 			devel/hs-utf8-string \
 			shells/bash \
 			x11/hs-X11>=1.6.1,<1.9 \
