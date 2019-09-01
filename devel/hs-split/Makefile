@@ -6,7 +6,7 @@ COMMENT =		library for splitting lists
 # Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME =		split-0.2.3.2
+DISTNAME =		split-0.2.3.3
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -18,6 +18,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	7cayvoeRj5XIrIBUB58mMy
+MODGHC_PACKAGE_KEY =	6n1iQ0JLFvkeXvJXsAqQc
 
 .include <bsd.port.mk>
