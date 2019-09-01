@@ -2,8 +2,7 @@
 
 COMMENT =		portable POSIX-compatibility layer
 
-DISTNAME =		unix-compat-0.4.1.1
-REVISION =		6
+DISTNAME =		unix-compat-0.4.2.0
 CATEGORIES =		devel
 
 # BSD4
@@ -13,6 +12,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	3asq9rG2PUDK0iw9Sp7ECL
+MODGHC_PACKAGE_KEY =	Lfk03egajEAGyxluAKGm9k
 
 .include <bsd.port.mk>
