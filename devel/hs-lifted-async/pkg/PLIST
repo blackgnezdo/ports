@@ -4,14 +4,16 @@ lib/ghc/${DISTNAME}/Control/
 lib/ghc/${DISTNAME}/Control/Concurrent/
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted/
+lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted.dyn_hi
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted.hi
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted.p_hi
+lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted/Safe.dyn_hi
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted/Safe.hi
 lib/ghc/${DISTNAME}/Control/Concurrent/Async/Lifted/Safe.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/${DISTNAME}/register.sh
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/
