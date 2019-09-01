@@ -1,17 +1,19 @@
 @comment $OpenBSD: PLIST,v 1.2 2018/01/22 21:48:45 kili Exp $
 lib/ghc/${DISTNAME}/
-lib/ghc/${DISTNAME}/HS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ.o
 lib/ghc/${DISTNAME}/Text/
 lib/ghc/${DISTNAME}/Text/PrettyPrint/
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/
+lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text.dyn_hi
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text.hi
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text.p_hi
+lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/Monadic.dyn_hi
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/Monadic.hi
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/Monadic.p_hi
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ_p.a
 lib/ghc/${DISTNAME}/register.sh
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/

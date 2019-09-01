@@ -2,10 +2,6 @@
 
 COMMENT =		Wadler/Leijen pretty printer for text values
 
-# Version 1.1.1.0 requires an additional dependency 'base-compat'
-# just for avoiding compiler pragmas for certain versions of ghc.
-PORTROACH =		limit:^1\.1\.0\.
-
 DISTNAME =		wl-pprint-text-1.2.0.0
 CATEGORIES =		devel textproc
 
