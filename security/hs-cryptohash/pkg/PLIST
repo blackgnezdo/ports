@@ -2,6 +2,12 @@
 lib/ghc/${DISTNAME}/
 lib/ghc/${DISTNAME}/Crypto/
 lib/ghc/${DISTNAME}/Crypto/Hash/
+lib/ghc/${DISTNAME}/Crypto/Hash.dyn_hi
+lib/ghc/${DISTNAME}/Crypto/Hash.hi
+lib/ghc/${DISTNAME}/Crypto/Hash.p_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Internal.dyn_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Internal.hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Internal.p_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/MD2.dyn_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/MD2.hi
 lib/ghc/${DISTNAME}/Crypto/Hash/MD2.p_hi
@@ -44,6 +50,16 @@ lib/ghc/${DISTNAME}/Crypto/Hash/Skein512.p_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Tiger.dyn_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Tiger.hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Tiger.p_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Types.dyn_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Types.hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Types.p_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils/
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils.dyn_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils.hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils.p_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils/Cpu.dyn_hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils/Cpu.hi
+lib/ghc/${DISTNAME}/Crypto/Hash/Utils/Cpu.p_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Whirlpool.dyn_hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Whirlpool.hi
 lib/ghc/${DISTNAME}/Crypto/Hash/Whirlpool.p_hi
@@ -72,7 +88,9 @@ share/doc/hs-${DISTNAME}/html/Crypto-Hash-SHA512t.html
 share/doc/hs-${DISTNAME}/html/Crypto-Hash-Skein256.html
 share/doc/hs-${DISTNAME}/html/Crypto-Hash-Skein512.html
 share/doc/hs-${DISTNAME}/html/Crypto-Hash-Tiger.html
+share/doc/hs-${DISTNAME}/html/Crypto-Hash-Types.html
 share/doc/hs-${DISTNAME}/html/Crypto-Hash-Whirlpool.html
+share/doc/hs-${DISTNAME}/html/Crypto-Hash.html
 share/doc/hs-${DISTNAME}/html/Crypto-MAC-HMAC.html
 share/doc/hs-${DISTNAME}/html/cryptohash.haddock
 share/doc/hs-${DISTNAME}/html/doc-index.html
@@ -85,8 +103,6 @@ share/doc/hs-${DISTNAME}/html/ocean.css
 share/doc/hs-${DISTNAME}/html/plus.gif
 share/doc/hs-${DISTNAME}/html/quick-jump.css
 share/doc/hs-${DISTNAME}/html/synopsis.png
-share/hs-${DISTNAME}/
-share/hs-${DISTNAME}/README.md
 @exec /usr/bin/env HOME=/nonexistent %D/lib/ghc/${DISTNAME}/register.sh -v0
 @unexec /usr/bin/env HOME=/nonexistent %D/lib/ghc/${DISTNAME}/unregister.sh -v0 --force
 lib/ghc/${DISTNAME}/unregister.sh
