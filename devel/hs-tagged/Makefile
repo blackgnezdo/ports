@@ -2,8 +2,7 @@
 
 COMMENT=		provides newtype wrappers for phantom types
 
-DISTNAME=		tagged-0.7.3
-REVISION=		4
+DISTNAME=		tagged-0.8.6
 CATEGORIES=		devel
 
 # BSD3
@@ -13,6 +12,6 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	JOGLvm4jfLWGOxvLgFJbwZ
+MODGHC_PACKAGE_KEY =	EiJ2F18RuD68LSMkg0Ly4r
 
 .include <bsd.port.mk>
