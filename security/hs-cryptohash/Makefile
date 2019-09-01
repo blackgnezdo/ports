@@ -13,7 +13,7 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	HcwvxMqpgmiAmodT7Z0qKE
+MODGHC_PACKAGE_KEY =	15GXf7AbZflEbORU9I3RMl
 
 MODGHC_SETUP_CONF_ARGS =        -f cryptoapi
 
