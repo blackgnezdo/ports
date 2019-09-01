@@ -7,8 +7,8 @@ COMMENT-lib =		ShellCheck library
 
 V =			0.4.7
 DISTNAME =		ShellCheck-${V}
-REVISION-main =		0
-REVISION-lib =		1
+REVISION-main =		1
+REVISION-lib =		2
 PKGNAME-main =		shellcheck-${V}
 PKGNAME-lib =		hs-shellcheck-${V}
 CATEGORIES =		devel
@@ -27,12 +27,10 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	FGszl8wDu4DoQ1UCsbZPa
+MODGHC_PACKAGE_KEY =	1v0sx5oDTF9BoGzz61tUYo
 
 BUILD_DEPENDS =		${RUN_DEPENDS-lib}
-RUN_DEPENDS-lib =	devel/hs-mtl>=2.2.1 \
-			devel/hs-parsec \
-			devel/hs-QuickCheck>=2.7.4 \
+RUN_DEPENDS-lib =	devel/hs-QuickCheck>=2.7.4 \
 			devel/hs-regex-tdfa \
 			lang/ghc=${MODGHC_VER} \
 			textproc/hs-json
