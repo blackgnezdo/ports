@@ -1,0 +1,10 @@
+$OpenBSD$
+
+Trivial Setup.hs instead of processing package.yaml
+
+Index: Setup.hs
+--- Setup.hs.orig
++++ Setup.hs
+@@ -0,0 +1,2 @@
++import Distribution.Simple
++main = defaultMain
