@@ -2,8 +2,7 @@
 
 COMMENT =		mmap API for Haskell
 
-DISTNAME =		mmap-0.5.8
-REVISION =		6
+DISTNAME =		mmap-0.5.9
 CATEGORIES =		devel
 
 MAINTAINER =		Matthias Kilian <kili@openbsd.org>
@@ -15,7 +14,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	Jx72AS5eseTGDaU5udNQXb
+MODGHC_PACKAGE_KEY =	BXMYRGD0Ckq9xaZJXGHtu5
 
 RUN_DEPENDS =		devel/hs-HUnit
 BUILD_DEPENDS =		${RUN_DEPENDS}
