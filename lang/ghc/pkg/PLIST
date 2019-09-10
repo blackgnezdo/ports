@@ -3758,7 +3758,7 @@ lib/ghc/package.conf.d/libiserv-${LIBISERV_VER}.conf
 lib/ghc/package.conf.d/mtl-${MTL_VER}.conf
 @comment no checksum
 lib/ghc/package.conf.d/package.cache
-lib/ghc/package.conf.d/package.cache.lock
+@comment lib/ghc/package.conf.d/package.cache.lock
 lib/ghc/package.conf.d/parsec-${PARSEC_VER}.conf
 lib/ghc/package.conf.d/pretty-${PRETTY_VER}.conf
 lib/ghc/package.conf.d/process-${PROCESS_VER}.conf
