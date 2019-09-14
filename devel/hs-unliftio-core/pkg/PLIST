@@ -30,4 +30,4 @@ share/doc/hs-${DISTNAME}/html/plus.gif
 share/doc/hs-${DISTNAME}/html/quick-jump.css
 share/doc/hs-${DISTNAME}/html/synopsis.png
 share/doc/hs-${DISTNAME}/html/unliftio-core.haddock
-lib/ghc/${DISTNAME}/unregister.sh
+

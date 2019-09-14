@@ -5,7 +5,7 @@ USE_WXNEEDED =		Yes
 COMMENT =		advanced revision control system written in Haskell
 
 DISTNAME =		darcs-2.14.2
-
+REVISION =		0
 CATEGORIES =		devel
 HOMEPAGE =		http://www.darcs.net/
 
