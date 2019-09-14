@@ -3,6 +3,7 @@
 COMMENT=		fast, pure, practical collection of crypto hashes
 
 DISTNAME=		cryptohash-0.11.0
+REVISION=		0
 CATEGORIES=		security
 
 # BSD3

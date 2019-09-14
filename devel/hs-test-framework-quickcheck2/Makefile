@@ -17,7 +17,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	4ISrgoPoQYiCy4xTGr04Gj
+MODGHC_PACKAGE_KEY =	269XuKbVlz7DfEqg7ypRg
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-QuickCheck>=2.4,<2.9 \

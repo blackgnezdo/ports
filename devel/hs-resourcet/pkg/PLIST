@@ -1,5 +1,6 @@
 @comment $OpenBSD: PLIST,v 1.7 2019/09/10 13:51:26 kili Exp $
 @tag ghc-pkg-recache
+lib/ghc/package.conf.d/${DISTNAME}.conf
 lib/ghc/${DISTNAME}/
 lib/ghc/${DISTNAME}/Control/
 lib/ghc/${DISTNAME}/Control/Monad/
@@ -19,10 +20,6 @@ lib/ghc/${DISTNAME}/Data/Acquire.p_hi
 lib/ghc/${DISTNAME}/Data/Acquire/Internal.dyn_hi
 lib/ghc/${DISTNAME}/Data/Acquire/Internal.hi
 lib/ghc/${DISTNAME}/Data/Acquire/Internal.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
-lib/ghc/package.conf.d/${DISTNAME}.conf
 lib/ghc/${DISTNAME}/UnliftIO/
 lib/ghc/${DISTNAME}/UnliftIO/Resource.dyn_hi
 lib/ghc/${DISTNAME}/UnliftIO/Resource.hi

@@ -1,5 +1,6 @@
 @comment $OpenBSD: PLIST,v 1.3 2019/09/10 13:51:30 kili Exp $
 @tag ghc-pkg-recache
+lib/ghc/package.conf.d/${DISTNAME}.conf
 lib/ghc/${DISTNAME}/
 lib/ghc/${DISTNAME}/Text/
 lib/ghc/${DISTNAME}/Text/PrettyPrint/
@@ -13,10 +14,7 @@ lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/Monadic.hi
 lib/ghc/${DISTNAME}/Text/PrettyPrint/Leijen/Text/Monadic.p_hi
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
-lib/ghc/package.conf.d/${DISTNAME}.conf
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ_p.a
-lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-L6i9Q0yxJZoBCBd4YxCMOZ-ghc${MODGHC_VER}.so
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/
