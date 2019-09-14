@@ -180,28 +180,6 @@ post-patch:
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
 
-post-install:
-	cd ${PREFIX}/lib/ghc && \
-	GHC_PKG="./bin/ghc-pkg --no-user-package-db --global-package-db ./package.conf.d" && \
-	${INSTALL_SCRIPT} /dev/null register.sh && \
-	exec > register.sh && \
-	echo '#!/bin/sh' && \
-	echo 'p="$${0%/*}/bin/ghc-pkg --no-user-package-db --global-package-db $${0%/*}/package.conf.d"' && \
-	for p in $$($$GHC_PKG dot | sed -n -e 's/^"\([^"]*\)" -> "\([^"]*\)"$$/\1 \2/p' | tsort -r); do \
-		echo \$$p register --force - \<\< \'EOF\' && \
-		$$GHC_PKG describe $$p | sed '/^pkgpath:$$/s@$$@ ${PKGPATH}@' && \
-		echo EOF; \
-	done && \
-	${INSTALL_SCRIPT} /dev/null unregister.sh && \
-	exec > unregister.sh && \
-	echo '#!/bin/sh' && \
-	echo 'p="$${0%/*}/bin/ghc-pkg --no-user-package-db --global-package-db $${0%/*}/package.conf.d"' && \
-	for p in $$($$GHC_PKG dot | sed -n -e 's/^"\([^"]*\)" -> "\([^"]*\)"$$/\1 \2/p' | tsort); do \
-		echo \$$p unregister --force $$p; \
-	done && \
-	rm package.conf.d/* && \
-	$$GHC_PKG recache
-
 do-test:
 	ulimit -c 0 && \
 	cd ${WRKSRC}/testsuite/tests && \
