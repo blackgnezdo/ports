@@ -23,7 +23,7 @@ LIB_DEPENDS =		converters/libiconv
 # Avoids the dependency on resolve.
 MODGHC_SETUP_CONF_ARGS += -f-native-dns
 
-BUILD_DEPENDS +=	archivers/hs-zlib>=0.5.3,<0.6 \
+BUILD_DEPENDS +=	archivers/hs-zlib>=0.5.3,<0.7 \
 			archivers/hs-zip-archive>=0.3.2.5,<0.5 \
 			devel/hs-async>=2.0,<3 \
 			devel/hs-base16-bytestring>=0.1.1,<0.2 \

@@ -14,7 +14,7 @@ MODULES=		lang/ghc
 
 MODGHC_BUILD =          cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	FUbsijtpJ6LFeDbXxwoo30
+MODGHC_PACKAGE_KEY =	1VpHOvLcO2g6J40Ysrc07t
 
 RUN_DEPENDS =		archivers/hs-zlib>=0.5,<0.7 \
 			devel/hs-base16-bytestring>=0.1.1,<0.2 \
