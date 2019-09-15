@@ -13,7 +13,7 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	AeBcxdsqOAhG5ylU0fE0Kf
+MODGHC_PACKAGE_KEY =	GWEgT0bB4e78lUz1oKC64W
 
 RUN_DEPENDS +=		devel/hs-hslogger \
 			devel/hs-HUnit \
