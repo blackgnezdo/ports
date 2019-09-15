@@ -73,7 +73,6 @@
      SUBDIR += hs-json
      SUBDIR += hs-libxml-sax
      SUBDIR += hs-polyparse
-     SUBDIR += hs-stringsearch
      SUBDIR += hs-wl-pprint-text
      SUBDIR += hs-xml
      SUBDIR += hs-xml-types
