@@ -5,8 +5,9 @@ COMMENT-lib =	cpphs library
 
 DISTNAME =	cpphs-1.19.3
 PKGNAME-main =	${DISTNAME}
+REVISION-main =	0
 PKGNAME-lib =	hs-${DISTNAME}
-REVISION-lib =	6
+REVISION-lib =	7
 CATEGORIES =	devel
 MAINTAINER =	Matthias Kilian <kili@openbsd.org>
 
@@ -23,7 +24,7 @@ MODULES =		lang/ghc
 LIB_DEPENDS +=		converters/libiconv
 WANTLIB +=		iconv
 MODGHC_BUILD =		hackage cabal haddock register
-MODGHC_PACKAGE_KEY =	43cw6nz5tRs1k35NR3VSIs
+MODGHC_PACKAGE_KEY =	3CUnFHz9uegIX6e6hlBlNd
 LIB_DEPENDS-main =	${LIB_DEPENDS}
 RUN_DEPENDS-main =
 LIB_DEPENDS-lib =
