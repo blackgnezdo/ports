@@ -3,7 +3,7 @@
 COMMENT =		efficient conversion of values to readable byte strings
 
 DISTNAME =		bytestring-show-0.3.5.6
-REVISION =		6
+REVISION =		7
 CATEGORIES =		textproc
 
 # BSD3
@@ -13,6 +13,6 @@ MODULES =		lang/ghc
 
 MODGHC_BUILD =		cabal hackage haddock register
 
-MODGHC_PACKAGE_KEY =	F9qnAxLb3BF44WagZWc6Do
+MODGHC_PACKAGE_KEY =	9LsbtUHXG0YJS89oK68DPL
 
 .include <bsd.port.mk>

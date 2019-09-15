@@ -30,13 +30,10 @@ lib/ghc/${DISTNAME}/Crypto/Types.p_hi
 lib/ghc/${DISTNAME}/Crypto/Util.dyn_hi
 lib/ghc/${DISTNAME}/Crypto/Util.hi
 lib/ghc/${DISTNAME}/Crypto/Util.p_hi
-lib/ghc/${DISTNAME}/HS${DISTNAME}-${MODGHC_PACKAGE_KEY}.o
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
 lib/ghc/package.conf.d/${DISTNAME}.conf
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-KkoJ0GZFoJiC8cM4nPl6k5.a
-lib/ghc/${DISTNAME}/libHS${DISTNAME}-KkoJ0GZFoJiC8cM4nPl6k5_p.a
-lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-KkoJ0GZFoJiC8cM4nPl6k5-ghc${MODGHC_VER}.so
+lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/LICENSE
 share/doc/hs-${DISTNAME}/html/
