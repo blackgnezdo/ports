@@ -1,5 +1,6 @@
 @comment $OpenBSD: PLIST-lib,v 1.17 2019/09/10 13:51:31 kili Exp $
 @tag ghc-pkg-recache
+lib/ghc/package.conf.d/${DISTNAME}.conf
 lib/ghc/${DISTNAME}/
 lib/ghc/${DISTNAME}/Paths_xmonad.dyn_hi
 lib/ghc/${DISTNAME}/Paths_xmonad.hi
@@ -31,7 +32,6 @@ lib/ghc/${DISTNAME}/XMonad/StackSet.hi
 lib/ghc/${DISTNAME}/XMonad/StackSet.p_hi
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}.a
 lib/ghc/${DISTNAME}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}_p.a
-lib/ghc/package.conf.d/${DISTNAME}.conf
 lib/x86_64-openbsd-ghc-${MODGHC_VER}/libHS${DISTNAME}-${MODGHC_PACKAGE_KEY}-ghc${MODGHC_VER}.so
 share/doc/hs-${DISTNAME}/
 share/doc/hs-${DISTNAME}/CONFIG
