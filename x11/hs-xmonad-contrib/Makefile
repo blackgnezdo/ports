@@ -13,7 +13,7 @@ PERMIT_PACKAGE =	Yes
 MODULES =		lang/ghc
 MODGHC_BUILD =		cabal hackage register haddock
 
-MODGHC_PACKAGE_KEY =	EzvM871Y1t7A7pnuADyiZ
+MODGHC_PACKAGE_KEY =	DOdnbwS5Y9WFrwUnGs2jid
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
 RUN_DEPENDS =		devel/hs-extensible-exceptions \
