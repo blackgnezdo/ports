@@ -7,6 +7,7 @@ COMMENT =	lexical analyser generator for Haskell
 PORTROACH =		ignore:1
 
 DISTNAME =	alex-3.1.7
+REVISION =	0
 CATEGORIES =	devel
 
 HOMEPAGE =	http://www.haskell.org/alex/

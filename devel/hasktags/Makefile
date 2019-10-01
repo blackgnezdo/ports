@@ -3,7 +3,7 @@
 COMMENT =	ctags-like tool for Haskell sources
 
 DISTNAME =	hasktags-0.68.2
-REVISION =	1
+REVISION =	2
 CATEGORIES =	devel
 
 MAINTAINER =	Matthias Kilian <kili@openbsd.org>
