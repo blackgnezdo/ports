@@ -2,7 +2,7 @@
 
 COMMENT=		Haskell interface to MPD
 
-DISTNAME=		libmpd-0.9.0.9
+DISTNAME=		libmpd-0.9.0.10
 CATEGORIES=		audio
 
 HOMEPAGE=		https://github.com/joachifm/libmpd-haskell
