@@ -9,54 +9,26 @@ Compiling with --with-rtsopts=-V0 to reduce wakeups (issue #89)
 Index: xmobar.cabal
 --- xmobar.cabal.orig
 +++ xmobar.cabal
-@@ -74,6 +74,10 @@ flag with_threaded
-   description: Use threaded runtime.
-   default: False
- 
-+flag with_rtsopts
-+  description: Use -with-rtsopts=-V0 to reduce wakeups
-+  default: True
-+
- flag with_uvmeter
-   description: UVMeter only useful to australians.
-   default: False
-@@ -103,9 +107,10 @@ executable xmobar
-       Plugins.Monitors.ThermalZone, Plugins.Monitors.Top,
-       Plugins.Monitors.Uptime, Plugins.Monitors.Weather,
-       Plugins.Monitors.Bright, Plugins.Monitors.CatInt,
--      Plugins.Monitors.UVMeter
-+      Plugins.Monitors.UVMeter, Plugins.Monitors.Batt.Binding
- 
-     ghc-options: -funbox-strict-fields -Wall -fno-warn-unused-do-bind
-+    c-sources: src/Plugins/Monitors/Batt/apm.c
-     extra-libraries: Xrandr Xrender
- 
-     build-depends:
-@@ -124,7 +129,7 @@ executable xmobar
-       mtl >= 2.1 && < 2.3,
-       parsec == 3.1.*,
-       HTTP >= 4000.2.4,
--      stm >= 2.3 && < 2.5
-+      stm >= 2.3 && < 2.6
- 
-     if flag(with_conduit)
-        -- use http-conduit  instead of simple-http
-@@ -138,6 +143,9 @@ executable xmobar
-        ghc-options: -threaded
-        cpp-options: -DTHREADED_RUNTIME
- 
-+    if flag(with_rtsopts)
-+       ghc-options: -with-rtsopts=-V0
-+
-     if impl (ghc < 7)
-        cpp-options: -DGHC6
- 
-@@ -154,6 +162,8 @@ executable xmobar
-        build-depends: hinotify == 0.3.*
-        other-modules: Plugins.Mail, Plugins.MBox
+@@ -207,6 +207,8 @@ library
+        build-depends: hinotify >= 0.3 && < 0.5
+        exposed-modules: Xmobar.Plugins.Mail, Xmobar.Plugins.MBox
         cpp-options: -DINOTIFY
 +       ld-options: -Wl,-rpath=${LOCALBASE}/lib/inotify
 +       extra-libraries: inotify
  
      if flag(with_iwlib) || flag(all_extensions)
         extra-libraries: iw
+@@ -270,11 +272,13 @@ executable xmobar
+                         parsec,
+                         xmobar
+ 
++    c-sources: src/Plugins/Monitors/Batt/apm.c
+     ghc-options: -funbox-strict-fields -Wall -fno-warn-unused-do-bind
+ 
+     if flag(with_rtsopts)
+        ghc-options: -with-rtsopts=-V0
+ 
++             
+     if flag(with_threaded)
+        -- -threaded is a workaround for 100% CPU busy loop
+        -- (http://hackage.haskell.org/trac/ghc/ticket/4934).
