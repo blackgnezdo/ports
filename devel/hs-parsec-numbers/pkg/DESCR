@@ -1,0 +1,2 @@
+parsec-numbers provides the number parsers without the need to use a
+large (and unportable) token parser
