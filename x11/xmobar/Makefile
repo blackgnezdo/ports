@@ -2,8 +2,7 @@
 
 COMMENT =		minimalistic text based status bar
 
-DISTNAME =		xmobar-0.24.3
-REVISION =		5
+DISTNAME =		xmobar-0.31
 CATEGORIES =		x11
 HOMEPAGE =		http://projects.haskell.org/xmobar
 
@@ -27,7 +26,8 @@ BUILD_DEPENDS = 	devel/hs-hinotify>=0.3 \
 			x11/hs-X11>=1.6.1 \
 			x11/hs-X11-xft>=0.2,<0.4 \
 			x11/hs-dbus>=0.10 \
-			audio/hs-libmpd>=0.9,<0.10
+			audio/hs-libmpd>=0.9,<0.10 \
+			devel/hs-parsec-numbers>=0.1.0,<0.2
 
 LIB_DEPENDS =		converters/libiconv \
 			devel/gmp \
@@ -45,14 +45,14 @@ pre-configure:
 	${SUBST_CMD} ${WRKDIST}/xmobar.cabal
 
 post-patch:
-	@cp ${FILESDIR}/Batt.hs ${WRKBUILD}/src/Plugins/Monitors
-	@mkdir ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/Binding.hsc ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/apm.c ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/apm.h ${WRKBUILD}/src/Plugins/Monitors/Batt
+	@cp ${FILESDIR}/Setup.lhs ${WRKBUILD}/
+	@cp ${FILESDIR}/Batt.hs ${WRKBUILD}/src/Xmobar/Plugins/Monitors
+	@cp ${FILESDIR}/Binding.hsc ${WRKBUILD}/src/Xmobar/Plugins/Monitors/Batt
+	@cp ${FILESDIR}/apm.c ${WRKBUILD}/src/Xmobar/Plugins/Monitors/Batt
+	@cp ${FILESDIR}/apm.h ${WRKBUILD}/src/Xmobar/Plugins/Monitors/Batt
 
 post-install:
 	${INSTALL_DATA_DIR} ${EXAMPLEDIR}
-	${INSTALL_DATA} ${WRKSRC}/samples/xmobar.config ${EXAMPLEDIR}/xmobarrc
+	${INSTALL_DATA} ${WRKSRC}/examples/xmobar.config ${EXAMPLEDIR}/xmobarrc
 
 .include <bsd.port.mk>

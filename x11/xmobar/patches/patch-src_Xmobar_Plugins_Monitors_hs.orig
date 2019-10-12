@@ -1,6 +1,6 @@
-$OpenBSD: patch-src_Plugins_Monitors_hs,v 1.9 2016/08/10 08:50:24 dcoppa Exp $
---- src/Plugins/Monitors.hs.orig	Mon Aug  8 23:40:59 2016
-+++ src/Plugins/Monitors.hs	Wed Aug 10 09:42:10 2016
+$OpenBSD: patch-src_Xmobar_Plugins_Monitors_hs,v 1.9 2016/08/10 08:50:24 dcoppa Exp $
+--- src/Xmobar/Plugins/Monitors.hs.orig	Mon Aug  8 23:40:59 2016
++++ src/Xmobar/Plugins/Monitors.hs	Wed Aug 10 09:42:10 2016
 @@ -21,20 +21,20 @@ import Plugins
  
  import Plugins.Monitors.Common (runM, runMD)
