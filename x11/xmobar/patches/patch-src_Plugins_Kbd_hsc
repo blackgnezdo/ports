@@ -1,0 +1,14 @@
+$OpenBSD$
+
+Index: src/Plugins/Kbd.hsc
+--- src/Plugins/Kbd.hsc.orig
++++ src/Plugins/Kbd.hsc
+@@ -328,7 +328,7 @@ getLayoutStr' st dpy kbdDescPtr =
+ 
+ -- 'Bad' prefixes of layouts
+ noLaySymbols :: [String]
+-noLaySymbols = ["group", "inet", "ctr", "pc", "ctrl"]
++noLaySymbols = ["group", "inet", "ctr", "pc", "ctrl", "terminate"]
+ 
+ 
+ -- splits the layout string into the actual layouts

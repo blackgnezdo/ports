@@ -3,7 +3,7 @@
 COMMENT =		minimalistic text based status bar
 
 DISTNAME =		xmobar-0.24.3
-REVISION =		5
+REVISION =		6
 CATEGORIES =		x11
 HOMEPAGE =		http://projects.haskell.org/xmobar
 
