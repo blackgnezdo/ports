@@ -17,9 +17,7 @@ MODGHC_BUILD =		cabal hackage haddock register
 
 MODGHC_PACKAGE_KEY =	HnXF0X2VHAoBkZ6B5N45ie
 
-RUN_DEPENDS =		devel/hs-old-locale \
-			devel/hs-old-time \
-			devel/hs-random \
+RUN_DEPENDS =		devel/hs-random>=1.0.1.0,<1.2 \
 			devel/hs-tf-random>=0.4
 
 BUILD_DEPENDS =		${RUN_DEPENDS}

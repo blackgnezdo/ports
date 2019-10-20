@@ -16,6 +16,7 @@ MODGHC_BUILD =		cabal hackage haddock register
 MODGHC_PACKAGE_KEY =	aCUjKLHgaF9NnIcxRYPK7
 
 RUN_DEPENDS +=		devel/hs-convertible>=1.1.0.0 \
+			devel/hs-old-time \
 			devel/hs-utf8-string
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 

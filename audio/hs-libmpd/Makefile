@@ -17,9 +17,12 @@ MODGHC_BUILD=		cabal hackage haddock register
 MODGHC_PACKAGE_KEY=	BcrGFlp1jLt1YyFqRIGAS5
 
 BUILD_DEPENDS=		${RUN_DEPENDS}
+
+# Wrong dependency: should be data-default-class>=0.0.1,<1, not hs-data-default
 RUN_DEPENDS=		devel/hs-data-default>=0.4,<1.0 \
-			devel/hs-network>=2.1,<3.0 \
+			devel/hs-network>=2.1,<3 \
+			devel/hs-old-locale>=1,<2 \
 			devel/hs-utf8-string>=0.3.1,<1.1 \
-			textproc/hs-attoparsec>=0.10.1,<1.0
+			textproc/hs-attoparsec>=0.10.1,<1
 
 .include <bsd.port.mk>

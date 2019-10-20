@@ -19,6 +19,6 @@ MODGHC_BUILD =		cabal hackage haddock register
 MODGHC_PACKAGE_KEY =	LZ54B5ErqCiIlNwOVvnj65
 
 BUILD_DEPENDS =		${RUN_DEPENDS}
-RUN_DEPENDS =		graphics/hs-colour>=2.3.4,<2.4
+RUN_DEPENDS =		graphics/hs-colour
 
 .include <bsd.port.mk>
