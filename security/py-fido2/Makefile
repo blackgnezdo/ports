@@ -22,7 +22,6 @@ MODPY_SETUPTOOLS =	Yes
 
 BUILD_DEPENDS =	security/py-cryptography${MODPY_FLAVOR} \
 		devel/py-six${MODPY_FLAVOR} \
-		devel/py-enum34${MODPY_FLAVOR} \
 		security/py-pyscard
 
 .include <bsd.port.mk>
