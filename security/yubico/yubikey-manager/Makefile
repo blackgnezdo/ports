@@ -17,7 +17,7 @@ MODULES = 		lang/python
 
 BUILD_DEPENDS =	devel/swig \
 		security/yubico/yubikey-personalization
-RUN_DEPENDS =	security/py-fido2${MODPY_FLAVOR} \
+RUN_DEPENDS =	security/py-fido2 \
 		security/py-openssl${MODPY_FLAVOR} \
 		devel/py-click${MODPY_FLAVOR} \
 		devel/pyusb${MODPY_FLAVOR} \
