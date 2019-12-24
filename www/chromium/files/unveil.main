@@ -3,6 +3,9 @@
 # needed for video(4)
 /dev/video rw
 
+# needed for FIDO authentication
+/dev/fido rw
+
 # needed for chromium
 /etc/chromium r
 

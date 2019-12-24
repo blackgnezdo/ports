@@ -36,7 +36,7 @@ FLAVOR?=
 .if ${FLAVOR:Melectron}
 REVISION=		3
 .else
-REVISION=		0
+REVISION=		1
 .endif
 
 # BSD-like
@@ -79,6 +79,7 @@ WANTLIB += xml2 z
 WANTLIB += harfbuzz 
 WANTLIB += ffi png
 WANTLIB += iconv lzma
+WANTLIB += fido2 cbor usbhid crypto
 
 RUN_DEPENDS=	devel/xdg-utils \
 		devel/desktop-file-utils \
@@ -251,6 +252,7 @@ pre-configure:
 .  endfor
 .endfor
 	@mkdir -p ${WRKSRC}/media/audio/sndio ${WRKSRC}/media/audio/openbsd
+	@cp ${FILESDIR}/hid_{service,connection}_fido.{cc,h} ${WRKSRC}/services/device/hid
 	@cp ${FILESDIR}/sndio_{out,in}put.{cc,h} ${WRKSRC}/media/audio/sndio
 	@cp ${FILESDIR}/audio_manager_openbsd.{cc,h} ${WRKSRC}/media/audio/openbsd
 	@mkdir -p ${WRKSRC}/third_party/node/openbsd/node-openbsd/bin
