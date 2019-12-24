@@ -35,6 +35,8 @@ FLAVORS=		debug component electron
 FLAVOR?=
 .if ${FLAVOR:Melectron}
 REVISION=		3
+.else
+REVISION=		0
 .endif
 
 # BSD-like
