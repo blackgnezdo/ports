@@ -1,0 +1,15 @@
+$OpenBSD$
+
+Index: Cargo.toml
+--- Cargo.toml.orig
++++ Cargo.toml
+@@ -70,5 +70,9 @@ rev = "182414f15c18538dfebbe040469ec8001e93ecc5"
+ git = "https://github.com/CraneStation/Cranelift"
+ rev = "182414f15c18538dfebbe040469ec8001e93ecc5"
+ 
++[patch.crates-io.authenticator]
++git = "https://github.com/reyk/authenticator-rs"
++rev = "44cde6a41568954c88288ed81babc70bb27d79bf"
++
+ [patch.crates-io.coreaudio-sys]
+ path = "third_party/rust/coreaudio-sys"

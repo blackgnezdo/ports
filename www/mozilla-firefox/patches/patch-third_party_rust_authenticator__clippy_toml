@@ -1,0 +1,8 @@
+$OpenBSD$
+
+Index: third_party/rust/authenticator/.clippy.toml
+--- third_party/rust/authenticator/.clippy.toml.orig
++++ third_party/rust/authenticator/.clippy.toml
+@@ -0,0 +1 @@
++type-complexity-threshold = 384
+\ No newline at end of file
