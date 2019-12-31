@@ -13,10 +13,10 @@ Index: services/device/hid/BUILD.gn
 +      "hid_connection_linux.h",
 +    ]
 +    sources += [
-+      "hid_connection_freebsd.cc",
-+      "hid_connection_freebsd.h",
-+      "hid_service_freebsd.cc",
-+      "hid_service_freebsd.h",
++      "hid_connection_fido.cc",
++      "hid_connection_fido.h",
++      "hid_service_fido.cc",
++      "hid_service_fido.h",
 +    ]
 +  }
 +

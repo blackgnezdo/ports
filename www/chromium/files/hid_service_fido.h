@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef DEVICE_HID_HID_SERVICE_FIDO_H_
-#define DEVICE_HID_HID_SERVICE_FIDO_H_
+#ifndef SERVICE_DEVICE_HID_HID_SERVICE_FIDO_H_
+#define SERVICE_DEVICE_HID_HID_SERVICE_FIDO_H_
 
 #include <string>
 
@@ -35,14 +35,14 @@ class HidServiceFido : public HidService {
 
   const scoped_refptr<base::SequencedTaskRunner> task_runner_;
   const scoped_refptr<base::SequencedTaskRunner> blocking_task_runner_;
+  base::WeakPtrFactory<HidServiceFido> weak_factory_;
   // |helper_| lives on the sequence |blocking_task_runner_| posts to and holds
   // a weak reference back to the service that owns it.
   std::unique_ptr<BlockingTaskHelper> helper_;
-  base::WeakPtrFactory<HidServiceFido> weak_factory_;
 
   DISALLOW_COPY_AND_ASSIGN(HidServiceFido);
 };
 
 }  // namespace device
 
-#endif  // DEVICE_HID_HID_SERVICE_FIDO_H_
+#endif  // SERVICE_DEVICE_HID_HID_SERVICE_FIDO_H_

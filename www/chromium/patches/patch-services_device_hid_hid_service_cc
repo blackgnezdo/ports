@@ -8,7 +8,7 @@ Index: services/device/hid/hid_service.cc
  #if defined(OS_LINUX) && defined(USE_UDEV)
  #include "services/device/hid/hid_service_linux.h"
 +#elif defined(OS_BSD)
-+#include "services/device/hid/hid_service_freebsd.h"
++#include "services/device/hid/hid_service_fido.h"
  #elif defined(OS_MACOSX)
  #include "services/device/hid/hid_service_mac.h"
  #elif defined(OS_WIN)
@@ -17,7 +17,7 @@ Index: services/device/hid/hid_service.cc
  #if defined(OS_LINUX) && defined(USE_UDEV)
    return base::WrapUnique(new HidServiceLinux());
 +#elif defined(OS_BSD)
-+  return base::WrapUnique(new HidServiceFreeBSD());
++  return base::WrapUnique(new HidServiceFido());
  #elif defined(OS_MACOSX)
    return base::WrapUnique(new HidServiceMac());
  #elif defined(OS_WIN)
