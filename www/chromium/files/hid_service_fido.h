@@ -26,13 +26,7 @@ class HidServiceFido : public HidService {
   base::WeakPtr<HidService> GetWeakPtr() override;
 
  private:
-  struct ConnectParams;
   class BlockingTaskHelper;
-
-  static void OpenOnBlockingThread(std::unique_ptr<ConnectParams> params);
-  static void FinishOpen(std::unique_ptr<ConnectParams> params);
-  static void CreateConnection(std::unique_ptr<ConnectParams> params);
-
   const scoped_refptr<base::SequencedTaskRunner> task_runner_;
   const scoped_refptr<base::SequencedTaskRunner> blocking_task_runner_;
   base::WeakPtrFactory<HidServiceFido> weak_factory_;

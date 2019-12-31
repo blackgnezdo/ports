@@ -79,6 +79,7 @@ WANTLIB += xml2 z
 WANTLIB += harfbuzz 
 WANTLIB += ffi png
 WANTLIB += iconv lzma
+WANTLIB += fido2 cbor usbhid crypto
 
 RUN_DEPENDS=	devel/xdg-utils \
 		devel/desktop-file-utils \

@@ -4,11 +4,17 @@
 
 #include "services/device/hid/hid_service_fido.h"
 
+#include <poll.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdint.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+
+// TODO: should this guard be in fido.h instead?
+extern "C" {
+#include <fido.h>
+}
 
 #include <set>
 #include <string>
@@ -36,22 +42,116 @@
 
 namespace device {
 
-struct HidServiceFido::ConnectParams {
+namespace {
+
+struct ConnectParams {
   ConnectParams(scoped_refptr<HidDeviceInfo> device_info,
-                const ConnectCallback& callback)
+                const HidService::ConnectCallback& callback)
       : device_info(std::move(device_info)),
         callback(callback),
         task_runner(base::ThreadTaskRunnerHandle::Get()),
         blocking_task_runner(
-            base::CreateSequencedTaskRunner(kBlockingTaskTraits)) {}
+            base::CreateSequencedTaskRunner(HidService::kBlockingTaskTraits)) {}
   ~ConnectParams() {}
 
   scoped_refptr<HidDeviceInfo> device_info;
-  ConnectCallback callback;
+  HidService::ConnectCallback callback;
   scoped_refptr<base::SequencedTaskRunner> task_runner;
   scoped_refptr<base::SequencedTaskRunner> blocking_task_runner;
   base::ScopedFD fd;
 };
+
+void CreateConnection(std::unique_ptr<ConnectParams> params) {
+  DCHECK(params->fd.is_valid());
+  params->callback.Run(base::MakeRefCounted<HidConnectionFido>(
+      std::move(params->device_info), std::move(params->fd),
+      std::move(params->blocking_task_runner)));
+}
+
+void FinishOpen(std::unique_ptr<ConnectParams> params) {
+  scoped_refptr<base::SequencedTaskRunner> task_runner = params->task_runner;
+
+  task_runner->PostTask(
+      FROM_HERE,
+      base::Bind(&CreateConnection, base::Passed(&params)));
+}
+
+static int
+terrible_ping_kludge(int fd, const std::string& path)
+{
+	u_char data[256];
+	int i, n;
+	struct pollfd pfd;
+
+	for (i = 0; i < 4; i++) {
+		memset(data, 0, sizeof(data));
+		/* broadcast channel ID */
+		data[1] = 0xff;
+		data[2] = 0xff;
+		data[3] = 0xff;
+		data[4] = 0xff;
+		/* Ping command */
+		data[5] = 0x81;
+		/* One byte ping only, Vasili */
+		data[6] = 0;
+		data[7] = 1;
+		HID_LOG(EVENT) << "send ping " << i << " " << path;
+		if (write(fd, data, 64) == -1)
+			return -1;
+		HID_LOG(EVENT) << "wait reply" << " " << path;
+		memset(&pfd, 0, sizeof(pfd));
+		pfd.fd = fd;
+		pfd.events = POLLIN;
+		if ((n = poll(&pfd, 1, 100)) == -1) {
+		  HID_PLOG(EVENT) << "poll" << " " << path;
+			return -1;
+		} else if (n == 0) {
+		  HID_LOG(EVENT) << "timed out" << " " << path;
+			continue;
+		}
+		if (read(fd, data, 64) == -1)
+			return -1;
+		/*
+		 * Ping isn't always supported on the broadcast channel,
+		 * so we might get an error, but we don't care - we're
+		 * synched now.
+		 */
+		HID_LOG(EVENT) << "got reply" << " " << path;
+		return 0;
+	}
+	HID_LOG(EVENT) << "no response" << " " << path;
+	return -1;
+}
+
+void OpenOnBlockingThread(
+    std::unique_ptr<ConnectParams> params) {
+  base::ScopedBlockingCall scoped_blocking_call(
+      FROM_HERE, base::BlockingType::MAY_BLOCK);
+  scoped_refptr<base::SequencedTaskRunner> task_runner = params->task_runner;
+
+  base::FilePath device_path(params->device_info->device_node());
+  base::File device_file;
+  int flags =
+      base::File::FLAG_OPEN | base::File::FLAG_READ | base::File::FLAG_WRITE;
+  device_file.Initialize(device_path, flags);
+  const auto& device_node = params->device_info->device_node();
+  if (!device_file.IsValid()) {
+    HID_LOG(EVENT) << "Failed to open '" << device_node
+                   << "': "
+                   << base::File::ErrorToString(device_file.error_details());
+    task_runner->PostTask(FROM_HERE, base::Bind(params->callback, nullptr));
+    return;
+  }
+  if (terrible_ping_kludge(device_file.GetPlatformFile(), device_node) != 0) {
+    HID_LOG(EVENT) << "Failed to ping " << device_path;
+    task_runner->PostTask(FROM_HERE, base::Bind(params->callback, nullptr));
+    return;
+  }
+  params->fd.reset(device_file.TakePlatformFile());
+  FinishOpen(std::move(params));
+}
+
+}
 
 class HidServiceFido::BlockingTaskHelper {
  public:
@@ -67,25 +167,61 @@ class HidServiceFido::BlockingTaskHelper {
     DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
     base::ScopedBlockingCall scoped_blocking_call(
         FROM_HERE, base::BlockingType::MAY_BLOCK);
-    const base::FilePath fido_base("/dev/fido");
-    base::FileEnumerator devs(fido_base, false, base::FileEnumerator::FILES);
-    for (base::FilePath name = devs.Next(); !name.empty(); name = devs.Next()) {
-      OnDeviceAdded(name.value());
+
+    fido_dev_info_t *devlist = NULL;
+    fido_dev_t *dev = NULL;
+    size_t devlist_len = 0, i;
+    const char *path;
+    int r;
+    const int MAX_FIDO_DEVICES = 256;
+
+    if ((devlist = fido_dev_info_new(MAX_FIDO_DEVICES)) == NULL) {
+      HID_LOG(ERROR) << "fido_dev_info_new failed";
+      goto out;
+    }
+    if ((r = fido_dev_info_manifest(devlist, MAX_FIDO_DEVICES,
+				    &devlist_len)) != FIDO_OK) {
+      HID_LOG(ERROR) << "fido_dev_info_manifest: " << fido_strerr(r);
+      goto out;
     }
 
-    task_runner_->PostTask(
-        FROM_HERE,
-        base::Bind(&HidServiceFido::FirstEnumerationComplete, service_));
+    HID_LOG(EVENT) << "fido_dev_info_manifest found "
+		   << devlist_len << " device(s)";
+
+    for (i = 0; i < devlist_len; i++) {
+      const fido_dev_info_t *di = fido_dev_info_ptr(devlist, i);
+      if (di == NULL) {
+	HID_LOG(ERROR) << "fido_dev_info_ptr " << i << " failed";
+	continue; 
+      }
+      if ((path = fido_dev_info_path(di)) == NULL) {
+	HID_LOG(ERROR) << "fido_dev_info_path " << i << " failed";
+	continue;
+      }
+      HID_LOG(EVENT) << "trying device " << i << ": " << path;
+      if ((dev = fido_dev_new()) == NULL) {
+	HID_LOG(ERROR) << "fido_dev_new failed";
+	continue;
+      }
+      if ((r = fido_dev_open(dev, path)) != FIDO_OK) {
+	HID_LOG(ERROR) << "fido_dev_open failed " << path;
+	fido_dev_free(&dev);
+	continue;
+      }
+      OnDeviceAdded(std::string(path));
+      fido_dev_close(dev);
+      fido_dev_free(&dev);
+    }
+
+  out:
+    if (devlist != NULL)
+      fido_dev_info_free(&devlist, MAX_FIDO_DEVICES);
+
+    task_runner_->PostTask(FROM_HERE,
+			   base::Bind(&HidServiceFido::FirstEnumerationComplete, service_));
   }
 
   void OnDeviceAdded(std::string device_node) {
-    int fd = open(device_node.c_str(), O_RDWR);
-    if (fd < 0) {
-      HID_PLOG(ERROR) << "Failed to open " << device_node;
-      return;
-    }
-    HID_LOG(EVENT) << "Opened successfully " << device_node;
-    close(fd);
     // Magic values produced by running USB_GET_REPORT_DESC as root
     // and without pledge. They were identical for a couple of
     // different security keys from Yubico. Apparently Chromium wants
@@ -149,29 +285,6 @@ base::WeakPtr<HidService> HidServiceFido::GetWeakPtr() {
   return weak_factory_.GetWeakPtr();
 }
 
-// static
-void HidServiceFido::OpenOnBlockingThread(
-    std::unique_ptr<ConnectParams> params) {
-  base::ScopedBlockingCall scoped_blocking_call(
-      FROM_HERE, base::BlockingType::MAY_BLOCK);
-  scoped_refptr<base::SequencedTaskRunner> task_runner = params->task_runner;
-
-  base::FilePath device_path(params->device_info->device_node());
-  base::File device_file;
-  int flags =
-      base::File::FLAG_OPEN | base::File::FLAG_READ | base::File::FLAG_WRITE;
-  device_file.Initialize(device_path, flags);
-  if (!device_file.IsValid()) {
-    HID_LOG(EVENT) << "Failed to open '" << params->device_info->device_node()
-                   << "': "
-                   << base::File::ErrorToString(device_file.error_details());
-    task_runner->PostTask(FROM_HERE, base::Bind(params->callback, nullptr));
-    return;
-  }
-  params->fd.reset(device_file.TakePlatformFile());
-  FinishOpen(std::move(params));
-}
-
 void HidServiceFido::Connect(const std::string& device_guid,
                             const ConnectCallback& callback) {
   DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
@@ -190,25 +303,7 @@ void HidServiceFido::Connect(const std::string& device_guid,
   scoped_refptr<base::SequencedTaskRunner> blocking_task_runner =
       params->blocking_task_runner;
   blocking_task_runner->PostTask(
-      FROM_HERE, base::Bind(&HidServiceFido::OpenOnBlockingThread,
-                            base::Passed(&params)));
-}
-
-// static
-void HidServiceFido::FinishOpen(std::unique_ptr<ConnectParams> params) {
-  scoped_refptr<base::SequencedTaskRunner> task_runner = params->task_runner;
-
-  task_runner->PostTask(
-      FROM_HERE,
-      base::Bind(&HidServiceFido::CreateConnection, base::Passed(&params)));
-}
-
-// static
-void HidServiceFido::CreateConnection(std::unique_ptr<ConnectParams> params) {
-  DCHECK(params->fd.is_valid());
-  params->callback.Run(base::MakeRefCounted<HidConnectionFido>(
-      std::move(params->device_info), std::move(params->fd),
-      std::move(params->blocking_task_runner)));
+      FROM_HERE, base::Bind(&OpenOnBlockingThread, base::Passed(&params)));
 }
 
 }  // namespace device
