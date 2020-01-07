@@ -36,7 +36,7 @@ FLAVOR?=
 .if ${FLAVOR:Melectron}
 REVISION=		3
 .else
-REVISION=		1
+REVISION=		2
 .endif
 
 # BSD-like
