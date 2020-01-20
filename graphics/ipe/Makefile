@@ -1,15 +1,14 @@
-# $OpenBSD: Makefile,v 1.21 2019/07/12 20:47:01 sthen Exp $
+# $OpenBSD: Makefile,v 1.23 2020/01/18 21:00:14 sthen Exp $
 
 COMMENT =		extensible drawing editor
 
-V =			7.2.11
+V =			7.2.13
 SUBST_VARS +=		V
 DISTNAME =		ipe-${V}-src
 PKGNAME =		ipe-${V}
-REVISION =		0
 
 # Upstream libraries would be installed as libxxx.so.${V}
-SHLIB_VERSION =	0.0
+SHLIB_VERSION =	2.0
 
 SHARED_LIBS +=		ipe		${SHLIB_VERSION}
 SHARED_LIBS +=		ipecairo	${SHLIB_VERSION}
@@ -19,7 +18,7 @@ SHARED_LIBS +=		ipeui		${SHLIB_VERSION}
 
 CATEGORIES =		graphics math
 HOMEPAGE =		https://ipe.otfried.org/
-MAINTAINER =		Alessandro De Laurenzis <just22@atlantide.t28.net>
+MAINTAINER =		Alessandro De Laurenzis <just22@atlantide.mooo.com>
 
 # GPLv3+
 PERMIT_PACKAGE =	Yes

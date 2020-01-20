@@ -1,4 +1,4 @@
-$OpenBSD: patch-arch_arm_dts_rk3399-rockpro64_dts,v 1.2 2019/10/08 01:10:28 kurt Exp $
+$OpenBSD: patch-arch_arm_dts_rk3399-rockpro64_dts,v 1.4 2020/01/17 14:24:42 kurt Exp $
 
 Index: arch/arm/dts/rk3399-rockpro64.dts
 --- arch/arm/dts/rk3399-rockpro64.dts.orig
@@ -12,52 +12,55 @@ Index: arch/arm/dts/rk3399-rockpro64.dts
  	};
  
  	clkin_gmac: external-gmac-clock {
-@@ -222,6 +222,10 @@
- 	status = "okay";
- };
+@@ -60,6 +60,7 @@
  
-+&hdmi_sound {
-+	status = "okay";
+ 	fan: pwm-fan {
+ 		compatible = "pwm-fan";
++		cooling-levels = <0 40 80 255>;
+ 		#cooling-cells = <2>;
+ 		fan-supply = <&vcc12v_dcin>;
+ 		pwms = <&pwm1 0 50000 0>;
+@@ -750,4 +751,43 @@
+ 
+ &vopl_mmu {
+ 	status = "okay";
 +};
 +
- &gpu {
- 	mali-supply = <&vdd_gpu>;
- 	status = "okay";
-@@ -504,11 +508,25 @@
- 	status = "okay";
- 
- 	bt656-supply = <&vcc1v8_dvp>;
--	audio-supply = <&vcca1v8_codec>;
-+	audio-supply = <&vcc_3v0>;
- 	sdmmc-supply = <&vcc_sdio>;
- 	gpio1830-supply = <&vcc_3v0>;
- };
- 
-+&pcie0 {
-+	ep-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
-+	num-lanes = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_perst>;
-+	vpcie12v-supply = <&vcc12v_dcin>;
-+	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	status = "okay";
-+};
-+
- &pmu_io_domains {
- 	pmu1830-supply = <&vcc_3v0>;
- 	status = "okay";
-@@ -538,6 +556,10 @@
- 	};
- 
- 	pcie {
-+		pcie_perst: pcie-perst {
-+			rockchip,pins = <2 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
++&cpu_thermal {
++	trips {
++		cpu_warm: cpu_warm {
++			temperature = <55000>;
++			hysteresis = <2000>;
++			type = "active";
 +		};
 +
- 		pcie_pwr_en: pcie-pwr-en {
- 			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
++		cpu_med: cpu_med {
++			temperature = <60000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_hot: cpu_hot {
++			temperature = <65000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map2 {
++			trip = <&cpu_warm>;
++			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
++		};
++
++		map3 {
++			trip = <&cpu_med>;
++			cooling-device = <&fan THERMAL_NO_LIMIT 2>;
++		};
++
++		map4 {
++			trip = <&cpu_hot>;
++			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
++		};
++	};
+ };

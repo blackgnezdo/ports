@@ -1,6 +1,7 @@
-# $OpenBSD: Makefile,v 1.1925 2019/12/31 11:36:42 ajacoutot Exp $
+# $OpenBSD: Makefile,v 1.1928 2020/01/16 13:57:29 pamela Exp $
 
      SUBDIR =
+     SUBDIR += 64tass
      SUBDIR += ElectricFence
      SUBDIR += ORBit2
      SUBDIR += acpica
@@ -1438,6 +1439,8 @@
      SUBDIR += py-fields,python3
      SUBDIR += py-filebytes
      SUBDIR += py-filebytes,python3
+     SUBDIR += py-fixtures
+     SUBDIR += py-fixtures,python3
      SUBDIR += py-flaky
      SUBDIR += py-flaky,python3
      SUBDIR += py-flexmock
@@ -1510,6 +1513,7 @@
      SUBDIR += py-lazy-object-proxy
      SUBDIR += py-lazy-object-proxy,python3
      SUBDIR += py-liblarch
+     SUBDIR += py-linecache2
      SUBDIR += py-llvmlite
      SUBDIR += py-llvmlite,python3
      SUBDIR += py-logilab-common
@@ -1693,6 +1697,7 @@
      SUBDIR += py-texscythe
      SUBDIR += py-tox
      SUBDIR += py-tox,python3
+     SUBDIR += py-traceback2
      SUBDIR += py-traitlets
      SUBDIR += py-traitlets,python3
      SUBDIR += py-trollius
@@ -1801,6 +1806,7 @@
      SUBDIR += ruby-fast_gettext
      SUBDIR += ruby-ffi,ruby25
      SUBDIR += ruby-ffi,ruby26
+     SUBDIR += ruby-ffi,ruby27
      SUBDIR += ruby-flexmock
      SUBDIR += ruby-gettext
      SUBDIR += ruby-gettext-setup
@@ -1815,8 +1821,10 @@
      SUBDIR += ruby-json_pure
      SUBDIR += ruby-kgio,ruby25
      SUBDIR += ruby-kgio,ruby26
+     SUBDIR += ruby-kgio,ruby27
      SUBDIR += ruby-libv8,ruby25
      SUBDIR += ruby-libv8,ruby26
+     SUBDIR += ruby-libv8,ruby27
      SUBDIR += ruby-locale
      SUBDIR += ruby-log4r
      SUBDIR += ruby-metaclass
@@ -1824,10 +1832,13 @@
      SUBDIR += ruby-mocha
      SUBDIR += ruby-narray,ruby25
      SUBDIR += ruby-narray,ruby26
+     SUBDIR += ruby-narray,ruby27
      SUBDIR += ruby-ncurses,ruby25
      SUBDIR += ruby-ncurses,ruby26
+     SUBDIR += ruby-ncurses,ruby27
      SUBDIR += ruby-nio4r,ruby25
      SUBDIR += ruby-nio4r,ruby26
+     SUBDIR += ruby-nio4r,ruby27
      SUBDIR += ruby-ole
      SUBDIR += ruby-open4
      SUBDIR += ruby-opt_parse_validator
@@ -1835,14 +1846,17 @@
      SUBDIR += ruby-polyglot
      SUBDIR += ruby-prof,ruby25
      SUBDIR += ruby-prof,ruby26
+     SUBDIR += ruby-prof,ruby27
      SUBDIR += ruby-puppet_forge,ruby25
      SUBDIR += ruby-puppet_forge,ruby26
      SUBDIR += ruby-racc,ruby25
      SUBDIR += ruby-racc,ruby26
+     SUBDIR += ruby-racc,ruby27
      SUBDIR += ruby-rake-compiler
      SUBDIR += ruby-rake-remote_task
      SUBDIR += ruby-rb-gsl,ruby25
      SUBDIR += ruby-rb-gsl,ruby26
+     SUBDIR += ruby-rb-gsl,ruby27
      SUBDIR += ruby-ref
      SUBDIR += ruby-rgen
      SUBDIR += ruby-rr
@@ -1857,9 +1871,11 @@
      SUBDIR += ruby-shims
      SUBDIR += ruby-subset_sum,ruby25
      SUBDIR += ruby-subset_sum,ruby26
+     SUBDIR += ruby-subset_sum,ruby27
      SUBDIR += ruby-systemu
      SUBDIR += ruby-therubyracer,ruby25
      SUBDIR += ruby-therubyracer,ruby26
+     SUBDIR += ruby-therubyracer,ruby27
      SUBDIR += ruby-thor
      SUBDIR += ruby-thread_safe
      SUBDIR += ruby-tilt
@@ -1870,6 +1886,7 @@
      SUBDIR += ruby-xdg
      SUBDIR += ruby-yajl,ruby25
      SUBDIR += ruby-yajl,ruby26
+     SUBDIR += ruby-yajl,ruby27
      SUBDIR += ruby-zeitwerk
      SUBDIR += ruby-zentest
      SUBDIR += samurai

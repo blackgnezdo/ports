@@ -1,4 +1,4 @@
-# $OpenBSD: Makefile,v 1.1162 2020/01/06 21:35:39 zhuk Exp $
+# $OpenBSD: Makefile,v 1.1164 2020/01/13 19:56:38 rsadowski Exp $
 
      SUBDIR =
      SUBDIR += GeoIP
@@ -225,7 +225,7 @@
      SUBDIR += libupnp
      SUBDIR += libupnpp
      SUBDIR += libvncserver
-     SUBDIR += litecoin
+     SUBDIR += litecoin,no_x11
      SUBDIR += livemedia
      SUBDIR += lldpd
      SUBDIR += lldpd,snmp
@@ -667,10 +667,12 @@
      SUBDIR += ruby-agcaldav
      SUBDIR += ruby-eventmachine,ruby25
      SUBDIR += ruby-eventmachine,ruby26
+     SUBDIR += ruby-eventmachine,ruby27
      SUBDIR += ruby-macaddr
      SUBDIR += ruby-mfi
      SUBDIR += ruby-msgpack,ruby25
      SUBDIR += ruby-msgpack,ruby26
+     SUBDIR += ruby-msgpack,ruby27
      SUBDIR += ruby-net-dns
      SUBDIR += ruby-net-http-digest_auth
      SUBDIR += ruby-net-scp

@@ -1,15 +1,16 @@
-# $OpenBSD: Makefile,v 1.209 2019/12/11 20:06:57 sthen Exp $
+# $OpenBSD: Makefile,v 1.211 2020/01/19 18:27:50 sthen Exp $
 
 COMMENT-main =	distributed version control system
 COMMENT-svn =	subversion interoperability tools
 COMMENT-x11 =	graphical tools
 
-V =		2.24.1
+V =		2.25.0
 DISTNAME =	git-${V}
 PKGNAME-main =	${DISTNAME}
 PKGNAME-svn =	git-svn-${V}
 PKGNAME-x11 =	git-x11-${V}
 CATEGORIES =	devel
+REVISION =	0
 
 HOMEPAGE =	https://git-scm.com/
 
@@ -27,6 +28,8 @@ MASTER_SITES =		https://www.kernel.org/pub/software/scm/git/
 
 MODULES =		lang/python \
 			x11/tk
+
+MODTK_VERSION =		8.6
 
 MODPY_VERSION =		${MODPY_DEFAULT_VERSION_3}
 MODPY_BUILDDEP =	No
@@ -123,6 +126,7 @@ post-install:
 		gitwebdir=${TRUEPREFIX}/share/gitweb install
 	perl -pi -e "s|${WRKINST}||g" ${PREFIX}/share/gitweb/gitweb.cgi
 	${INSTALL_DATA} ${WRKBUILD}/gitweb/README ${PREFIX}/share/gitweb
+	${MODTCL_WISH_ADJ} ${PREFIX}/libexec/git/git-gui--askpass
 
 do-test:
 	${MAKE_ENV} GIT_TEST_OPTS="--immediate" ${MAKE_PROGRAM} -C ${WRKSRC}/t \

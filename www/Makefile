@@ -1,4 +1,4 @@
-# $OpenBSD: Makefile,v 1.939 2019/12/17 21:26:14 bket Exp $
+# $OpenBSD: Makefile,v 1.942 2020/01/16 17:54:14 landry Exp $
 
      SUBDIR =
      SUBDIR += ajaxterm
@@ -52,6 +52,7 @@
      SUBDIR += goaccess,tokyocabinet
      SUBDIR += gumbo
      SUBDIR += h2o
+     SUBDIR += h2o,mruby
      SUBDIR += haserl
      SUBDIR += haserl,no_lua
      SUBDIR += haserl,no_lua,static
@@ -410,6 +411,7 @@
      SUBDIR += py-feedgenerator,python3
      SUBDIR += py-flask
      SUBDIR += py-flask,python3
+     SUBDIR += py-flask-cors
      SUBDIR += py-flask-login
      SUBDIR += py-flask-login,python3
      SUBDIR += py-flask-principal
@@ -520,39 +522,49 @@
      SUBDIR += ruby-capybara
      SUBDIR += ruby-capybara-webkit,ruby25
      SUBDIR += ruby-capybara-webkit,ruby26
+     SUBDIR += ruby-capybara-webkit,ruby27
      SUBDIR += ruby-ethon
      SUBDIR += ruby-faraday
      SUBDIR += ruby-faraday_middleware
      SUBDIR += ruby-faraday_middleware-multi_json
      SUBDIR += ruby-fcgi,ruby25
      SUBDIR += ruby-fcgi,ruby26
+     SUBDIR += ruby-fcgi,ruby27
      SUBDIR += ruby-mechanize
      SUBDIR += ruby-multipart-post
      SUBDIR += ruby-mustermann
      SUBDIR += ruby-ntlm,ruby25
      SUBDIR += ruby-ntlm,ruby26
+     SUBDIR += ruby-ntlm,ruby27
      SUBDIR += ruby-passenger,ruby25
      SUBDIR += ruby-passenger,ruby26
+     SUBDIR += ruby-passenger,ruby27
      SUBDIR += ruby-puma,ruby25
      SUBDIR += ruby-puma,ruby26
+     SUBDIR += ruby-puma,ruby27
      SUBDIR += ruby-rack
      SUBDIR += ruby-rack-protection
      SUBDIR += ruby-rack-test
      SUBDIR += ruby-rainbows
      SUBDIR += ruby-raindrops,ruby25
      SUBDIR += ruby-raindrops,ruby26
+     SUBDIR += ruby-raindrops,ruby27
      SUBDIR += ruby-sanitize
      SUBDIR += ruby-sassc,ruby25
      SUBDIR += ruby-sassc,ruby26
+     SUBDIR += ruby-sassc,ruby27
      SUBDIR += ruby-sinatra
      SUBDIR += ruby-thin,ruby25
      SUBDIR += ruby-thin,ruby26
+     SUBDIR += ruby-thin,ruby27
      SUBDIR += ruby-typhoeus
      SUBDIR += ruby-unicorn,ruby25
      SUBDIR += ruby-unicorn,ruby26
+     SUBDIR += ruby-unicorn,ruby27
      SUBDIR += ruby-vegas
      SUBDIR += ruby-websocket-driver,ruby25
      SUBDIR += ruby-websocket-driver,ruby26
+     SUBDIR += ruby-websocket-driver,ruby27
      SUBDIR += ruby-websocket-extensions
      SUBDIR += ruby-xpath
      SUBDIR += sabredav

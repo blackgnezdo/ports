@@ -1,4 +1,4 @@
-# $OpenBSD: Makefile,v 1.28 2019/12/03 21:18:26 cwen Exp $
+# $OpenBSD: Makefile,v 1.30 2020/01/12 11:37:28 cwen Exp $
 
 ONLY_FOR_ARCHS = \
 	aarch64 alpha amd64 arm hppa i386 mips64 mips64el powerpc sparc64
