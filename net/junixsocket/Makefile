@@ -4,12 +4,13 @@ COMMENT =		Unix Domain Sockets in Java (AF_UNIX)
 
 HOMEPAGE =		https://github.com/kohlschutter/junixsocket
 
+V =			2.3.1
 GH_ACCOUNT =		kohlschutter
 GH_PROJECT =		junixsocket
-DISTFILES =		${GH_PROJECT}-parent-2.3.1.tar.gz
+DISTFILES =		${GH_PROJECT}-parent-${V}.tar.gz
 
-DISTNAME =		${GH_PROJECT}-2.3.1
-WRKDIST =		${WRKDIR}/${GH_PROJECT}-${GH_PROJECT}-parent-2.3.1
+DISTNAME =		${GH_PROJECT}-${V}
+WRKDIST =		${WRKDIR}/${GH_PROJECT}-${GH_PROJECT}-parent-${V}
 CATEGORIES =		net
 
 # GPLv3
