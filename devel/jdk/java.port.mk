@@ -85,6 +85,29 @@ do-build:
 .   endif
 .endif
 
+# Allow ports to that use devel/maven to set MODJAVA_BUILD=maven
+# In case a non-standard build target, build file or build directory are
+# needed, set MODJAVA_BUILD_TARGET_NAME, MODJAVA_BUILD_FILE or MODJAVA_BUILD_DIR
+# respectively.
+.if defined(MODJAVA_BUILD) && ${MODJAVA_BUILD:L} == "maven"
+    BUILD_DEPENDS += devel/maven
+    MAKE_ENV += JAVA_HOME=${JAVA_HOME}
+    MODJAVA_BUILD_TARGET_NAME ?= package
+    MODJAVA_BUILD_FILE ?= pom.xml
+    MODJAVA_BUILD_DIR ?= ${WRKSRC}
+    MODJAVA_BUILD_ARGS ?=
+
+MODJAVA_BUILD_TARGET = \
+	cd ${MODJAVA_BUILD_DIR} && \
+		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/mvn \
+		--file ${MODJAVA_BUILD_FILE} ${MODJAVA_BUILD_TARGET_NAME} \
+		${MODJAVA_BUILD_ARGS}
+.   if !target(do-build)
+do-build:
+	${MODJAVA_BUILD_TARGET}
+.   endif
+.endif
+
 # Convenience variables.
 # Ports that install .jar files for public use (ie, in ${MODJAVA_JAR_DIR})
 # please install unversioned .jar files. If a port installs
