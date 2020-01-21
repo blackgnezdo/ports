@@ -1,0 +1,29 @@
+$OpenBSD$
+
+Index: junixsocket-native/src/main/c/org_newsclub_net_unix_NativeUnixSocket.c
+--- junixsocket-native/src/main/c/org_newsclub_net_unix_NativeUnixSocket.c.orig
++++ junixsocket-native/src/main/c/org_newsclub_net_unix_NativeUnixSocket.c
+@@ -149,7 +149,7 @@ extern "C" {
+ typedef unsigned long socklen_t; /* 64-bits */
+ #endif
+ 
+-#if defined(__MACH__)
++#if defined(__MACH__) || defined(__OpenBSD__)
+ #define junixsocket_use_poll_for_accept
+ //#define junixsocket_use_poll_interval_millis    1000
+ #define junixsocket_use_poll_for_read
+@@ -1692,11 +1692,11 @@ JNIEXPORT jobject JNICALL Java_org_newsclub_net_unix_N
+         } else {
+             jlongArray gidArray = (*env)->NewLongArray(env, 1);
+             jlong *gids = (*env)->GetLongArrayElements(env, gidArray, 0);
+-            gids[0] = cr.gid;
++            gids[0] = cr.cr_gid;
+             (*env)->ReleaseLongArrayElements(env, gidArray, gids, 0);
+ 
+-            setLongFieldValue(env, creds, "uid", cr.uid);
+-            setLongFieldValue(env, creds, "pid", cr.pid);
++            setLongFieldValue(env, creds, "uid", cr.cr_uid);
++            setLongFieldValue(env, creds, "pid", -1);  // Not available on OpenBSD.
+             setObjectFieldValue(env, creds, "gids", "[J", gidArray);
+         }
+     }

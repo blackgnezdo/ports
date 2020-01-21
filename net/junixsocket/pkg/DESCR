@@ -1,0 +1,2 @@
+junixsocket is a Java/JNI library that allows the use of Unix Domain
+Sockets (AF_UNIX sockets) from Java.
