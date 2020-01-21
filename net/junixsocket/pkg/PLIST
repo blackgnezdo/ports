@@ -1,0 +1,2 @@
+@comment $OpenBSD: PLIST,v$
+@lib lib/libjunixsocket-native.so.${LIBjunixsocket-native_VERSION}
