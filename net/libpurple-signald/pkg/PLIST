@@ -1,0 +1,11 @@
+@comment $OpenBSD: PLIST,v$
+@so lib/purple-2/libsignald.so
+share/pixmaps/
+share/pixmaps/pidgin/
+share/pixmaps/pidgin/protocols/
+share/pixmaps/pidgin/protocols/11/
+share/pixmaps/pidgin/protocols/11/signal.png
+share/pixmaps/pidgin/protocols/16/
+share/pixmaps/pidgin/protocols/16/signal.png
+share/pixmaps/pidgin/protocols/48/
+share/pixmaps/pidgin/protocols/48/signal.png
