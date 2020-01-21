@@ -1,0 +1,20 @@
+purple-signald
+
+A libpurple/Pidgin plugin for signald (signal, formerly textsecure).
+
+Known Issues
+
+There have been reports of incoming offline-messages getting lost. As
+far as I observed, they are not lost but delayed and delivered after a
+restart of signald.  Features
+
+    Receive messages
+    Send messages
+    Receive files
+    Receive images
+    Send images
+    Receive buddy list from server
+
+Note: When signald is being run as a system service, downloaded files
+may not be accessible directly to the user. Do not forget to add
+yourself to the signald group.
