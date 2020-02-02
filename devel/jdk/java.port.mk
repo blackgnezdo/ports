@@ -100,6 +100,7 @@ do-build:
 MODJAVA_BUILD_TARGET = \
 	cd ${MODJAVA_BUILD_DIR} && \
 		${SETENV} ${MAKE_ENV} ${LOCALBASE}/bin/mvn \
+		-Duser.home=${WRKDIR} \
 		--file ${MODJAVA_BUILD_FILE} ${MODJAVA_BUILD_TARGET_NAME} \
 		${MODJAVA_BUILD_ARGS}
 .   if !target(do-build)
