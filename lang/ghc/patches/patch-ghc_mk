@@ -6,7 +6,7 @@ gtar creates an archive which our tar can't extract.
 Index: ghc.mk
 --- ghc.mk.orig
 +++ ghc.mk
-@@ -1102,6 +1102,8 @@ unix-binary-dist-prep:
+@@ -1086,6 +1086,8 @@ unix-binary-dist-prep: $(includes_1_H_CONFIG) $(includ
  	echo "CrossCompiling     = $(CrossCompiling)"     >> $(BIN_DIST_MK)
  	cd $(BIN_DIST_PREP_DIR) && autoreconf
  	$(call removeFiles,$(BIN_DIST_PREP_TAR))
