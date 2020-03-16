@@ -5,7 +5,7 @@ vfork is for terrorists
 Index: libraries/process/include/runProcess.h
 --- libraries/process/include/runProcess.h.orig
 +++ libraries/process/include/runProcess.h
-@@ -26,18 +26,7 @@
+@@ -30,18 +30,7 @@
  #include <fcntl.h>
  #endif
  

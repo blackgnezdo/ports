@@ -6,7 +6,7 @@ ONLY_FOR_ARCHS =	i386 amd64
 
 # Dependency of meta/haskell-platform.
 # Please do *not* update without thinking.
-MODGHC_VER =		8.6.4
+MODGHC_VER =		8.10.2
 SUBST_VARS +=		MODGHC_VER
 
 MODGHC_BIN =		${LOCALBASE}/bin/ghc
