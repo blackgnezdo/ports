@@ -159,6 +159,9 @@ BOOTSTRAP_SHLIBS =	${WRKDIR}/ghc-${BIN_VER}-shlibs-${MACHINE_ARCH}
 
 post-patch:
 # - Install a precompiled binary.
+# TODO(gnezdo): https://github.com/blackgnezdo/ports/issues/5
+	mkdir -p ${WRKDIR}/bootstrap/lib/ghc/rts
+	install -m 644 /usr/local/lib/ghc/rts/libHSrts_thr.a ${WRKDIR}/bootstrap/lib/ghc/rts/
 	cd ${WRKDIR}/ghc-${BIN_VER} && \
 	LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \
 	CONFIGURE_ENV=${CONFIGURE_ENV} \
