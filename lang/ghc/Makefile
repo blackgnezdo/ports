@@ -182,7 +182,7 @@ post-patch:
 	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
 
 do-test:
-	ulimit -c 0 && \
+	ulimit -c 0 -n 1024 && \
 	cd ${WRKSRC}/testsuite/tests && \
 	exec ${SETENV} ${MAKE_ENV} LC_CTYPE=en_US.UTF-8 \
 		${MAKE_PROGRAM} ${MAKE_FLAGS} \
