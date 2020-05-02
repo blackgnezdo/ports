@@ -2249,7 +2249,8 @@ acpi_enable_rungpes(struct acpi_softc *sc)
 	int idx;
 
 	for (idx = 0; idx < sc->sc_lastgpe; idx++)
-		if (sc->gpe_table[idx].handler)
+		// Avoids interrupt storm on HP EliteBook 840 G1.
+		if (idx != 0x2a && sc->gpe_table[idx].handler)
 			acpi_enable_onegpe(sc, idx);
 }
 
