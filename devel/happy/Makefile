@@ -2,12 +2,9 @@
 
 COMMENT=		parser generator for Haskell
 
-# Dependency of meta/haskell-platform.
-# Please do *not* update without thinking.
 PORTROACH =		ignore:1
 
-DISTNAME=		happy-1.19.5
-REVISION=		1
+DISTNAME=		happy-1.19.10
 CATEGORIES=		devel
 
 HOMEPAGE=		http://www.haskell.org/happy/
@@ -29,7 +26,7 @@ BUILD_DEPENDS+=		textproc/docbook-xsl
 # Required for building the documentation and for the regression tests:
 USE_GMAKE=		Yes
 CONFIGURE_STYLE=	autoconf no-autoheader
-AUTOCONF_VERSION=	2.61
+AUTOCONF_VERSION=	2.69
 AUTOCONF_DIR=		${WRKSRC}/doc
 WRKCONF=		${AUTOCONF_DIR}
 

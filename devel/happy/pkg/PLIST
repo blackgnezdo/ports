@@ -24,6 +24,7 @@ share/doc/happy/sec-glr.html
 share/doc/happy/sec-grammar-files.html
 share/doc/happy/sec-grammar.html
 share/doc/happy/sec-happy-ghci.html
+share/doc/happy/sec-info-files-conflicts.html
 share/doc/happy/sec-info-files.html
 share/doc/happy/sec-invoking.html
 share/doc/happy/sec-license.html
