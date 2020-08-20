@@ -1,5 +1,7 @@
 @comment $OpenBSD: PLIST,v 1.7 2020/05/15 21:50:24 kili Exp $
-@bin bin/happy
+bin/happy
+libexec/cabal/
+@bin libexec/cabal/happy
 share/doc/happy/
 @comment share/doc/${DISTNAME}/
 @comment share/doc/${DISTNAME}/LICENSE

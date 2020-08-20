@@ -2,9 +2,7 @@
 
 COMMENT=		parser generator for Haskell
 
-PORTROACH =		ignore:1
-
-DISTNAME=		happy-1.19.10
+DISTNAME=		happy-1.19.12
 CATEGORIES=		devel
 
 HOMEPAGE=		http://www.haskell.org/happy/
@@ -14,8 +12,9 @@ PERMIT_PACKAGE=	Yes
 
 WANTLIB=		c ffi gmp iconv m pthread
 
-MODULES=		lang/ghc
-MODGHC_BUILD=		cabal hackage nort
+MODULES=		devel/cabal
+
+MODCABAL_DATA_DIR=	data
 
 LIB_DEPENDS=		converters/libiconv \
 			devel/gmp \
@@ -40,7 +39,7 @@ post-install:
 
 do-test:
 	@cd ${WRKBUILD}/tests && exec ${SETENV} ${MAKE_ENV} \
-		${MAKE_PROGRAM} HAPPY=${WRKBUILD}/dist/build/happy/happy \
-		TEST_HAPPY_OPTS="-t ${WRKBUILD} --strict"
+		${MAKE_PROGRAM} -j${MAKE_JOBS} HAPPY=${MODCABAL_BUILT_EXECUTABLE_happy} \
+		TEST_HAPPY_OPTS="-t ${WRKBUILD}/data --strict"
 
 .include <bsd.port.mk>
