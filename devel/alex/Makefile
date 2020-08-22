@@ -2,13 +2,8 @@
 
 COMMENT =	lexical analyser generator for Haskell
 
-# Dependency of meta/haskell-platform.
-# Please do *not* update without thinking.
-PORTROACH =		ignore:1
-
-DISTNAME =	alex-3.1.7
+DISTNAME =	alex-3.2.5
 CATEGORIES =	devel
-REVISION =	0
 
 HOMEPAGE =	http://www.haskell.org/alex/
 
@@ -17,8 +12,8 @@ PERMIT_PACKAGE =		Yes
 
 WANTLIB =		c charset ffi gmp iconv m pthread util
 
-MODULES =		lang/ghc
-MODGHC_BUILD =          cabal hackage nort
+MODULES =		devel/cabal
+MODCABAL_DATA_DIRS=	data
 
 LIB_DEPENDS =		converters/libiconv \
 			devel/gmp \
@@ -31,8 +26,7 @@ AUTOCONF_VERSION =	2.61
 AUTOCONF_DIR =		${WRKSRC}/doc
 WRKCONF =		${AUTOCONF_DIR}
 
-BUILD_DEPENDS +=	devel/hs-QuickCheck>=2 \
-			textproc/docbook-xsl
+BUILD_DEPENDS +=	textproc/docbook-xsl
 
 post-build:
 	@cd ${WRKBUILD}/doc && exec ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} html
@@ -42,7 +36,10 @@ post-install:
 	cd ${WRKBUILD}/doc && umask 022 && pax -rw alex ${PREFIX}/share/doc
 
 do-test:
-	cd ${WRKBUILD}/tests && exec ${SETENV} ${MAKE_ENV} ${MAKE_PROGRAM} \
-		all
+	cd ${WRKBUILD}/tests && exec ${SETENV} ${MAKE_ENV} \
+	${MAKE_PROGRAM} ALEX=${MODCABAL_BUILT_EXECUTABLE_alex} \
+			TEST_ALEX_OPTS=--template=../data \
+			-j ${MAKE_JOBS} all
+
 
 .include <bsd.port.mk>
