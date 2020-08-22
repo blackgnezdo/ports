@@ -1,5 +1,7 @@
 @comment $OpenBSD: PLIST,v 1.6 2013/07/18 21:58:00 kili Exp $
-@bin bin/alex
+bin/alex
+libexec/cabal/
+@bin libexec/cabal/alex
 share/${DISTNAME}/
 share/${DISTNAME}/AlexTemplate
 share/${DISTNAME}/AlexTemplate-debug
@@ -35,4 +37,5 @@ share/doc/alex/relnotes-20.html
 share/doc/alex/relnotes-210.html
 share/doc/alex/relnotes-22.html
 share/doc/alex/syntax.html
+share/doc/alex/types.html
 share/doc/alex/wrappers.html
