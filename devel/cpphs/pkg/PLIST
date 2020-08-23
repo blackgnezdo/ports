@@ -1,0 +1,5 @@
+@comment $OpenBSD: PLIST,v$
+@pkgpath devel/cpphs
+@bin bin/cpphs
+libexec/cabal/
+@man man/man1/cpphs.1
