@@ -1,0 +1,5 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/shellcheck
+libexec/cabal/
+share/doc/${PKGNAME}/
+share/doc/${PKGNAME}/shellcheck.1.md
