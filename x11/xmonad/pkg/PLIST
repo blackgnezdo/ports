@@ -1,0 +1,9 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/${MODCABAL_STEM}
+@man man/man1/${MODCABAL_STEM}.1
+share/doc/${PKGNAME}/
+share/doc/${PKGNAME}/CONFIG
+share/doc/${PKGNAME}/${MODCABAL_STEM}.hs
+share/examples/${PKGNAME}/
+share/examples/${PKGNAME}/build
+share/examples/${PKGNAME}/${MODCABAL_STEM}-config.cabal
