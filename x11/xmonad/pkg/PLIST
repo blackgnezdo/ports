@@ -1,0 +1,9 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/${MODCABAL_STEM}
+@man man/man1/${MODCABAL_STEM}.1
+share/doc/${MODCABAL_STEM}-${MODCABAL_VERSION}/
+share/doc/${MODCABAL_STEM}-${MODCABAL_VERSION}/CONFIG
+share/doc/${MODCABAL_STEM}-${MODCABAL_VERSION}/${MODCABAL_STEM}.hs
+share/examples/${MODCABAL_STEM}-${MODCABAL_VERSION}/
+share/examples/${MODCABAL_STEM}-${MODCABAL_VERSION}/build
+share/examples/${MODCABAL_STEM}-${MODCABAL_VERSION}/${MODCABAL_STEM}-config.cabal
