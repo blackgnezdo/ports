@@ -2,10 +2,10 @@
 
 COMMENT =		minimalistic text based status bar
 
-DISTNAME =		xmobar-0.24.3
-REVISION =		5
+MODCABAL_STEM =		xmobar
+MODCABAL_VERSION =	0.37
 CATEGORIES =		x11
-HOMEPAGE =		http://projects.haskell.org/xmobar
+HOMEPAGE =		http://xmobar.org
 
 # BSD3
 PERMIT_PACKAGE =	Yes
@@ -14,20 +14,119 @@ WANTLIB =		X11 Xext Xft Xinerama Xrandr Xrender \
 			Xss c charset ffi gmp iconv \
 			lib/inotify/inotify m pthread util xml2
 
-MODULES =		lang/ghc
+MODULES =		devel/cabal
+MODCABAL_FLAGS =	with_xft with_mpd with_mpris with_inotify
 
-MODGHC_BUILD =		cabal hackage nort
-MODGHC_SETUP_CONF_ARGS = --flags="with_xft with_mpd with_mpris with_inotify"
-MODGHC_SETUP_CONF_ARGS += --extra-lib-dirs=${LOCALBASE}/lib/inotify/
+# % cabal get xmobar-0.37
+# % cd ./xmobar-0.37
+# % cabal v2-configure --flags="with_xft with_mpd with_mpris with_inotify"
+# % cabal-bundler --openbsd xmobar -p ./dist-newstyle/cache/plan.json
 
-
-BUILD_DEPENDS = 	devel/hs-hinotify>=0.3 \
-			devel/hs-regex-compat \
-			net/hs-HTTP>=4000.2.4 \
-			x11/hs-X11>=1.6.1 \
-			x11/hs-X11-xft>=0.2,<0.4 \
-			x11/hs-dbus>=0.10 \
-			audio/hs-libmpd>=0.9,<0.10
+MODCABAL_MANIFEST = \
+	StateVar	1.2	0	\
+	X11	1.9.2	0	\
+	X11-xft	0.3.1	0	\
+	adjunctions	4.4	2	\
+	aeson	1.5.4.1	0	\
+	asn1-encoding	0.9.6	1	\
+	asn1-parse	0.9.5	0	\
+	asn1-types	0.3.4	0	\
+	assoc	1.0.2	0	\
+	async	2.2.2	1	\
+	attoparsec	0.13.2.4	1	\
+	base-compat	0.11.2	0	\
+	base-compat-batteries	0.11.2	0	\
+	base-orphans	0.8.4	0	\
+	basement	0.0.11	2	\
+	bifunctors	5.5.8	0	\
+	blaze-builder	0.4.1.0	1	\
+	blaze-html	0.9.1.2	0	\
+	blaze-markup	0.8.2.7	0	\
+	cabal-doctest	1.0.8	2	\
+	call-stack	0.2.0	0	\
+	case-insensitive	1.2.1.0	0	\
+	cereal	0.5.8.1	0	\
+	comonad	5.0.7	0	\
+	conduit	1.3.4	0	\
+	conduit-extra	1.3.5	0	\
+	connection	0.3.1	1	\
+	contravariant	1.5.2	0	\
+	cookie	0.4.5	0	\
+	cryptonite	0.27	0	\
+	data-default	0.7.1.1	0	\
+	data-default-class	0.1.2.0	0	\
+	data-default-instances-containers	0.0.1	0	\
+	data-default-instances-dlist	0.0.1	0	\
+	data-default-instances-old-locale	0.0.1	0	\
+	data-fix	0.3.0	0	\
+	dbus	1.2.16	0	\
+	distributive	0.6.2	2	\
+	dlist	1.0	0	\
+	extensible-exceptions	0.1.1.4	0	\
+	free	5.1.5	0	\
+	hashable	1.3.0.0	2	\
+	hinotify	0.4.1	0	\
+	hourglass	0.2.12	0	\
+	hsc2hs	0.68.7	0	\
+	http-client	0.7.3	0	\
+	http-client-tls	0.3.5.3	1	\
+	http-conduit	2.3.7.4	0	\
+	http-types	0.12.3	0	\
+	indexed-traversable	0.1	0	\
+	integer-logarithms	1.0.3.1	0	\
+	invariant	0.5.4	0	\
+	kan-extensions	5.2.1	0	\
+	lens	4.19.2	2	\
+	libmpd	0.9.2.0	0	\
+	memory	0.15.0	1	\
+	mime-types	0.1.0.9	0	\
+	mono-traversable	1.0.15.1	0	\
+	network	3.1.2.1	1	\
+	network-uri	2.6.3.0	0	\
+	old-locale	1.0.0.7	2	\
+	parallel	3.2.2.0	2	\
+	parsec-numbers	0.1.0	0	\
+	pem	0.2.4	0	\
+	primitive	0.7.1.0	1	\
+	profunctors	5.6	0	\
+	random	1.2.0	3	\
+	reflection	2.1.6	0	\
+	regex-base	0.94.0.0	1	\
+	regex-compat	0.95.2.0	1	\
+	regex-posix	0.96.0.0	1	\
+	resourcet	1.2.4.2	0	\
+	safe-exceptions	0.1.7.1	0	\
+	scientific	0.3.6.2	0	\
+	semigroupoids	5.3.4	2	\
+	semigroups	0.19.1	0	\
+	socks	0.6.1	0	\
+	split	0.2.3.4	0	\
+	splitmix	0.1.0.3	0	\
+	streaming-commons	0.2.2.1	0	\
+	strict	0.4.0.1	0	\
+	tagged	0.8.6	3	\
+	th-abstraction	0.4.1.0	0	\
+	th-lift	0.8.2	0	\
+	these	1.1.1.1	0	\
+	time-compat	1.9.5	0	\
+	tls	1.5.4	0	\
+	transformers-base	0.4.5.2	0	\
+	transformers-compat	0.6.6	0	\
+	typed-process	0.2.6.0	0	\
+	unliftio-core	0.2.0.1	1	\
+	unordered-containers	0.2.13.0	0	\
+	utf8-string	1.0.1.1	3	\
+	uuid-types	1.0.3	3	\
+	vector	0.12.1.2	0	\
+	vector-algorithms	0.8.0.4	0	\
+	void	0.7.3	0	\
+	x509	1.7.5	1	\
+	x509-store	1.6.7	1	\
+	x509-system	1.6.6	0	\
+	x509-validation	1.6.11	0	\
+	xml-conduit	1.9.0.0	0	\
+	xml-types	0.3.8	0	\
+	zlib	0.6.2.2	0	\
 
 LIB_DEPENDS =		converters/libiconv \
 			devel/gmp \
@@ -41,18 +140,14 @@ NO_TEST =		Yes
 
 SUBST_VARS +=		LOCALBASE
 
-pre-configure:
-	${SUBST_CMD} ${WRKDIST}/xmobar.cabal
-
 post-patch:
-	@cp ${FILESDIR}/Batt.hs ${WRKBUILD}/src/Plugins/Monitors
-	@mkdir ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/Binding.hsc ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/apm.c ${WRKBUILD}/src/Plugins/Monitors/Batt
-	@cp ${FILESDIR}/apm.h ${WRKBUILD}/src/Plugins/Monitors/Batt
+	@cp ${FILESDIR}/Batt.hs ${WRKBUILD}/src/Xmobar/Plugins/Monitors
+	@mkdir ${WRKBUILD}/src/Xmobar/Plugins/Monitors/Batt
+	@cp ${FILESDIR}/{apm.c,apm.h,Binding.hsc} \
+		${WRKBUILD}/src/Xmobar/Plugins/Monitors/Batt
 
 post-install:
 	${INSTALL_DATA_DIR} ${EXAMPLEDIR}
-	${INSTALL_DATA} ${WRKSRC}/samples/xmobar.config ${EXAMPLEDIR}/xmobarrc
+	${INSTALL_DATA} ${WRKSRC}/examples/xmobar.config ${EXAMPLEDIR}/xmobarrc
 
 .include <bsd.port.mk>
