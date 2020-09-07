@@ -1,6 +1,12 @@
 # $OpenBSD: Makefile,v 1.176 2020/09/22 22:23:05 kili Exp $
 
-COMMENT =		compiler for the functional language Haskell
+MULTI_PACKAGES =	-main -haddock
+
+# Haddock needs more RAM than i386 has.
+NOT_FOR_ARCHS-haddock =	i386
+
+COMMENT-main =		compiler for the functional language Haskell
+COMMENT-haddock =	API documentation for the libraries included with GHC
 
 # Note: please never ever set DPB_PROPERTIES=parallel (or some other
 # magic that enables parallel builds) for this port! Not even if it
@@ -12,6 +18,8 @@ COMMENT =		compiler for the functional language Haskell
 NO_CCACHE =		Yes
 
 DISTNAME =		ghc-${MODGHC_VER}
+PKGNAME-main =		ghc-${MODGHC_VER}
+PKGNAME-haddock =	ghc-haddock-${MODGHC_VER}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
@@ -31,9 +39,11 @@ MODPY_VERSION =		${MODPY_DEFAULT_VERSION_3}
 # binaries, with BSD, GPLv2 and Perl artistic license.
 PERMIT_PACKAGE =		Yes
 
-WANTLIB += c curses ffi gmp iconv m pthread util
+.include <bsd.port.arch.mk>
 
-LIB_DEPENDS =		converters/libiconv \
+WANTLIB-main = 		c curses ffi gmp iconv m pthread util
+
+LIB_DEPENDS-main =	converters/libiconv \
 			devel/gmp \
 			devel/libffi
 
@@ -166,6 +176,11 @@ post-patch:
 	done
 	cp ${WRKSRC}/mk/build.mk{.sample,}
 	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
+.if ${BUILD_PACKAGES:M-haddock}
+	echo HADDOCK_DOCS=YES >> ${WRKSRC}/mk/build.mk
+.else
+	echo HADDOCK_DOCS=NO >> ${WRKSRC}/mk/build.mk
+.endif
 
 do-test:
 	ulimit -c 0 -n 1024 && \
@@ -231,5 +246,7 @@ _bootstrap_finish:
 	xargs -J % cp -p % ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
 	pax -wzf ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+
+.include <bsd.port.arch.mk>
 
 .include <bsd.port.mk>
