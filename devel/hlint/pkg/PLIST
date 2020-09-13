@@ -1,0 +1,14 @@
+@comment $OpenBSD: PLIST,v$
+bin/hlint
+libexec/cabal/
+@bin libexec/cabal/hlint
+share/hlint-${MODCABAL_HACKAGE_VERSION}/
+share/hlint-${MODCABAL_HACKAGE_VERSION}/HLint_QuickCheck.hs
+share/hlint-${MODCABAL_HACKAGE_VERSION}/HLint_TypeCheck.hs
+share/hlint-${MODCABAL_HACKAGE_VERSION}/Test.hs
+share/hlint-${MODCABAL_HACKAGE_VERSION}/default.yaml
+share/hlint-${MODCABAL_HACKAGE_VERSION}/hlint.1
+share/hlint-${MODCABAL_HACKAGE_VERSION}/hlint.ghci
+share/hlint-${MODCABAL_HACKAGE_VERSION}/hlint.yaml
+share/hlint-${MODCABAL_HACKAGE_VERSION}/hs-lint.el
+share/hlint-${MODCABAL_HACKAGE_VERSION}/report_template.html
