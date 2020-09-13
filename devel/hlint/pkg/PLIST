@@ -1,0 +1,14 @@
+@comment $OpenBSD: PLIST,v$
+bin/${MODCABAL_STEM}
+libexec/cabal/
+@bin libexec/cabal/${MODCABAL_STEM}
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/HLint_QuickCheck.hs
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/HLint_TypeCheck.hs
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/Test.hs
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/default.yaml
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/${MODCABAL_STEM}.1
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/${MODCABAL_STEM}.ghci
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/${MODCABAL_STEM}.yaml
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/hs-lint.el
+share/${MODCABAL_STEM}-${MODCABAL_VERSION}/report_template.html
