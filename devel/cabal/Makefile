@@ -63,7 +63,7 @@ LIB_DEPENDS =		converters/libiconv \
 			devel/gmp \
 			devel/libffi
 
-BUILD_DEPENDS +=	lang/ghc
+BUILD_DEPENDS +=	lang/ghc>=8.10.3
 
 MODULES =		lang/python
 
