@@ -1,5 +1,9 @@
 # $OpenBSD: Makefile,v 1.176 2020/09/22 22:23:05 kili Exp $
 
+ONLY_FOR_ARCHS =	i386 amd64
+
+GHC_VER =		8.10.2
+
 MULTI_PACKAGES =	-main -haddock
 
 # Haddock needs more RAM than i386 has.
@@ -17,18 +21,17 @@ COMMENT-haddock =	API documentation for the libraries included with GHC
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-DISTNAME =		ghc-${MODGHC_VER}
-PKGNAME-main =		ghc-${MODGHC_VER}
-PKGNAME-haddock =	ghc-haddock-${MODGHC_VER}
+DISTNAME =		ghc-${GHC_VER}
+PKGNAME-main =		ghc-${GHC_VER}
+PKGNAME-haddock =	ghc-haddock-${GHC_VER}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
 BIN_VER =		8.6.4.20200921
 
-# Pull in lang/ghc to get MODGHC_VER and ONLY_FOR_ARCHS, which is maintained
-# in ghc.port.mk. lang/python needed for regression tests.
-MODULES =		lang/ghc lang/python
+# lang/python needed for regression tests.
+MODULES =		lang/python
 
 MODPY_BUILDDEP =	No
 MODPY_RUNDEP =		No
@@ -57,7 +60,7 @@ RUN_DEPENDS =
 #      loadObj_() instead.
 USE_WXNEEDED =		special
 
-MASTER_SITES =		${HOMEPAGE}dist/${MODGHC_VER}/ \
+MASTER_SITES =		${HOMEPAGE}dist/${GHC_VER}/ \
 			${HOMEPAGE}dist/stable/dist/
 MASTER_SITES0 =		https://openbsd.dead-parrot.de/distfiles/
 
@@ -65,8 +68,8 @@ DIST_SUBDIR =		ghc
 
 BINDISTFILE =		${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES =		ghc-${MODGHC_VER}-src.tar.xz \
-			ghc-${MODGHC_VER}-testsuite.tar.xz \
+DISTFILES =		ghc-${GHC_VER}-src.tar.xz \
+			ghc-${GHC_VER}-testsuite.tar.xz \
 			${BINDISTFILE}
 
 .for m in amd64 i386
@@ -240,12 +243,12 @@ _bootstrap_prepare:
 	echo ${BOOTSTRAP_DATE} > ${WRKSRC}/VERSION_DATE
 
 _bootstrap_finish:
-	mkdir -p ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	mkdir -p ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
 	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
-	xargs -J % cp -p % ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
-	pax -wzf ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+	pax -wzf ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
 
 .include <bsd.port.arch.mk>
 
