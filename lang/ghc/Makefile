@@ -19,9 +19,8 @@ HOMEPAGE =		https://www.haskell.org/ghc/
 # Version of the precompiled binaries
 BIN_VER =		8.6.4.20200921
 
-# Pull in lang/ghc to get MODGHC_VER and ONLY_FOR_ARCHS, which is maintained
-# in ghc.port.mk. lang/python needed for regression tests.
-MODULES =		lang/ghc lang/python
+# lang/python needed for regression tests.
+MODULES =		lang/python
 
 MODPY_BUILDDEP =	No
 MODPY_RUNDEP =		No
@@ -48,7 +47,7 @@ RUN_DEPENDS =
 #      loadObj_() instead.
 USE_WXNEEDED =		special
 
-MASTER_SITES =		${HOMEPAGE}dist/${MODGHC_VER}/ \
+MASTER_SITES =		${HOMEPAGE}dist/${GHC_VER}/ \
 			${HOMEPAGE}dist/stable/dist/
 MASTER_SITES0 =		https://openbsd.dead-parrot.de/distfiles/
 
@@ -56,8 +55,8 @@ DIST_SUBDIR =		ghc
 
 BINDISTFILE =		${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES =		ghc-${MODGHC_VER}-src.tar.xz \
-			ghc-${MODGHC_VER}-testsuite.tar.xz \
+DISTFILES =		ghc-${GHC_VER}-src.tar.xz \
+			ghc-${GHC_VER}-testsuite.tar.xz \
 			${BINDISTFILE}
 
 .for m in amd64 i386
@@ -151,10 +150,10 @@ BOOTSTRAP_SHLIBS =	${WRKDIR}/ghc-${BIN_VER}-shlibs-${MACHINE_ARCH}
 # Disables haddock as it runs out of memory on i386.
 .if ${MACHINE_ARCH:Mi386}
 HADDOCK_DOCS =	NO
-PKG_ARGS =	-Dno_i386=0
+PKG_ARGS +=	-Dno_i386=0
 .else
 HADDOCK_DOCS =	YES
-PKG_ARGS =	-Dno_i386=1
+PKG_ARGS +=	-Dno_i386=1
 .endif
 
 post-patch:
@@ -236,11 +235,11 @@ _bootstrap_prepare:
 	echo ${BOOTSTRAP_DATE} > ${WRKSRC}/VERSION_DATE
 
 _bootstrap_finish:
-	mkdir -p ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	mkdir -p ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
 	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
-	xargs -J % cp -p % ${WRKBUILD}/ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
-	pax -wzf ghc-${MODGHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+	pax -wzf ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
 
 .include <bsd.port.mk>
