@@ -1,0 +1,22 @@
+$OpenBSD$
+
+Avoid building the parts we don't use that drag in extra dependencies.
+
+Index: cabal.project
+--- cabal.project.orig
++++ cabal.project
+@@ -1,14 +1,4 @@
+-with-compiler: ghc-8.8.3
+-tests: True
+-
+ packages: cabal-bundler
+-packages: cabal-deps
+-packages: cabal-diff
+-packages: cabal-env
+-packages: cabal-iface-query
+-
+-packages: cabal-store-check
+-packages: cabal-store-gc
+ 
+ packages: peura
+ 
