@@ -147,6 +147,15 @@ post-extract:
 
 BOOTSTRAP_SHLIBS =	${WRKDIR}/ghc-${BIN_VER}-shlibs-${MACHINE_ARCH}
 
+# Disables haddock as it runs out of memory on i386.
+.if ${MACHINE_ARCH:Mi386}
+HADDOCK_DOCS =	NO
+PKG_ARGS =	-Dno_i386=0
+.else
+HADDOCK_DOCS =	YES
+PKG_ARGS =	-Dno_i386=1
+.endif
+
 post-patch:
 	cd ${WRKDIR}/ghc-${BIN_VER} && \
 	LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \
@@ -166,6 +175,7 @@ post-patch:
 	done
 	cp ${WRKSRC}/mk/build.mk{.sample,}
 	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
+	echo HADDOCK_DOCS=${HADDOCK_DOCS} >> ${WRKSRC}/mk/build.mk
 
 do-test:
 	ulimit -c 0 -n 1024 && \
