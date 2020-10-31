@@ -946,14 +946,6 @@ sub check_specific
 	$h->{should}{'update-mime-database'} = 1;
 }
 
-package OpenBSD::PackingElement::GhcConf;
-our @ISA=qw(OpenBSD::PackingElement::File);
-sub check_specific
-{
-	my ($self, $h) = @_;
-	$h->{should}{'ghc-pkg-recache'} = 1;
-}
-
 package OpenBSD::PackingElement::Sampledir;
 
 # this is not really smart, but good enough for starters
