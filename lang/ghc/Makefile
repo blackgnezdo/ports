@@ -11,7 +11,7 @@ COMMENT =		compiler for the functional language Haskell
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-GHC_VER =		8.10.2
+GHC_VER =		8.10.3
 DISTNAME =		ghc-${GHC_VER}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
@@ -68,17 +68,17 @@ SUPDISTFILES +=		${BINDISTFILE-$m}
 # Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
 # ghc-heap and ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-        CABAL			3.2.0.0          \
+        CABAL			3.2.1.0          \
         ARRAY			0.5.4.0    	 \
         BASE			4.14.1.0   	 \
         BINARY			0.8.8.0 	 \
-        BYTESTRING		0.10.10.0	 \
+        BYTESTRING		0.10.12.0	 \
         CONTAINERS		0.6.2.1		 \
         DEEPSEQ			1.4.4.0		 \
         DIRECTORY		1.3.6.0		 \
         EXCEPTIONS		0.10.4		 \
         FILEPATH		1.4.2.1		 \
-        GHC			8.10.2		 \
+        GHC			8.10.3		 \
         GHC_COMPACT		0.1.0.0		 \
         GHC_PRIM		0.6.1		 \
         HASKELINE		0.8.0.1		 \
@@ -91,7 +91,7 @@ GHC_ITEMS = \
         STM			2.5.0.0		 \
 	TEMPLATE-HASKELL	2.16.0.0	 \
 	TERMINFO		0.4.1.4		 \
-	TEXT			1.2.3.2		 \
+	TEXT			1.2.4.1		 \
 	TIME			1.9.3		 \
 	TRANSFORMERS		0.5.6.2		 \
 	UNIX			2.7.2.2		 \

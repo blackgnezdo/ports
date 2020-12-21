@@ -155,6 +155,9 @@ lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Prelude.p_hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Prelude/Internal.dyn_hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Prelude/Internal.hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Prelude/Internal.p_hi
+lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Process.dyn_hi
+lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Process.hi
+lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/Process.p_hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/ResponseFile.dyn_hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/ResponseFile.hi
 lib/ghc/Cabal-${CABAL_VER}/Distribution/Compat/ResponseFile.p_hi
@@ -3783,6 +3786,7 @@ lib/ghc/include/rts/EventLogFormat.h
 lib/ghc/include/rts/EventLogWriter.h
 lib/ghc/include/rts/FileLock.h
 lib/ghc/include/rts/Flags.h
+lib/ghc/include/rts/ForeignExports.h
 lib/ghc/include/rts/GetTime.h
 lib/ghc/include/rts/Globals.h
 lib/ghc/include/rts/Hpc.h
@@ -3802,6 +3806,7 @@ lib/ghc/include/rts/SpinLock.h
 lib/ghc/include/rts/StableName.h
 lib/ghc/include/rts/StablePtr.h
 lib/ghc/include/rts/StaticPtrTable.h
+lib/ghc/include/rts/TSANUtils.h
 lib/ghc/include/rts/TTY.h
 lib/ghc/include/rts/Threads.h
 lib/ghc/include/rts/Ticky.h
@@ -4302,6 +4307,9 @@ lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Builder/RealFloat/
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Builder/RealFloat/Functions.dyn_hi
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Builder/RealFloat/Functions.hi
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Builder/RealFloat/Functions.p_hi
+lib/ghc/text-${TEXT_VER}/Data/Text/Internal/ByteStringCompat.dyn_hi
+lib/ghc/text-${TEXT_VER}/Data/Text/Internal/ByteStringCompat.hi
+lib/ghc/text-${TEXT_VER}/Data/Text/Internal/ByteStringCompat.p_hi
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Encoding/
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Encoding/Fusion/
 lib/ghc/text-${TEXT_VER}/Data/Text/Internal/Encoding/Fusion.dyn_hi
