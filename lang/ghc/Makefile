@@ -17,7 +17,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		8.6.4.20200921
+BIN_VER =		8.10.3.20210102
 
 # lang/python needed for regression tests.
 MODULES =		lang/python
@@ -49,7 +49,7 @@ USE_WXNEEDED =		special
 
 MASTER_SITES =		${HOMEPAGE}dist/${GHC_VER}/ \
 			${HOMEPAGE}dist/stable/dist/
-MASTER_SITES0 =		https://openbsd.dead-parrot.de/distfiles/
+MASTER_SITES0 =		https://github.com/blackgnezdo/ports/releases/download/ghc-${BIN_VER}/
 
 DIST_SUBDIR =		ghc
 
@@ -189,7 +189,7 @@ do-test:
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20200921
+BOOTSTRAP_DATE =	20210102
 
 # Create a bootstrapper. This compiles a stripped-down version of
 # ghc and creates a `bindist', i.e. a tarball with binaries that
@@ -199,8 +199,8 @@ bootstrap: patch
 		echo Please install autoconf-2.69.; \
 		false; \
 	fi
-	@if [ ! -x ${LOCALBASE}/bin/automake-1.4 ]; then \
-		echo Please install automake-1.4.; \
+	@if [ ! -x ${LOCALBASE}/bin/automake-1.16 ]; then \
+		echo Please install automake-1.16.; \
 		false; \
 	fi
 
@@ -209,7 +209,7 @@ bootstrap: patch
 	env CONFIGURE_ENV=RELEASE=NO ${MAKE} configure
 
 	${MAKE} build ALL_TARGET="all binary-dist" \
-		AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.4
+		AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.16
 
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 
