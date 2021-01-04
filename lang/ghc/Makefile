@@ -11,8 +11,8 @@ COMMENT =		compiler for the functional language Haskell
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-GHC_VER =		8.10.3
-DISTNAME =		ghc-${GHC_VER}
+GHC_V =		9.0.0.20201227
+DISTNAME =		ghc-${GHC_V}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
@@ -47,16 +47,17 @@ RUN_DEPENDS =
 #      loadObj_() instead.
 USE_WXNEEDED =		special
 
-MASTER_SITES =		${HOMEPAGE}dist/${GHC_VER}/ \
-			${HOMEPAGE}dist/stable/dist/
+MASTER_SITES =		${HOMEPAGE}dist/${GHC_V}/ \
+			${HOMEPAGE}dist/stable/dist/ \
+			https://downloads.haskell.org/ghc/9.0.1-rc1/
 MASTER_SITES0 =		https://github.com/blackgnezdo/ports/releases/download/ghc-${BIN_VER}/
 
 DIST_SUBDIR =		ghc
 
 BINDISTFILE =		${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES =		ghc-${GHC_VER}-src.tar.xz \
-			ghc-${GHC_VER}-testsuite.tar.xz \
+DISTFILES =		ghc-${GHC_V}-src.tar.xz \
+			ghc-${GHC_V}-testsuite.tar.xz \
 			${BINDISTFILE}
 
 .for m in amd64 i386
@@ -68,38 +69,39 @@ SUPDISTFILES +=		${BINDISTFILE-$m}
 # Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
 # ghc-heap and ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-        CABAL			3.2.1.0          \
+        CABAL			3.4.0.0          \
         ARRAY			0.5.4.0    	 \
-        BASE			4.14.1.0   	 \
+        BASE			4.15.0.0   	 \
         BINARY			0.8.8.0 	 \
         BYTESTRING		0.10.12.0	 \
         CONTAINERS		0.6.2.1		 \
         DEEPSEQ			1.4.4.0		 \
-        DIRECTORY		1.3.6.0		 \
+        DIRECTORY		1.3.6.1		 \
         EXCEPTIONS		0.10.4		 \
         FILEPATH		1.4.2.1		 \
-        GHC			8.10.3		 \
+        GHC			${GHC_V}	 \
+	GHC_BIGNUM		1.0		 \
         GHC_COMPACT		0.1.0.0		 \
-        GHC_PRIM		0.6.1		 \
-        HASKELINE		0.8.0.1		 \
+        GHC_PRIM		0.7.0		 \
+        HASKELINE		0.8.1.0		 \
         HPC			0.6.1.0		 \
-        INTEGER_GMP		1.0.3.0		 \
+        INTEGER_GMP		1.1		 \
         MTL			2.2.2		 \
         PARSEC			3.1.14.0	 \
         PRETTY			1.1.3.6		 \
-        PROCESS			1.6.9.0		 \
+        PROCESS			1.6.10.0	 \
         STM			2.5.0.0		 \
-	TEMPLATE-HASKELL	2.16.0.0	 \
+	TEMPLATE-HASKELL	2.17.0.0	 \
 	TERMINFO		0.4.1.4		 \
-	TEXT			1.2.4.1		 \
+	TEXT			1.2.4.0		 \
 	TIME			1.9.3		 \
 	TRANSFORMERS		0.5.6.2		 \
 	UNIX			2.7.2.2		 \
 	XHTML			3000.2.2.1
 
 .for _i _v in ${GHC_ITEMS}
-${_i}_VER =	${_v}
-SUBST_VARS +=	${_i}_VER
+${_i}_VER	= ${_v}
+SUBST_VARS	+= ${_i}_VER
 .endfor
 
 USE_GMAKE =		Yes
@@ -134,6 +136,10 @@ MAKE_FLAGS +=		StripLibraries=YES \
 			INSTALL_BIN_OPTS=-s \
 			HSCOLOUR_SRCS=NO \
 			BUILD_SPHINX_PDF=NO
+
+# Avoids https://gitlab.haskell.org/ghc/ghc/-/issues/19161
+# haddock: internal error: <stdout>: commitBuffer: invalid argument (invalid character)
+MAKE_ENV +=	LANG=en_US.UTF-8	
 
 # For mktexpk (via dvips when building the PostScript documentation):
 PORTHOME =		${WRKDIR}
@@ -235,11 +241,11 @@ _bootstrap_prepare:
 	echo ${BOOTSTRAP_DATE} > ${WRKSRC}/VERSION_DATE
 
 _bootstrap_finish:
-	mkdir -p ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	mkdir -p ${WRKBUILD}/ghc-${GHC_V}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
 	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
-	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_V}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
-	pax -wzf ghc-${GHC_VER}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+	pax -wzf ghc-${GHC_V}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
 
 .include <bsd.port.mk>
