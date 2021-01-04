@@ -14,12 +14,10 @@ COMMENT =		compiler for the functional language Haskell
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-GHC_VERSION =		8.10.6
+GHC_VERSION =		9.0.1
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
-
-REVISION =		0
 
 # Version of the precompiled binaries
 BIN_VER =		8.10.3.20210429
@@ -72,28 +70,29 @@ SUPDISTFILES +=		${BINDISTFILE-$m}
 # Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
 # ghc-heap and ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-        CABAL			3.2.1.0          \
+        CABAL			3.4.0.0          \
         ARRAY			0.5.4.0    	 \
-        BASE			4.14.3.0   	 \
+        BASE			4.15.0.0   	 \
         BINARY			0.8.8.0 	 \
-        BYTESTRING		0.10.12.0	 \
-        CONTAINERS		0.6.5.1		 \
-        DEEPSEQ			1.4.4.0		 \
-        DIRECTORY		1.3.6.0		 \
+        BYTESTRING		0.10.12.1	 \
+        CONTAINERS		0.6.4.1		 \
+        DEEPSEQ			1.4.5.0		 \
+        DIRECTORY		1.3.6.1		 \
         EXCEPTIONS		0.10.4		 \
         FILEPATH		1.4.2.1		 \
-        GHC			8.10.6		 \
+        GHC			9.0.1		 \
+	GHC_BIGNUM		1.0		 \
         GHC_COMPACT		0.1.0.0		 \
-        GHC_PRIM		0.6.1		 \
-        HASKELINE		0.8.2		 \
+        GHC_PRIM		0.7.0		 \
+        HASKELINE		0.8.1.0		 \
         HPC			0.6.1.0		 \
-        INTEGER_GMP		1.0.3.0		 \
+        INTEGER_GMP		1.1		 \
         MTL			2.2.2		 \
         PARSEC			3.1.14.0	 \
         PRETTY			1.1.3.6		 \
-        PROCESS			1.6.13.2	 \
-        STM			2.5.0.1		 \
-	TEMPLATE-HASKELL	2.16.0.0	 \
+        PROCESS			1.6.11.0	 \
+        STM			2.5.0.0		 \
+	TEMPLATE-HASKELL	2.17.0.0	 \
 	TERMINFO		0.4.1.4		 \
 	TEXT			1.2.4.1		 \
 	TIME			1.9.3		 \
@@ -109,7 +108,7 @@ SUBST_VARS +=	${_i}_VER
 USE_GMAKE =		Yes
 USE_GROFF =		Yes
 
-AUTOCONF_VERSION =	2.71
+AUTOCONF_VERSION =	2.69
 CONFIGURE_STYLE =	gnu autoconf no-autoheader
 CONFIGURE_ARGS +=	--with-ffi-includes=${LOCALBASE}/include \
 			--with-ffi-libraries=${LOCALBASE}/lib \
@@ -138,6 +137,10 @@ MAKE_FLAGS +=		StripLibraries=YES \
 			INSTALL_BIN_OPTS=-s \
 			HSCOLOUR_SRCS=NO \
 			BUILD_SPHINX_PDF=NO
+
+# Avoids https://gitlab.haskell.org/ghc/ghc/-/issues/19161
+# haddock: internal error: <stdout>: commitBuffer: invalid argument (invalid character)
+MAKE_ENV +=	LANG=en_US.UTF-8
 
 # For mktexpk (via dvips when building the PostScript documentation):
 PORTHOME =		${WRKDIR}

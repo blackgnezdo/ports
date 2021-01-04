@@ -1,8 +1,8 @@
-$OpenBSD: patch-testsuite_driver_testlib_py,v 1.12 2021/06/09 04:22:20 gnezdo Exp $
+$OpenBSD: patch-testsuite_driver_testlib_py,v 1.10 2019/09/30 11:44:18 kili Exp $
 Index: testsuite/driver/testlib.py
 --- testsuite/driver/testlib.py.orig
 +++ testsuite/driver/testlib.py
-@@ -1925,6 +1925,13 @@ def compare_outputs(way: WayName,
+@@ -1992,6 +1992,13 @@ def compare_outputs(way: WayName,
      actual_raw = read_no_crs(actual_path)
      actual_str = normaliser(actual_raw)
  
@@ -16,7 +16,7 @@ Index: testsuite/driver/testlib.py
      # See Note [Output comparison].
      if whitespace_normaliser(expected_str) == whitespace_normaliser(actual_str):
          return True
-@@ -1941,7 +1948,7 @@ def compare_outputs(way: WayName,
+@@ -2008,7 +2015,7 @@ def compare_outputs(way: WayName,
  
          if config.verbose >= 1 and _expect_pass(way):
              # See Note [Output comparison].
@@ -25,7 +25,7 @@ Index: testsuite/driver/testlib.py
                                                          actual_normalised_path),
                          stdout=diff_file,
                          print_output=True)
-@@ -1949,7 +1956,7 @@ def compare_outputs(way: WayName,
+@@ -2016,7 +2023,7 @@ def compare_outputs(way: WayName,
              # If for some reason there were no non-whitespace differences,
              # then do a full diff
              if r == 0:
