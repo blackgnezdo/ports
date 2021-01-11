@@ -948,6 +948,7 @@ iommu_flush_tlb_qi(struct iommu_softc *iommu, int mode, int did)
 
 	/* Use queued invalidation */
 	qi.hi = 0;
+	qi.lo = 0;
 	switch (mode) {
 	case IOTLB_GLOBAL:
 		qi.lo = QI_IOTLB | QI_IOTLB_IG_GLOBAL;
@@ -958,7 +959,6 @@ iommu_flush_tlb_qi(struct iommu_softc *iommu, int mode, int did)
 		break;
 	case IOTLB_PAGE:
 		qi.lo = QI_IOTLB | QI_IOTLB_IG_PAGE | QI_IOTLB_DID(did);
-		qi.hi = 0;
 		break;
 	}
 	if (iommu->cap & CAP_DRD)
