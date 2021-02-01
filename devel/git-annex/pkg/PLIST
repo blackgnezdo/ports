@@ -1,0 +1,4 @@
+@comment $OpenBSD: PLIST,v$
+@bin bin/${MODCABAL_STEM}
+bin/${MODCABAL_STEM}-shell
+bin/git-remote-tor-annex

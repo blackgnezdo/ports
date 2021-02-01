@@ -1,0 +1,19 @@
+$OpenBSD$
+
+Without this patch, building on OpenBSD fails with a type error in Utility/DirWatcher/Kqueue.hs.
+
+https://git-annex.branchable.com/bugs/__91__PATCH__93___OpenBSD__58___fix_Utility.DirWatcher.Kqueue/?updated#comment-0b3828545e6cf6ec417c0f82645888cbw
+
+
+Index: Utility/DirWatcher/Kqueue.hs
+--- Utility/DirWatcher/Kqueue.hs.orig
++++ Utility/DirWatcher/Kqueue.hs
+@@ -133,7 +133,7 @@ removeSubDir dirmap dir = do
+ 	mapM_ Posix.closeFd $ M.keys toremove
+ 	return rest
+   where
+-	(toremove, rest) = M.partition (dirContains dir . dirName) dirmap
++    (toremove, rest) = M.partition (dirContains (toRawFilePath dir) . toRawFilePath . dirName) dirmap
+ 
+ findDirContents :: DirMap -> FilePath -> [FilePath]
+ findDirContents dirmap dir = concatMap absolutecontents $ search

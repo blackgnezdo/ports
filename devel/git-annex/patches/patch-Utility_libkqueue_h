@@ -1,0 +1,11 @@
+$OpenBSD$
+
+Surprisingly the file is in git but not packaged into git-annex-8.20210127.tar.gz
+
+Index: Utility/libkqueue.h
+--- Utility/libkqueue.h.orig
++++ Utility/libkqueue.h
+@@ -0,0 +1,3 @@
++int init_kqueue();
++void addfds_kqueue(const int kq, const int fdcnt, const int *fdlist);
++signed int waitchange_kqueue(const int kq);
