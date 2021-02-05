@@ -15,7 +15,7 @@ PERMIT_PACKAGE =	Yes
 WANTLIB =		magic
 
 BUILD_DEPENDS =		devel/libmagic
-RUN_DEPENDS =		net/rsync devel/git-lfs devel/libmagic
+RUN_DEPENDS =		net/rsync devel/libmagic
 
 TEST_DEPENDS =		net/rsync
 
