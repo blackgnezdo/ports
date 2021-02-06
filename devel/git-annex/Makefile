@@ -30,15 +30,19 @@ MODCABAL_VERSION =	8.20210127
 MAN1_STAGING_DIR = ${WRKBUILD}/man1_staging
 
 post-build:
-	mkdir "${MAN1_STAGING_DIR}"
-	for source in "${WRKBUILD}"/doc/git-annex*.mdwn "${WRKBUILD}"/doc/git-remote-*.mdwn; do progname=$$(basename "$${source%.mdwn}"); perl "${WRKBUILD}/Build/mdwn2man" "$$progname" 1 "$$source" > "${MAN1_STAGING_DIR}/$$progname.1"; done
+	mkdir ${MAN1_STAGING_DIR}
+	for source in \
+	  ${WRKBUILD}/doc/git-annex*.mdwn ${WRKBUILD}/doc/git-remote-*.mdwn; do \
+	  progname=$$(basename $${source%.mdwn}); \
+	  perl ${WRKBUILD}/Build/mdwn2man $$progname 1 $$source > ${MAN1_STAGING_DIR}/$$progname.1; \
+	  done
 
 # Manual reimplementation of postCopy hook of Setup.hs
 post-install:
 	@ln -s git-annex ${PREFIX}/bin/git-annex-shell
 	@ln -s git-annex ${PREFIX}/bin/git-remote-tor-annex
 	${INSTALL_MAN_DIR} ${PREFIX}/man/man1
-	${INSTALL_MAN} "${MAN1_STAGING_DIR}"/*.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${MAN1_STAGING_DIR}/*.1 ${PREFIX}/man/man1
 
 # Produced by:
 # $ cabal-bundler --openbsd git-annex-8.20210127
