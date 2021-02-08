@@ -12,14 +12,18 @@ HOMEPAGE =	https://git-annex.branchable.com/
 # restrictive. All permit redistribution.
 PERMIT_PACKAGE =	Yes
 
-WANTLIB =		magic
+WANTLIB +=		c ffi gmp iconv m magic pthread util z
+
+LIB_DEPENDS =		converters/libiconv \
+			devel/gmp \
+			devel/libffi
 
 BUILD_DEPENDS =		devel/libmagic
 RUN_DEPENDS =		net/rsync devel/libmagic
 
 TEST_DEPENDS =		net/rsync
 
-MODULES =       devel/cabal
+MODULES =       	devel/cabal
 
 # happy: ... hGetContents: invalid argument (invalid byte sequence)
 MAKE_ENV =	LC_ALL=en_US.UTF-8
@@ -30,12 +34,12 @@ MODCABAL_VERSION =	8.20210127
 MAN1_STAGING_DIR = ${WRKBUILD}/man1_staging
 
 post-build:
-	mkdir ${MAN1_STAGING_DIR}
-	for source in \
+	@mkdir -p ${MAN1_STAGING_DIR}
+	@for source in \
 	  ${WRKBUILD}/doc/git-annex*.mdwn ${WRKBUILD}/doc/git-remote-*.mdwn; do \
 	  progname=$$(basename $${source%.mdwn}); \
 	  perl ${WRKBUILD}/Build/mdwn2man $$progname 1 $$source > ${MAN1_STAGING_DIR}/$$progname.1; \
-	  done
+	done
 
 # Manual reimplementation of postCopy hook of Setup.hs
 post-install:
