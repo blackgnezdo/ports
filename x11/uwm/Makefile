@@ -3,7 +3,7 @@
 COMMENT =	lightweight WM with an original look and feel
 DISTNAME =	uwm-0.2.11
 CATEGORIES =	x11
-REVISION =	2
+REVISION =	3
 
 HOMEPAGE =	http://udeproject.sourceforge.net/
 
