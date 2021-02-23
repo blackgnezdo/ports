@@ -2141,6 +2141,9 @@ my $obsolete_reason = {
 	'abs' => 3,
 	'arena' => 3,
 	'teagtk' => 3,
+	'hs-cryptohash-sha256' => 5,
+	'hs-ed25519' => 5,
+	'hs-hackage-security' => 5,
 };
 
 # reasons for obsolete packages
