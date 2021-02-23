@@ -80,11 +80,8 @@
      SUBDIR += hs-SHA
      SUBDIR += hs-crypto-api
      SUBDIR += hs-cryptohash
-     SUBDIR += hs-cryptohash-sha256
      SUBDIR += hs-digest
-     SUBDIR += hs-ed25519
      SUBDIR += hs-entropy
-     SUBDIR += hs-hackage-security
      SUBDIR += hydra
      SUBDIR += ikeman
      SUBDIR += integrit
