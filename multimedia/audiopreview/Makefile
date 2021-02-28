@@ -3,7 +3,7 @@
 COMMENT =	tool to play previews of audio and video files
 
 DISTNAME =	audiopreview-0.6
-REVISION =	5
+REVISION =	6
 
 CATEGORIES =	multimedia
 

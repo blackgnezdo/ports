@@ -1,0 +1,22 @@
+$OpenBSD$
+
+-fno-common fixes
+
+Index: src/player.c
+--- src/player.c.orig
++++ src/player.c
+@@ -23,6 +23,14 @@
+ 
+ #include "player.h"
+ 
++void            (*done_playing_callback)();
++GstElement      *pipeline;
++
++static GstElement      *audiofakesink;
++static GstElement      *videofakesink;
++static Stream          **currentstream;
++static Stream          *current_stream;
++
+ static gboolean loop_stream_was_played = FALSE; ///< endless loop prevention flag
+ 
+ /**

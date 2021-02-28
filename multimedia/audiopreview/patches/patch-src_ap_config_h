@@ -1,0 +1,16 @@
+$OpenBSD$
+
+-fno-common fixes
+
+Index: src/ap_config.h
+--- src/ap_config.h.orig
++++ src/ap_config.h
+@@ -73,7 +73,7 @@ typedef struct
+   StartPlayingPosition  position;
+ } apconfig;
+ 
+-apconfig ap_config;
++extern apconfig ap_config;
+ 
+ void         ap_config_init             (apconfig* ap);
+ void         config_debug_print_start_position  ();

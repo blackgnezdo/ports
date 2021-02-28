@@ -1,0 +1,16 @@
+$OpenBSD$
+
+-fno-common fixes
+
+Index: src/ap_config.c
+--- src/ap_config.c.orig
++++ src/ap_config.c
+@@ -22,6 +22,8 @@
+ 
+ #include "ap_config.h"
+ 
++apconfig ap_config;
++
+ #define PREVIEW_DURATION 10
+ 
+ void ap_config_init (apconfig* ap)

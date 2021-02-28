@@ -1,0 +1,22 @@
+$OpenBSD$
+
+-fno-common fixes
+
+Index: src/player.h
+--- src/player.h.orig
++++ src/player.h
+@@ -29,12 +29,8 @@
+ #include "stream.h"
+ #include "log.h"
+ 
+-GstElement      *videofakesink;
+-GstElement      *audiofakesink;
+-GstElement      *pipeline;
+-void            (*done_playing_callback)();
+-Stream          **currentstream;
+-Stream          *current_stream;
++extern GstElement      *pipeline;
++extern void            (*done_playing_callback)();
+ 
+ static void     player_begin                  (Stream* stream);
+ void            player_set_position           (StartPlayingPosition position);
