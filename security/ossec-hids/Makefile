@@ -4,8 +4,7 @@ COMMENT =	host-based intrusion detection system
 
 GH_ACCOUNT =	ossec
 GH_PROJECT =	ossec-hids
-GH_TAGNAME =	3.0.0
-REVISION =	1
+GH_TAGNAME =	3.6.0
 
 CATEGORIES =	security
 
@@ -19,7 +18,8 @@ PERMIT_PACKAGE =		Yes
 WANTLIB += c crypto lib/inotify/inotify m magic pthread ssl
 
 LIB_DEPENDS =	devel/libinotify \
-		devel/libmagic
+		devel/libmagic \
+		devel/pcre2
 
 USE_GMAKE =	Yes
 NO_BUILD =	Yes

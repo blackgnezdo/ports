@@ -73,7 +73,7 @@ Index: install.sh
 +        echo "    <rootkit_trojans>$TRUEINSTALLDIR/etc/shared/rootkit_trojans.txt</rootkit_trojans>" >> $NEWCONFIG
          echo "  </rootcheck>" >> $NEWCONFIG
  	# Patch for systems that use s-nail instead of GNU Mailutils (such as Arch Linux).
- 	if strings /usr/bin/mail | grep "x-shsh bash" 1> /dev/null; then
+ 	if [ -r /usr/bin/mail ] && strings /usr/bin/mail | grep "x-shsh bash" 1> /dev/null; then
 @@ -547,7 +544,7 @@ ConfigureServer()
          echo "    <email_notification>yes</email_notification>" >> $NEWCONFIG
          echo "    <email_to>$EMAIL</email_to>" >> $NEWCONFIG
@@ -84,7 +84,7 @@ Index: install.sh
          echo "    <email_notification>no</email_notification>" >> $NEWCONFIG
      fi
 @@ -625,7 +622,7 @@ ConfigureServer()
-                 echo "    <white_list>${ip}</white_list>" >>$NEWCONFIG
+                 echo "    <allow_list>${ip}</allow_list>" >>$NEWCONFIG
              fi
              done
 -            AddWhite
