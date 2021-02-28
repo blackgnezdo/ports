@@ -591,6 +591,7 @@ my $stem_extensions = {
 	'py-wtforms' => 'py3-wtforms',
 	'py-apsw' => 'py3-apsw',
 	'cdiff' => 'ydiff',
+	'xmonad-lib' => 'xmonad',
 };
 
 my $obsolete_reason = {
