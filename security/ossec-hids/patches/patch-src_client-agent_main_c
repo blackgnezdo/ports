@@ -1,0 +1,16 @@
+$OpenBSD$
+
+-fno-common
+
+Index: src/client-agent/main.c
+--- src/client-agent/main.c.orig
++++ src/client-agent/main.c
+@@ -16,7 +16,7 @@
+ #define ARGV0 "ossec-agentd"
+ #endif
+ 
+-extern struct imsgbuf server_ibuf;
++struct imsgbuf server_ibuf;
+ 
+ 
+ /* Prototypes */
