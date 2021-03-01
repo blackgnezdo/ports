@@ -121,7 +121,6 @@
      SUBDIR += hs-X11
      SUBDIR += hs-X11-xft
      SUBDIR += hs-dbus
-     SUBDIR += hs-xmonad-contrib
      SUBDIR += hsetroot
      SUBDIR += human-icon-theme
      SUBDIR += i3
