@@ -99,6 +99,8 @@ int uhidev_activate(struct device *, int);
 void uhidev_get_report_async_cb(struct usbd_xfer *, void *, usbd_status);
 void uhidev_set_report_async_cb(struct usbd_xfer *, void *, usbd_status);
 
+int uhidev_sync_toggle(struct uhidev_softc *, int, int);
+
 struct cfdriver uhidev_cd = {
 	NULL, "uhidev", DV_DULL
 };
@@ -467,6 +469,13 @@ uhidev_intr(struct usbd_xfer *xfer, void *addr, usbd_status status)
 		return;
 	}
 
+	/* Check if this is a ping response. */
+	if (sc->sc_ping) {
+		wakeup(sc);
+		sc->sc_ping = 0;
+		return;
+	}
+
 	p = sc->sc_ibuf;
 	if (sc->sc_nrepid != 1)
 		rep = *p++, cc--;
@@ -568,6 +577,9 @@ uhidev_open(struct uhidev *scd)
 			goto out3;
 		}
 	}
+
+	if (uhidev_sync_toggle(sc, scd->sc_report_id, scd->sc_osize))
+		printf("%s: sync data toggle bit failed\n", __func__);
 
 	return (0);
 
@@ -980,4 +992,59 @@ uhidev_unset_report_dev(struct uhidev_softc *sc, int repid)
 
 	sc->sc_subdevs[repid] = NULL;
 	return 0;
+}
+
+int
+uhidev_sync_toggle(struct uhidev_softc *sc, int id, int osize)
+{
+	uint8_t *buf;
+	int error, i;
+
+	DPRINTF(("%s: repid=%d, osize=%d\n", __func__, id, osize));
+
+	if (osize < 7) {
+		DPRINTF(("%s: invalid output, don't sync\n", __func__));
+		return 0;
+	}
+
+	buf = malloc(osize, M_USBDEV, M_NOWAIT|M_ZERO);
+	if (buf == NULL) {
+		printf("%s: no memory\n", __func__);
+		return ENOMEM;
+	}
+
+	/* broadcast channel id */
+	buf[1] = 0xff;
+	buf[2] = 0xff;
+	buf[3] = 0xff;
+	buf[4] = 0xff;
+	/* ping command */
+	buf[5] = 0x81;
+	/* one byte ping */
+	buf[6] = 0x00;
+	buf[7] = 0x01;
+
+	for (i = 0; i < 4; i++) {
+		DPRINTF(("%s: ping %d\n", __func__, i + 1));
+		sc->sc_ping = 1;
+		error = uhidev_set_report(sc, UHID_OUTPUT_REPORT, id, buf,
+                    osize);
+		if (error != osize) {
+			printf("%s: uhidev_set_report failed\n", __func__);
+			free(buf, M_USBDEV, osize);
+			return EIO;
+		}
+		error = tsleep_nsec(sc, PZERO|PCATCH, "uhidevsync",
+		    MSEC_TO_NSEC(100));
+		if (error == 0 && sc->sc_ping == 0) {
+			DPRINTF(("%s: pong, synced\n", __func__));
+			free(buf, M_USBDEV, osize);
+			return 0;
+		}
+		sc->sc_ping = 0;
+		DPRINTF(("%s: no response\n", __func__));
+	}
+
+	free(buf, M_USBDEV, osize);
+	return EIO;
 }

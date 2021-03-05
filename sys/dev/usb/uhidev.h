@@ -61,6 +61,7 @@ struct uhidev_softc {
 	struct uhidev **sc_subdevs;
 
 	int sc_refcnt;
+	uint8_t sc_ping;
 };
 
 struct uhidev {
