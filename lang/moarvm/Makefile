@@ -8,7 +8,7 @@ COMMENT =		virtual machine for nqp/rakudo
 V =			2018.12
 DISTNAME =		MoarVM-$V
 PKGNAME =		moarvm-$V
-REVISION =		0
+REVISION =		1
 
 SHARED_LIBS =		moar	9.0
 
