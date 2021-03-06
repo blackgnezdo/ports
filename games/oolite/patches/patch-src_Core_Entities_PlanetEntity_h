@@ -6,9 +6,9 @@ $OpenBSD: patch-src_Core_Entities_PlanetEntity_h,v 1.1 2013/10/22 16:52:09 sebas
  }	VertexData;
  
 +// straight c
-+double		corona_speed_factor;	// multiply delta_t by this before adding it to corona_stage
-+double		corona_stage;			// 0.0 -> 1.0
-+GLfloat		rvalue[729];			// stores random values for adjusting colors in the corona
++extern double		corona_speed_factor;	// multiply delta_t by this before adding it to corona_stage
++extern double		corona_stage;			// 0.0 -> 1.0
++extern GLfloat		rvalue[729];			// stores random values for adjusting colors in the corona
 +
 +
  @interface PlanetEntity: OOSelfDrawingEntity

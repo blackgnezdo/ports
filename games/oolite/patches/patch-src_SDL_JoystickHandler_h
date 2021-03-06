@@ -1,0 +1,21 @@
+$OpenBSD$
+--- src/SDL/JoystickHandler.h	Sat Mar  6 18:11:04 2021
++++ src/SDL/JoystickHandler.h	Sat Mar  6 18:28:27 2021
+@@ -46,7 +46,7 @@
+   AXIS_VIEWX,
+   AXIS_VIEWY,
+   AXIS_end
+-} axfn;
++};
+ 
+ // Controls that can be a button
+ enum {
+@@ -82,7 +82,7 @@
+   BUTTON_VIEWPORT,
+   BUTTON_VIEWSTARBOARD,
+   BUTTON_end
+-} butfn;
++};
+ 
+ // Stick constants
+ #define MAX_STICKS 2

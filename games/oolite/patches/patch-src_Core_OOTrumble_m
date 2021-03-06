@@ -1,0 +1,12 @@
+$OpenBSD$
+--- src/Core/OOTrumble.m	Sat Mar  6 18:11:04 2021
++++ src/Core/OOTrumble.m	Sat Mar  6 18:30:49 2021
+@@ -30,6 +30,8 @@
+ #import "OOSound.h"
+ #import "OOStringParsing.h"
+ 
++// -fno-common
++float trumbleAppetiteAccumulator;
+ 
+ static void InitTrumbleSounds(void);
+ static void PlayTrumbleIdle(void);

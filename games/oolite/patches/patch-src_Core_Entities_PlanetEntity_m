@@ -1,0 +1,14 @@
+$OpenBSD$
+--- src/Core/Entities/PlanetEntity.m	Sat Mar  6 18:11:04 2021
++++ src/Core/Entities/PlanetEntity.m	Sat Mar  6 18:34:07 2021
+@@ -44,6 +44,10 @@
+ #define LIM8K   8000.0*8000.0 * NO_DRAW_DISTANCE_FACTOR*NO_DRAW_DISTANCE_FACTOR
+ #define LIM16K  16000.0*16000.0 * NO_DRAW_DISTANCE_FACTOR*NO_DRAW_DISTANCE_FACTOR
+ 
++// -fno-common
++double corona_speed_factor;
++double corona_stage;
++GLfloat rvalue[729];
+ 
+ // straight c
+ static Vector base_vertex_array[10400];

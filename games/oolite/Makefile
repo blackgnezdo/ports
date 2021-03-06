@@ -3,7 +3,7 @@
 COMMENT=	space combat and trading game in the style of Elite
 
 VERSION=	1.73.4
-REVISION =	16
+REVISION =	17
 DISTNAME=	oolite-dev-source-${VERSION}
 PKGNAME=	oolite-${VERSION}
 CATEGORIES=	games
@@ -33,6 +33,7 @@ ALL_TARGET=	release
 
 FIX_CRLF_FILES = GNUmakefile.postamble \
 		Makefile \
+		src/Cocoa/JoystickHandler.h \
 		src/Core/Debug/OODebugTCPConsoleClient.m \
 		src/Core/Materials/OOPNGTextureLoader.m \
 		src/Core/OOAsyncQueue.m \

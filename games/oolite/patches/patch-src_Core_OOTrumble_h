@@ -1,0 +1,12 @@
+$OpenBSD$
+--- src/Core/OOTrumble.h	Sat Mar  6 18:11:04 2021
++++ src/Core/OOTrumble.h	Sat Mar  6 18:30:37 2021
+@@ -66,7 +66,7 @@
+ 	TRUMBLE_MOUTH_NORMAL
+ };
+ 
+-float	trumbleAppetiteAccumulator;
++extern float	trumbleAppetiteAccumulator;
+ 
+ @interface OOTrumble : NSObject
+ {
