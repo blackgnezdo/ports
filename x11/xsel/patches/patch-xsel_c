@@ -3,9 +3,11 @@ $OpenBSD: patch-xsel_c,v 1.2 2014/07/07 08:25:16 sthen Exp $
 - Format "32" properties use "long", not "int", even on LP64 platforms.
 - ensure NUM_TARGETS does not exceed MAX_NUM_TARGETS.
 - plug a memory leak in handle_targets()
+- avoid crash on empty input (c760ace62ac4fe1cf65d88475d5939c1aa360d6b upstream)
 
---- xsel.c.orig	Mon Jun 30 00:10:19 2014
-+++ xsel.c	Mon Jun 30 00:20:50 2014
+Index: xsel.c
+--- xsel.c.orig
++++ xsel.c
 @@ -15,6 +15,7 @@
  #include "config.h"
  #endif
@@ -14,6 +16,15 @@ $OpenBSD: patch-xsel_c,v 1.2 2014/07/07 08:25:16 sthen Exp $
  #include <stdio.h>
  #include <stdlib.h>
  #include <stdarg.h>
+@@ -854,7 +855,7 @@ initialise_read (unsigned char * read_buffer)
+   int insize = in_statbuf.st_blksize;
+   unsigned char * new_buffer = NULL;
+ 
+-  if (S_ISREG (in_statbuf.st_mode)) {
++  if (S_ISREG (in_statbuf.st_mode) && in_statbuf.st_size > 0) {
+     current_alloc += in_statbuf.st_size;
+   } else {
+     current_alloc += insize;
 @@ -1300,14 +1301,16 @@ handle_targets (Display * display, Window requestor, A
                  Atom selection, Time time, MultTrack * mparent)
  {

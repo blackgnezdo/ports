@@ -3,7 +3,7 @@
 COMMENT=	command-line program for managing X selection contents
 
 DISTNAME=	xsel-1.2.0
-REVISION=	2
+REVISION=	3
 CATEGORIES=	x11
 HOMEPAGE=	http://www.vergenet.net/~conrad/software/xsel/
 
