@@ -6,7 +6,7 @@ libunwind symbols.
 Index: src/dynamic-preprocessors/appid/Makefile.in
 --- src/dynamic-preprocessors/appid/Makefile.in.orig
 +++ src/dynamic-preprocessors/appid/Makefile.in
-@@ -586,8 +586,8 @@ APPID_SOURCES = $(APPID_SRC_DIR)/commonAppMatcher.c \
+@@ -587,8 +587,8 @@ APPID_SOURCES = $(APPID_SRC_DIR)/commonAppMatcher.c \
  	$(APPID_SRC_DIR)/util/sfutil.c $(APPID_SRC_DIR)/util/sfutil.h
  dynamicpreprocessordir = ${libdir}/snort_dynamicpreprocessor
  dynamicpreprocessor_LTLIBRARIES = libsf_appid_preproc.la
