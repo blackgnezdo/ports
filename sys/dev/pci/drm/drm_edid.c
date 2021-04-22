@@ -1832,23 +1832,21 @@ drm_do_probe_ddc_edid(void *data, u8 *buf, unsigned int block, size_t len)
 }
 
 static void connector_bad_edid(struct drm_connector *connector,
-			       u8 *edid, int num_blocks)
+			       u8 *edid, int valid_extensions)
 {
 	int i;
-	u8 num_of_ext = edid[0x7e];
-
-	if (num_of_ext > num_blocks)
-		num_of_ext = num_blocks;
 
 	/* Calculate real checksum for the last edid extension block data */
 	connector->real_edid_checksum =
-		drm_edid_block_checksum(edid + num_of_ext * EDID_LENGTH);
+	    drm_edid_block_checksum(edid + valid_extensions * EDID_LENGTH);
 
 	if (connector->bad_edid_counter++ && !drm_debug_enabled(DRM_UT_KMS))
 		return;
 
-	drm_warn(connector->dev, "%s: EDID is invalid:\n", connector->name);
-	for (i = 0; i < num_blocks; i++) {
+	dev_warn(connector->dev->dev,
+		 "%s: EDID is invalid, edid_corrupt %d, null_edid_counter %d, valid_extensions %d:\n",
+	    connector->name, connector->edid_corrupt, connector->null_edid_counter, valid_extensions);
+	for (i = 0; i <= valid_extensions; i++) {
 		u8 *block = edid + i * EDID_LENGTH;
 		char prefix[20];
 
@@ -1995,7 +1993,7 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
 	if (valid_extensions != edid[0x7e]) {
 		u8 *base;
 
-		connector_bad_edid(connector, edid, edid[0x7e] + 1);
+		connector_bad_edid(connector, edid, valid_extensions);
 
 		edid[EDID_LENGTH-1] += edid[0x7e] - valid_extensions;
 		edid[0x7e] = valid_extensions;
@@ -2023,7 +2021,7 @@ struct edid *drm_do_get_edid(struct drm_connector *connector,
 	return (struct edid *)edid;
 
 carp:
-	connector_bad_edid(connector, edid, 1);
+	connector_bad_edid(connector, edid, 0);
 out:
 	kfree(edid);
 	return NULL;
