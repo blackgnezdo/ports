@@ -1,10 +1,9 @@
 # $OpenBSD: Makefile,v 1.40 2021/03/28 13:08:02 kirby Exp $
 
 COMMENT =	lexical analyser generator for Haskell
-REVISION =	0
 
 MODCABAL_STEM 		= alex
-MODCABAL_VERSION	= 3.2.5
+MODCABAL_VERSION	= 3.2.6
 MODCABAL_DATA_DIR	= data
 CATEGORIES =	devel
 
@@ -24,7 +23,7 @@ LIB_DEPENDS =		converters/libiconv \
 # Required for building the documentation:
 USE_GMAKE =		Yes
 CONFIGURE_STYLE =	autoconf no-autoheader
-AUTOCONF_VERSION =	2.61
+AUTOCONF_VERSION =	2.71
 AUTOCONF_DIR =		${WRKSRC}/doc
 WRKCONF =		${AUTOCONF_DIR}
 
