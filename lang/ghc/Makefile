@@ -18,9 +18,10 @@ GHC_VERSION =		8.10.3
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
+REVISION =		0
 
 # Version of the precompiled binaries
-BIN_VER =		8.6.4.20200921
+BIN_VER =		8.10.3.20210429
 
 # lang/python needed for regression tests.
 MODULES =		lang/python
