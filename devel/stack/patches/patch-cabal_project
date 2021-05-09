@@ -1,0 +1,10 @@
+Index: cabal.project
+--- cabal.project.orig
++++ cabal.project
+@@ -35,6 +35,4 @@
+ -- confirmed by reviewing the snapshot on Stackage. For example, at:
+ -- https://www.stackage.org/lts-21.13/cabal.config.
+ --
+-with-compiler: ghc-9.4.7
+-import: cabal.config
+ packages: .
