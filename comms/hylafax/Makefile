@@ -2,7 +2,7 @@
 
 COMMENT=		send/receive faxes and share modems
 DISTNAME=		hylafax-6.0.6
-REVISION=		14
+REVISION=		15
 CATEGORIES=		comms
 
 HOMEPAGE=		https://www.HylaFAX.org/
