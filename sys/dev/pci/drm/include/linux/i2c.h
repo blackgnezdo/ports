@@ -72,7 +72,7 @@ struct i2c_algorithm {
 	uint32_t (*functionality)(struct i2c_adapter *);
 };
 
-extern struct i2c_algorithm i2c_bit_algo;
+extern const struct i2c_algorithm i2c_bit_algo;
 
 struct i2c_algo_bit_data {
 	struct i2c_controller ic;

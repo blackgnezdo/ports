@@ -1100,7 +1100,7 @@ i2c_bb_functionality(struct i2c_adapter *adap)
 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
 }
 
-struct i2c_algorithm i2c_bit_algo = {
+const struct i2c_algorithm i2c_bit_algo = {
 	.master_xfer = i2c_bb_master_xfer,
 	.functionality = i2c_bb_functionality
 };
