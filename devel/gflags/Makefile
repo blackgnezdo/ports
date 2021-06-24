@@ -5,6 +5,7 @@ COMMENT =		c++ commandline flags processing library
 GH_ACCOUNT =		gflags
 GH_PROJECT =		gflags
 GH_TAGNAME =		v2.2.2
+REVISION=		0
 
 SHARED_LIBS +=		gflags               1.0      # .0.0
 SHARED_LIBS +=		gflags_nothreads     1.0      # .0.0
@@ -15,8 +16,6 @@ HOMEPAGE =		https://gflags.github.io/gflags/
 
 # New BSD
 PERMIT_PACKAGE =	Yes
-
-MAINTAINER = 		Ashton Fagg <ashton@fagg.id.au>
 
 WANTLIB += ${COMPILER_LIBCXX} m
 
