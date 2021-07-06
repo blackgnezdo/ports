@@ -6677,9 +6677,12 @@ iwx_set_key(struct ieee80211com *ic, struct ieee80211_node *ni,
     struct ieee80211_key *k)
 {
 	struct iwx_softc *sc = ic->ic_softc;
+	struct iwx_node *in = (void *)ni;
 	struct iwx_setkey_task_arg *a;
 
 	if (k->k_cipher != IEEE80211_CIPHER_CCMP) {
+		if (k->k_flags & IEEE80211_KEY_GROUP)
+			in->in_flags |= IWX_NODE_FLAG_HAVE_GROUP_KEY;
 		/* Fallback to software crypto for other ciphers. */
 		return (ieee80211_set_key(ic, ni, k));
 	}
