@@ -2846,7 +2846,7 @@ _post-patch-finalize:
 .endif
 .for _wrap _comp in ${COMPILER_LINKS}
 	@echo '===>  Compiler link: ${_wrap} -> ${COMPILER_WRAPPER:= }${_comp}'
-	@printf '#!/bin/sh\nexec ${COMPILER_WRAPPER} ${_comp} -B ${WRKDIR}/bin "$$@"\n' > ${WRKDIR}/bin/${_wrap}
+	@printf '#!/bin/sh\nfor i; do arg=$$1; shift; case $$arg in -Werror*) ;; *) set - "$$@" "$$arg" ;; esac; done\nexec ${COMPILER_WRAPPER} ${_comp} -B ${WRKDIR}/bin -Wconversion "$$@"\n' > ${WRKDIR}/bin/${_wrap}
 	@chmod 555 ${WRKDIR}/bin/${_wrap}
 .endfor
 .for _m in ${MODULES:T:U}
