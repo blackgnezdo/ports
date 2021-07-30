@@ -3018,6 +3018,8 @@ ieee80211_addba_resp_accept(struct ieee80211com *ic,
 	/* Reset ADDBA request interval. */
 	ni->ni_addba_req_intval[tid] = 1;
 
+	ni->ni_qos_txseqs[tid] = ba->ba_winstart;
+
 	/* start Block Ack inactivity timeout */
 	if (ba->ba_timeout_val != 0)
 		timeout_add_usec(&ba->ba_to, ba->ba_timeout_val);
