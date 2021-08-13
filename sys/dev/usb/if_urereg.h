@@ -527,7 +527,6 @@ struct ure_softc {
 	/* usb */
 	struct usbd_interface	*ure_iface;
 	struct usb_task		ure_tick_task;
-	struct usb_task		ure_stop_task;
 	int			ure_ed[URE_ENDPT_MAX];
 	struct usbd_pipe	*ure_ep[URE_ENDPT_MAX];
 

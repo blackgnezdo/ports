@@ -1626,8 +1626,6 @@ ure_attach(struct device *parent, struct device *self, void *aux)
 
 	usb_init_task(&sc->ure_tick_task, ure_tick_task, sc,
 	    USB_TASK_TYPE_GENERIC);
-	usb_init_task(&sc->ure_stop_task, (void (*)(void *))ure_stop, sc,
-	    USB_TASK_TYPE_GENERIC);
 
 	id = usbd_get_interface_descriptor(sc->ure_iface);
 
@@ -1795,7 +1793,6 @@ ure_detach(struct device *self, int flags)
 		usbd_abort_pipe(sc->ure_ep[URE_ENDPT_RX]);
 
 	usb_rem_task(sc->ure_udev, &sc->ure_tick_task);
-	usb_rem_task(sc->ure_udev, &sc->ure_stop_task);
 
 	s = splusb();
 
