@@ -60,7 +60,7 @@
 #define	DFLDSIZ		((paddr_t)128*1024*1024)	/* initial data size limit */
 #endif
 #ifndef MAXDSIZ
-#define	MAXDSIZ		((paddr_t)32*1024*1024*1024)	/* max data size */
+#define	MAXDSIZ		((paddr_t)1ull << 45)		/* max data size */
 #endif
 #ifndef BRKSIZ
 #define	BRKSIZ		((paddr_t)8*1024*1024*1024)	/* heap gap size */
