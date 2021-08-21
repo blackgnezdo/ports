@@ -233,6 +233,8 @@ SanitizerMask OpenBSD::getSupportedSanitizers() const {
   SanitizerMask Res = ToolChain::getSupportedSanitizers();
 
   if (IsX86 || IsX86_64) {
+    Res |= SanitizerKind::Address;
+    Res |= SanitizerKind::Leak;
     Res |= SanitizerKind::Vptr;
     Res |= SanitizerKind::Fuzzer;
     Res |= SanitizerKind::FuzzerNoLink;
