@@ -14,7 +14,7 @@ COMMENT =		compiler for the functional language Haskell
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-GHC_VERSION =		9.2.0.20210422
+GHC_VERSION =		9.2.0.20210821
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
@@ -49,7 +49,7 @@ RUN_DEPENDS =
 #      loadObj_() instead.
 USE_WXNEEDED =		special
 
-MASTER_SITES =		https://downloads.haskell.org/ghc/9.2.1-alpha2/
+MASTER_SITES =		https://downloads.haskell.org/ghc/9.2.1-rc1/
 MASTER_SITES0 =		https://openbsd.dead-parrot.de/distfiles/
 
 DIST_SUBDIR =		ghc
@@ -178,6 +178,8 @@ post-patch:
 		echo 'LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \' && \
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
+# TODO(gnezdo): remove this terrible hack by rebuilding bootstrap with _l.
+	cp ${FILESDIR}/libHSrts_l.a ${WRKDIR}/bootstrap/lib/ghc/rts
 	cp ${WRKSRC}/mk/build.mk{.sample,}
 	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
 	echo HADDOCK_DOCS=${HADDOCK_DOCS} >> ${WRKSRC}/mk/build.mk
@@ -200,8 +202,8 @@ BOOTSTRAP_DATE =	20210429
 # ghc and creates a `bindist', i.e. a tarball with binaries that
 # can be used for bootstrapping.
 bootstrap: patch
-	@if [ ! -x ${LOCALBASE}/bin/autoconf-2.69 ]; then \
-		echo Please install autoconf-2.69.; \
+	@if [ ! -x ${LOCALBASE}/bin/autoconf-${AUTOCONF_VERSION} ]; then \
+		echo Please install autoconf-${AUTOCONF_VERSION}.; \
 		false; \
 	fi
 	@if [ ! -x ${LOCALBASE}/bin/automake-1.4 ]; then \
@@ -214,7 +216,7 @@ bootstrap: patch
 	env CONFIGURE_ENV=RELEASE=NO ${MAKE} configure
 
 	${MAKE} build ALL_TARGET="all binary-dist" \
-		AUTOCONF_VERSION=2.69 AUTOMAKE_VERSION=1.4
+		AUTOCONF_VERSION=${AUTOCONF_VERSION} AUTOMAKE_VERSION=1.4
 
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 
