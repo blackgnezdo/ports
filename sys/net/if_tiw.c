@@ -59,12 +59,14 @@ struct if_clone tiw_cloner = IF_CLONE_INITIALIZER(
 void
 tiwattach(int count)
 {
+	printf("%s\n", __func__);
 	if_clone_attach(&tiw_cloner);
 }
 
 int
 tiwopen(dev_t dev, int flag, int mode, struct proc *p)
 {
+	printf("%s\n", __func__);
 	char name[IFNAMSIZ];
 	struct tiw_softc *sc;
 	unsigned int rdomain;
@@ -96,6 +98,7 @@ tiwopen(dev_t dev, int flag, int mode, struct proc *p)
 int
 tiwclose(dev_t dev, int flag, int mode, struct proc *p)
 {
+	printf("%s\n", __func__);
 	char name[IFNAMSIZ];
 	struct ifnet *ifp;
 	struct tiw_softc *sc;
@@ -114,18 +117,21 @@ tiwclose(dev_t dev, int flag, int mode, struct proc *p)
 int
 tiwread(dev_t dev, struct uio *uio, int ioflag)
 {
+	printf("%s\n", __func__);
 	return ENODEV;
 }
 
 int
 tiwwrite(dev_t dev, struct uio *uio, int ioflag)
 {
+	printf("%s\n", __func__);
 	return ENODEV;
 }
 
 int
 tiwioctl(dev_t dev, u_long cmd, caddr_t data, int flag, struct proc *p)
 {
+	printf("%s\n", __func__);
 	struct tiw_softc *sc;
 
 	sc = tiw_lookup(minor(dev));
@@ -137,6 +143,7 @@ tiwioctl(dev_t dev, u_long cmd, caddr_t data, int flag, struct proc *p)
 int
 tiw_clone_create(struct if_clone *ifc, int unit)
 {
+	printf("%s\n", __func__);
 	struct ieee80211com *ic;
 	struct ifnet *ifp;
 	struct tiw_softc *sc;
@@ -185,6 +192,7 @@ tiw_clone_create(struct if_clone *ifc, int unit)
 int
 tiw_clone_destroy(struct ifnet *ifp)
 {
+	printf("%s\n", __func__);
 	struct tiw_softc *sc = ifp->if_softc;
 
 	if (sc->sc_dev != 0) {
@@ -206,18 +214,21 @@ tiw_clone_destroy(struct ifnet *ifp)
 int
 tiw_enqueue(struct ifnet *ifp, struct mbuf *m0)
 {
+	printf("%s\n", __func__);
 	return EINVAL;
 }
 
 int
 tiw_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 {
+	printf("%s\n", __func__);
 	return ieee80211_ioctl(ifp, cmd, data);
 }
 
 void
 tiw_start(struct ifnet *ifp)
 {
+	printf("%s\n", __func__);
 }
 
 struct tiw_softc *
