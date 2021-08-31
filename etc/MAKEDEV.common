@@ -551,3 +551,5 @@ __devitem(dt, dt, Dynamic Tracer)dnl
 _mkdev(dt, dt, {-M dt c major_dt_c 0 600-})dnl
 __devitem(kstat, kstat, Kernel Statistics)dnl
 _mkdev(kstat, kstat, {-M kstat c major_kstat_c 0 640-})dnl
+__devitem(tiw, tiw*, Wireless network pseudo-device)dnl
+_mkdev(tiw, {-tiw*-}, {-M tiw$U c major_tiw_c $U 600-}, 600)dnl

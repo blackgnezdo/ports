@@ -98,6 +98,14 @@ int	nblkdev = nitems(bdevsw);
 	(dev_type_stop((*))) enodev, 0, seltrue, \
 	(dev_type_mmap((*))) enodev, 0, 0, seltrue_kqfilter }
 
+/* open, close, read, write, ioctl */
+#define cdev_tiw_init(c,n) { \
+	dev_init(c,n,open), dev_init(c,n,close), dev_init(c,n,read), \
+	dev_init(c,n,write), dev_init(c,n,ioctl), \
+	(dev_type_stop((*))) enodev, 0, seltrue, \
+	(dev_type_mmap((*))) enodev, 0, 0, seltrue_kqfilter }
+
+
 #define	mmread	mmrw
 #define	mmwrite	mmrw
 cdev_decl(mm);
@@ -152,6 +160,8 @@ cdev_decl(nvram);
 cdev_decl(drm);
 #include "viocon.h"
 cdev_decl(viocon);
+#include "tiw.h"
+cdev_decl(tiw);
 
 #include "wsdisplay.h"
 #include "wskbd.h"
@@ -199,7 +209,7 @@ struct cdevsw	cdevsw[] =
 	cdev_notdef(),			/* 18: was: concatenated disk driver */
 	cdev_kcov_init(NKCOV,kcov),	/* 19: kcov */
 	cdev_uk_init(NUK,uk),		/* 20: unknown SCSI */
-	cdev_notdef(),			/* 21 */
+	cdev_tiw_init(NTIW,tiw),	/* 21: tiw */
 	cdev_fd_init(1,filedesc),	/* 22: file descriptor pseudo-device */
 	cdev_bpf_init(NBPFILTER,bpf),	/* 23: Berkeley packet filter */
 	cdev_notdef(),			/* 24 */

@@ -555,6 +555,7 @@ pseudo-device endrun: tty
 pseudo-device loop: ifnet
 pseudo-device pair: ifnet, ether
 pseudo-device ppp: ifnet
+pseudo-device tiw: ifnet
 pseudo-device tun: ifnet
 pseudo-device bpfilter: ifnet
 pseudo-device enc: ifnet
@@ -814,6 +815,7 @@ file net/if_ppp.c			ppp			needs-count
 file net/ppp_tty.c			ppp
 file net/bsd-comp.c			ppp_bsdcomp
 file net/ppp-deflate.c			ppp_deflate
+file net/if_tiw.c			tiw			needs-count
 file net/if_tun.c			tun			needs-count
 file net/if_bridge.c			bridge			needs-count
 file net/bridgectl.c			bridge

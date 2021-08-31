@@ -102,6 +102,7 @@
 #	pvbus*	paravirtual device tree root
 #	switch*	Switch driver
 #	kstat	Kernel Statistics
+#	tiw*	Wireless network pseudo-device
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 T=$0
 
@@ -251,6 +252,10 @@ std)
 ttyc*)
 	M ttyc$U c 38 $U 660 dialer root
 	M cuac$U c 38 $(($U+128)) 660 dialer root
+	;;
+
+tiw*)
+	M tiw$U c 21 $U 600
 	;;
 
 kstat)

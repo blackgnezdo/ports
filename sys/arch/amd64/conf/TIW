@@ -1,0 +1,3 @@
+include "arch/amd64/conf/GENERIC.MP"
+
+pseudo-device	tiw	1

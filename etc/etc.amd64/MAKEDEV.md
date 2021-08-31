@@ -100,6 +100,7 @@ _DEV(vscsi, 89)
 _DEV(pvbus, 95)
 _DEV(switch, 97)
 _DEV(kstat, 51)
+_DEV(tiw, 21)
 dnl
 divert(__mddivert)dnl
 dnl
