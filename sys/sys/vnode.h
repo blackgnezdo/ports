@@ -107,7 +107,6 @@ struct vnode {
 	u_int   v_bioflag;
 	u_int   v_holdcnt;			/* buffer references */
 	u_int   v_id;				/* capability identifier */
-	u_int	v_inflight;
 	struct	mount *v_mount;			/* ptr to vfs we are in */
 	TAILQ_ENTRY(vnode) v_freelist;		/* vnode freelist */
 	TAILQ_ENTRY(vnode) v_mntvnodes;		/* vnodes for mount point */

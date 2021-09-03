@@ -717,8 +717,6 @@ ext2fs_sync_vnode(struct vnode *vp, void *args)
 	if (vp->v_type == VNON)
 		return (0);
 
-	if (vp->v_inflight)
-		esa->inflight = MIN(esa->inflight+1, 65536);
 
 	ip = VTOI(vp);
 	
@@ -731,7 +729,7 @@ ext2fs_sync_vnode(struct vnode *vp, void *args)
 	}
 
 	if (vget(vp, LK_EXCLUSIVE | LK_NOWAIT)) {
-		nlink0 = 1;	/* potentially */
+		esa->inflight = MIN(esa->inflight+1, 65536);
 		goto end;
 	}
 

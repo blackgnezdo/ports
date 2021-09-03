@@ -1165,8 +1165,6 @@ ffs_sync_vnode(struct vnode *vp, void *arg)
 
 	ip = VTOI(vp);
 
-	if (vp->v_inflight && !(vp->v_type == VCHR || vp->v_type == VBLK))
-		fsa->inflight = MIN(fsa->inflight+1, 65536);
 
 	/*
 	 * If unmounting or converting rw to ro, then stop deferring
@@ -1187,7 +1185,7 @@ ffs_sync_vnode(struct vnode *vp, void *arg)
 	}
 
 	if (vget(vp, LK_EXCLUSIVE | LK_NOWAIT)) {
-		nlink0 = 1;		/* potentially.. */
+		fsa->inflight = MIN(fsa->inflight+1, 65536);
 		goto end;
 	}
 

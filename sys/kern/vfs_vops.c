@@ -83,9 +83,7 @@ VOP_LOOKUP(struct vnode *dvp, struct vnode **vpp,
 	if (dvp->v_op->vop_lookup == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_lookup)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -105,9 +103,7 @@ VOP_CREATE(struct vnode *dvp, struct vnode **vpp,
 	if (dvp->v_op->vop_create == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_create)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -127,9 +123,7 @@ VOP_MKNOD(struct vnode *dvp, struct vnode **vpp,
 	if (dvp->v_op->vop_mknod == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_mknod)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -148,9 +142,7 @@ VOP_OPEN(struct vnode *vp, int mode, struct ucred *cred, struct proc *p)
 	if (vp->v_op->vop_open == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_open)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -170,9 +162,7 @@ VOP_CLOSE(struct vnode *vp, int fflag, struct ucred *cred, struct proc *p)
 	if (vp->v_op->vop_close == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_close)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -228,9 +218,7 @@ VOP_SETATTR(struct vnode *vp, struct vattr *vap, struct ucred *cred,
 	if (vp->v_op->vop_setattr == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_setattr)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -267,9 +255,7 @@ VOP_WRITE(struct vnode *vp, struct uio *uio, int ioflag,
 	if (vp->v_op->vop_write == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_write)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -290,9 +276,7 @@ VOP_IOCTL(struct vnode *vp, u_long command, void *data, int fflag,
 	if (vp->v_op->vop_ioctl == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_ioctl)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -356,9 +340,7 @@ VOP_FSYNC(struct vnode *vp, struct ucred *cred, int waitfor,
 	if (vp->v_op->vop_fsync == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_fsync)(&a);
-	vp->v_inflight--;
 	s = splbio();
 	if (r == 0 && vp->v_bioflag & VBIOERROR)
 		r = EIO;
@@ -381,9 +363,7 @@ VOP_REMOVE(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
 	if (dvp->v_op->vop_remove == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_remove)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -401,11 +381,7 @@ VOP_LINK(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
 	if (dvp->v_op->vop_link == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
-	vp->v_inflight++;
 	r = (dvp->v_op->vop_link)(&a);
-	dvp->v_inflight--;
-	vp->v_inflight--;
 	return r;
 }
 
@@ -428,11 +404,7 @@ VOP_RENAME(struct vnode *fdvp, struct vnode *fvp,
 	if (fdvp->v_op->vop_rename == NULL) 
 		return (EOPNOTSUPP);
 
-	fdvp->v_inflight++;
-	tdvp->v_inflight++;
 	r = (fdvp->v_op->vop_rename)(&a);
-	fdvp->v_inflight--;
-	tdvp->v_inflight--;
 	return r;
 }
 
@@ -452,9 +424,7 @@ VOP_MKDIR(struct vnode *dvp, struct vnode **vpp,
 	if (dvp->v_op->vop_mkdir == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_mkdir)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -475,11 +445,7 @@ VOP_RMDIR(struct vnode *dvp, struct vnode *vp, struct componentname *cnp)
 	if (dvp->v_op->vop_rmdir == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
-	vp->v_inflight++;
 	r = (dvp->v_op->vop_rmdir)(&a);
-	dvp->v_inflight--;
-	vp->v_inflight--;
 	return r;
 }
 
@@ -500,9 +466,7 @@ VOP_SYMLINK(struct vnode *dvp, struct vnode **vpp,
 	if (dvp->v_op->vop_symlink == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_symlink)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -522,9 +486,7 @@ VOP_READDIR(struct vnode *vp, struct uio *uio, struct ucred *cred,
 	if (vp->v_op->vop_readdir == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_readdir)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -542,9 +504,7 @@ VOP_READLINK(struct vnode *vp, struct uio *uio, struct ucred *cred)
 	if (vp->v_op->vop_readlink == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_readlink)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
@@ -559,9 +519,7 @@ VOP_ABORTOP(struct vnode *dvp, struct componentname *cnp)
 	if (dvp->v_op->vop_abortop == NULL)
 		return (EOPNOTSUPP);
 
-	dvp->v_inflight++;
 	r = (dvp->v_op->vop_abortop)(&a);
-	dvp->v_inflight--;
 	return r;
 }
 
@@ -593,9 +551,7 @@ VOP_RECLAIM(struct vnode *vp, struct proc *p)
 	if (vp->v_op->vop_reclaim == NULL)
 		return (EOPNOTSUPP);
 
-	vp->v_inflight++;
 	r = (vp->v_op->vop_reclaim)(&a);
-	vp->v_inflight--;
 	return r;
 }
 
