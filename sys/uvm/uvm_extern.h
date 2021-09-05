@@ -207,7 +207,7 @@ struct vmspace {
 	segsz_t vm_swrss;	/* resident set size before last swap */
 	segsz_t vm_tsize;	/* text size (pages) XXX */
 	segsz_t vm_dsize;	/* data size (pages) XXX */
-	segsz_t vm_dused;	/* data segment length (pages) XXX */
+	vsize_t vm_dused;	/* data segment length (pages) XXX */
 	segsz_t vm_ssize;	/* [v] stack size (pages) */
 	caddr_t	vm_taddr;	/* [I] user virtual address of text */
 	caddr_t	vm_daddr;	/* [I] user virtual address of data */

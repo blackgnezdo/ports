@@ -443,7 +443,7 @@ struct kinfo_proc {
 
 	int32_t	p_vm_rssize;		/* SEGSZ_T: current resident set size in pages */
 	int32_t	p_vm_tsize;		/* SEGSZ_T: text size (pages) */
-	int32_t	p_vm_dsize;		/* SEGSZ_T: data size (pages) */
+	u_int64_t	p_vm_dsize;	/* VSIZE_T: data size (pages) */
 	int32_t	p_vm_ssize;		/* SEGSZ_T: stack size (pages) */
 
 	int64_t	p_uvalid;		/* CHAR: following p_u* members from struct user are valid */
