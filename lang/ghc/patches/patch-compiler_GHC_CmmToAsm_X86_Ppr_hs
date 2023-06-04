@@ -1,0 +1,47 @@
+Fix for https://gitlab.haskell.org/ghc/ghc/-/issues/22792
+
+Index: compiler/GHC/CmmToAsm/X86/Ppr.hs
+--- compiler/GHC/CmmToAsm/X86/Ppr.hs.orig
++++ compiler/GHC/CmmToAsm/X86/Ppr.hs
+@@ -91,7 +91,7 @@ pprNatCmmDecl config proc@(CmmProc top_info lbl _ (Lis
+         pprProcAlignment config $$
+         pprProcLabel config lbl $$
+         pprLabel platform lbl $$ -- blocks guaranteed not null, so label needed
+-        vcat (map (pprBasicBlock config top_info) blocks) $$
++        vcat (map (pprBasicBlock (Just lbl) config top_info) blocks) $$
+         ppWhen (ncgDwarfEnabled config) (pprBlockEndLabel platform lbl $$ pprProcEndLabel platform lbl) $$
+         pprSizeDecl platform lbl
+ 
+@@ -102,7 +102,7 @@ pprNatCmmDecl config proc@(CmmProc top_info lbl _ (Lis
+       (if platformHasSubsectionsViaSymbols platform
+           then pdoc platform (mkDeadStripPreventer info_lbl) <> char ':'
+           else empty) $$
+-      vcat (map (pprBasicBlock config top_info) blocks) $$
++      vcat (map (pprBasicBlock Nothing config top_info) blocks) $$
+       ppWhen (ncgDwarfEnabled config) (pprProcEndLabel platform info_lbl) $$
+       -- above: Even the first block gets a label, because with branch-chain
+       -- elimination, it might be the target of a goto.
+@@ -141,10 +141,10 @@ pprSizeDecl platform lbl
+    then text "\t.size" <+> pdoc platform lbl <> ptext (sLit ", .-") <> pdoc platform lbl
+    else empty
+ 
+-pprBasicBlock :: NCGConfig -> LabelMap RawCmmStatics -> NatBasicBlock Instr -> SDoc
+-pprBasicBlock config info_env (BasicBlock blockid instrs)
++pprBasicBlock :: Maybe CLabel -> NCGConfig -> LabelMap RawCmmStatics -> NatBasicBlock Instr -> SDoc
++pprBasicBlock mbLbl config info_env (BasicBlock blockid instrs)
+   = maybe_infotable $
+-    pprLabel platform asmLbl $$
++    labelIfNotDup mbLbl $$
+     vcat (map (pprInstr platform) instrs) $$
+     ppWhen (ncgDwarfEnabled config) (
+       -- Emit both end labels since this may end up being a standalone
+@@ -153,6 +153,9 @@ pprBasicBlock config info_env (BasicBlock blockid inst
+       <> pprProcEndLabel platform asmLbl
+     )
+   where
++    labelIfNotDup (Just l) | l == asmLbl = empty
++    labelIfNotDup _ = pprLabel platform asmLbl
++
+     asmLbl = blockLbl blockid
+     platform = ncgPlatform config
+     maybe_infotable c = case mapLookup blockid info_env of

@@ -123,6 +123,7 @@ CONFIGURE_ARGS +=	--with-ffi-includes=${LOCALBASE}/include \
 			--with-iconv-includes=${LOCALBASE}/include \
 			--with-iconv-libraries=${LOCALBASE}/lib \
 			--with-system-libffi \
+			--disable-tables-next-to-code \
 			CC="${CC}"
 
 CONFIGURE_ENV += SPHINXBUILD=${LOCALBASE}/bin/sphinx-build${MODPY_BIN_SUFFIX}
@@ -172,6 +173,7 @@ post-patch:
 		echo 'LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \' && \
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
+	cp ${FILESDIR}/settings ${WRKDIR}/bootstrap/lib/ghc
 	cp ${WRKSRC}/mk/build.mk{.sample,}
 	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
 	echo HADDOCK_DOCS=YES >> ${WRKSRC}/mk/build.mk
