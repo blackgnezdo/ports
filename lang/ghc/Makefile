@@ -8,13 +8,8 @@ DPB_PROPERTIES =	parallel
 # ghc hardcodes ${WRKDIR}/bin/gcc when the package is compiled with ccache
 NO_CCACHE =		Yes
 
-# Upstream bug: https://gitlab.haskell.org/ghc/ghc/-/issues/22782
-USE_NOEXECONLY =	Yes
-
 USE_NOBTCFI =		Yes
-
-GHC_VERSION =		9.2.7
-REVISION =		3
+GHC_VERSION =		9.2.8
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
@@ -85,7 +80,7 @@ GHC_ITEMS = \
 	DIRECTORY		1.3.6.2		 \
 	EXCEPTIONS		0.10.4		 \
 	FILEPATH		1.4.2.2		 \
-	GHC			9.2.7		 \
+	GHC			9.2.8		 \
 	GHC_BIGNUM		1.2		 \
 	GHC_COMPACT		0.1.0.0		 \
 	GHC_PRIM		0.8.0		 \
@@ -128,9 +123,10 @@ CONFIGURE_ARGS +=	--with-ffi-includes=${LOCALBASE}/include \
 
 CONFIGURE_ENV += SPHINXBUILD=${LOCALBASE}/bin/sphinx-build${MODPY_BIN_SUFFIX}
 
-GHC_CC_OPTS =		-Wl,--no-execute-only -Qunused-arguments \
-			-Wl,-z,nobtcfi
-CONFIGURE_ENV +=	CONF_GCC_LINKER_OPTS_STAGE0="${GHC_CC_OPTS}" \
+GHC_CC_OPTS =		-Qunused-arguments -Wl,-z,nobtcfi
+# Upstream bug: https://gitlab.haskell.org/ghc/ghc/-/issues/22782
+# Only necessary until new bootstrap is built.
+CONFIGURE_ENV +=	CONF_GCC_LINKER_OPTS_STAGE0="-Wl,--no-execute-only -Qunused-arguments ${GHC_CC_OPTS}" \
 			CONF_GCC_LINKER_OPTS_STAGE1="${GHC_CC_OPTS}" \
 			CONF_GCC_LINKER_OPTS_STAGE2="${GHC_CC_OPTS}" \
 			CONF_CC_OPTS_STAGE2="${GHC_CC_OPTS}"
