@@ -136,7 +136,7 @@ MODCABAL_INSTALL_TARGET += \
 		${MODCABAL_BUILT_EXECUTABLE_${_exe}} \
 		${PREFIX}/${_MODCABAL_LIBEXEC}/${_exe} \
 	&& echo '\#!/bin/sh' > ${PREFIX}/bin/${_exe} \
-	&& echo 'export ${_exe}_datadir=${LOCALBASE}/share/${DISTNAME}' >> ${PREFIX}/bin/${_exe} \
+	&& echo 'export ${MODCABAL_STEM}_datadir=${LOCALBASE}/share/${DISTNAME}' >> ${PREFIX}/bin/${_exe} \
 	&& echo 'exec ${LOCALBASE}/${_MODCABAL_LIBEXEC}/${_exe} "$$@"' >> ${PREFIX}/bin/${_exe} \
 	&& chmod +x ${STAGEDIR}${PREFIX}/bin/${_exe}
 .  else
