@@ -1,0 +1,3 @@
+Agda is a proof assistant and a dependently typed functional
+programming language with inductive families, such as the type of
+vectors of a given length.
