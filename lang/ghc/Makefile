@@ -76,34 +76,35 @@ pre-patch:
 # Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
 # ghc-heap and ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-	CABAL			3.6.3.0		 \
-	ARRAY			0.5.4.0		 \
-	BASE			4.16.4.0	 \
-	BINARY			0.8.9.0		 \
-	BYTESTRING		0.11.4.0	 \
-	CONTAINERS		0.6.5.1		 \
-	DEEPSEQ			1.4.6.1		 \
-	DIRECTORY		1.3.6.2		 \
-	EXCEPTIONS		0.10.4		 \
-	FILEPATH		1.4.2.2		 \
-	GHC			9.2.7		 \
-	GHC_BIGNUM		1.2		 \
+	CABAL			3.10.1.0	 \
+	ARRAY			0.5.5.0		 \
+	BASE			4.18.1.0	 \
+	BINARY			0.8.9.1		 \
+	BYTESTRING		0.11.5.2	 \
+	CONTAINERS		0.6.7		 \
+	DEEPSEQ			1.4.8.1		 \
+	DIRECTORY		1.3.8.1		 \
+	EXCEPTIONS		0.10.7		 \
+	FILEPATH		1.4.100.4	 \
+	GHC			9.6.3		 \
+	GHC_BIGNUM		1.3		 \
 	GHC_COMPACT		0.1.0.0		 \
-	GHC_PRIM		0.8.0		 \
-	HASKELINE		0.8.2		 \
-	HPC			0.6.1.0		 \
+	GHC_PRIM		0.10.0		 \
+	HASKELINE		0.8.2.1		 \
+	HPC			0.6.2.0		 \
 	INTEGER_GMP		1.1		 \
-	MTL			2.2.2		 \
-	PARSEC			3.1.15.0	 \
+	MTL			2.3.1		 \
+	PARSEC			3.1.16.1	 \
 	PRETTY			1.1.3.6		 \
-	PROCESS			1.6.16.0	 \
-	STM			2.5.0.2		 \
-	TEMPLATE-HASKELL	2.18.0.0	 \
-	TERMINFO		0.4.1.5		 \
-	TEXT			1.2.5.0		 \
-	TIME			1.11.1.1	 \
-	TRANSFORMERS		0.5.6.2		 \
-	UNIX			2.7.2.2		 \
+	PROCESS			1.6.17.0	 \
+	RTS			1.0.2		 \
+	STM			2.5.1.0		 \
+	TEMPLATE-HASKELL	2.20.0.0	 \
+	TERMINFO		0.4.1.6		 \
+	TEXT			2.0.2		 \
+	TIME			1.12.2		 \
+	TRANSFORMERS		0.6.1.0		 \
+	UNIX			2.8.1.0		 \
 	XHTML			3000.2.2.1
 
 .for _i _v in ${GHC_ITEMS}
@@ -175,7 +176,8 @@ post-patch:
 	done
 # - Build hadrian
 	cd ${WRKSRC} && \
-	${MODPY_BIN} hadrian/bootstrap/bootstrap.py -w ../bin/ghc -s ${FULLDISTDIR}/hadrian-sources-9.6.3.20220830.tar.gz
+	${MODPY_BIN} hadrian/bootstrap/bootstrap.py --no-archive -w ../bin/ghc \
+		-s ${FULLDISTDIR}/hadrian-sources-9.6.3.20220830.tar.gz
 
 do-build:
 	cd ${WRKSRC} && \
