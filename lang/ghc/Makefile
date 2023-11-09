@@ -13,8 +13,7 @@ USE_NOEXECONLY =	Yes
 
 USE_NOBTCFI =		Yes
 
-GHC_VERSION =		9.2.7
-REVISION =		5
+GHC_VERSION =		9.6.3
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
@@ -149,8 +148,8 @@ PORTHOME =		${WRKDIR}
 
 TEST_DEPENDS =	print/ghostscript/gnu ${MODPY_RUN_DEPENDS}
 
-post-extract:
-	cd ${WRKSRC} && ${AUTOCONF_ENV} ./boot
+#post-extract:
+#	cd ${WRKSRC} && ${AUTOCONF_ENV} ./boot
 
 BOOTSTRAP_SHLIBS =	${WRKDIR}/ghc-${BIN_VER}-shlibs-${MACHINE_ARCH}
 
@@ -171,9 +170,6 @@ post-patch:
 		echo 'LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \' && \
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
-	cp ${WRKSRC}/mk/build.mk{.sample,}
-	echo libraries/base_CONFIGURE_OPTS+=--configure-option=--with-libcharset=no >> ${WRKSRC}/mk/build.mk
-	echo HADDOCK_DOCS=YES >> ${WRKSRC}/mk/build.mk
 
 do-test:
 	ulimit -c 0 -n 1024 && \
