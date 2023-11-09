@@ -3,8 +3,10 @@ SHA256 (ghc/ghc-9.2.7.20220830-amd64-unknown-openbsd.tar.xz) = f+a2GdIJLJaEHbPo4
 SHA256 (ghc/ghc-9.6.3-src.tar.xz) = 383me0qlUKC4oam7gQWDXcmZ+tY5fM4z1y/VXSHrd/U=
 SHA256 (ghc/ghc-9.6.3-testsuite.tar.xz) = sPkleSiK3yMgIGYnJI2A0qv+Dhua0qIs+PiJu+aAZEg=
 SHA256 (ghc/ghc-rtd-update-70526f5bd8.diff) = maCALPRglB5J9LJEQxBqMGdVbH4qK2gqVuaU5xmYdNU=
+SHA256 (ghc/hadrian-sources-9.6.3.20220830.tar.gz) = po4no34k7Z86S5CYEmH8LB2XY8Lp2b1DAYC8OwRxFnE=
 SIZE (ghc/ghc-9.2.7.20220830-amd64-unknown-openbsd.tar.xz) = 51619892
 SIZE (ghc/ghc-9.2.7.20220830-shlibs-amd64.tar.gz) = 3542920
 SIZE (ghc/ghc-9.6.3-src.tar.xz) = 29346888
 SIZE (ghc/ghc-9.6.3-testsuite.tar.xz) = 7072964
 SIZE (ghc/ghc-rtd-update-70526f5bd8.diff) = 4245853
+SIZE (ghc/hadrian-sources-9.6.3.20220830.tar.gz) = 1509610

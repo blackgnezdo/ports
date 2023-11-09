@@ -21,10 +21,10 @@ HOMEPAGE =		https://www.haskell.org/ghc/
 # Version of the precompiled binaries
 BIN_VER =		9.2.7.20220830
 
-# lang/python needed for regression tests.
+# lang/python needed to bootstrap hadrian.
 MODULES =		lang/python
 
-MODPY_BUILDDEP =	No
+MODPY_BUILDDEP =	Yes
 MODPY_RUNDEP =		No
 
 # BSD w/o advertising clause.
@@ -57,6 +57,9 @@ SUPDISTFILES.boot +=	${BINDISTFILE-$m}
 DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
+
+DISTFILES.noextract =	hadrian-sources-9.6.3.20220830.tar.gz
+SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 # sphinx-rtd-theme update patch set
 # mirrored from https://gitlab.haskell.org/ghc/ghc/-/commit/70526f5bd8886126f49833ef20604a2c6477780a.patch
@@ -170,6 +173,21 @@ post-patch:
 		echo 'LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \' && \
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
+	# - Build hadrian
+	cd ${WRKSRC} && \
+	${MODPY_BIN} hadrian/bootstrap/bootstrap.py -w ../bin/ghc -s ${FULLDISTDIR}/hadrian-sources-9.6.3.20220830.tar.gz
+
+do-build:
+	cd ${WRKSRC} && \
+	_build/bin/hadrian '*.*.ghc.link.opts+=-optl-Wl,--no-execute-only' \
+		'*.*.ghc.link.opts+=-optl-Qunused-arguments' \
+		'*.*.ghc.link.opts+=-L/usr/local/lib' \
+		--docs=none \
+		--flavour=release \
+		--compact \
+		--no-color \
+		--build-root=${WRKDIR}/build \
+		--jobs=${MAKE_JOBS} binary-dist-dir
 
 do-test:
 	ulimit -c 0 -n 1024 && \
@@ -220,6 +238,7 @@ _bootstrap_finish:
 	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
 	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
-	pax -wzf ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+	pax -wzf ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,} && \
+	hadrian/bootstrap/bootstrap.py -w ../bin/ghc -s hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}.tar.gz
 
 .include <bsd.port.mk>
