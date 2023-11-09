@@ -20,7 +20,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		8.10.7.20231222
+BIN_VER =		9.2.7.20220830
 
 # lang/python needed for regression tests.
 MODULES =		lang/python
@@ -206,7 +206,7 @@ bootstrap: patch
 
 	env CONFIGURE_ENV=RELEASE=NO ${MAKE} configure
 
-	${MAKE} build ALL_TARGET="all binary-dist" \
+	${MAKE} build -j $(MAKE_JOBS) ALL_TARGET="all binary-dist" \
 		AUTOCONF_VERSION=${AUTOCONF_VERSION} AUTOMAKE_VERSION=${AUTOMAKE_VERSION}
 
 	$(_PBUILD) $(MAKE) _bootstrap_finish
