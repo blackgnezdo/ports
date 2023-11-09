@@ -215,8 +215,11 @@ _bootstrap_prepare:
 	cp ${FILESDIR}/bootstrap.mk ${WRKSRC}/mk/build.mk
 	echo ${BOOTSTRAP_DATE} > ${WRKSRC}/VERSION_DATE
 
+# The library dance is due to $ORIGIN being incorrect. It's fixed in
+# newer versions of GHC, but needed for the time being.
 _bootstrap_finish:
 	mkdir -p ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	env LD_LIBRARY_PATH=$$(find ${WRKBUILD} -name 'lib*.so' | while read s; do dirname $$s; done | sort -u | while read r; do printf "$$r:"; done) \
 	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
 	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
 	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
