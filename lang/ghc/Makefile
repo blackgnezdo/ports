@@ -58,7 +58,7 @@ DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES.noextract =	hadrian-sources-9.6.3.20220830.tar.gz
+DISTFILES.noextract =	hadrian-sources-${GHC_VERSION}.20220830.tar.gz
 SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 # sphinx-rtd-theme update patch set
@@ -151,8 +151,8 @@ PORTHOME =		${WRKDIR}
 
 TEST_DEPENDS =	print/ghostscript/gnu ${MODPY_RUN_DEPENDS}
 
-#post-extract:
-#	cd ${WRKSRC} && ${AUTOCONF_ENV} ./boot
+post-extract:
+	cd ${WRKSRC} && ${AUTOCONF_ENV} ${MODPY_BIN} ./boot.source
 
 BOOTSTRAP_SHLIBS =	${WRKDIR}/ghc-${BIN_VER}-shlibs-${MACHINE_ARCH}
 
@@ -173,21 +173,26 @@ post-patch:
 		echo 'LD_LIBRARY_PATH=${BOOTSTRAP_SHLIBS} \' && \
 		printf 'exec ${WRKDIR}/bootstrap/bin/%s "$$@"\n' "$$f"; \
 	done
-	# - Build hadrian
+# - Build hadrian
 	cd ${WRKSRC} && \
 	${MODPY_BIN} hadrian/bootstrap/bootstrap.py -w ../bin/ghc -s ${FULLDISTDIR}/hadrian-sources-9.6.3.20220830.tar.gz
 
 do-build:
 	cd ${WRKSRC} && \
+	${AUTOCONF_ENV} \
 	_build/bin/hadrian '*.*.ghc.link.opts+=-optl-Wl,--no-execute-only' \
 		'*.*.ghc.link.opts+=-optl-Qunused-arguments' \
 		'*.*.ghc.link.opts+=-L/usr/local/lib' \
 		--docs=none \
 		--flavour=release \
-		--compact \
 		--no-color \
-		--build-root=${WRKDIR}/build \
-		--jobs=${MAKE_JOBS} binary-dist-dir
+		--jobs=${MAKE_JOBS} \
+		binary-dist-dir
+
+do-install:
+	cd ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}-x86_64-unknown-openbsd/ && \
+	CONFIGURE_ENV=${CONFIGURE_ENV}  ./configure && \
+	env -i ${MAKE_ENV} ${FAKE_SETUP} ${MAKE_PROGRAM} ${ALL_FAKE_FLAGS} -f ${MAKE_FILE} ${FAKE_TARGET}
 
 do-test:
 	ulimit -c 0 -n 1024 && \
