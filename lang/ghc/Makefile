@@ -19,7 +19,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		9.2.7.20220830
+BIN_VER =		9.6.3.20231113
 
 # lang/python needed to bootstrap hadrian.
 MODULES =		lang/python
@@ -49,7 +49,7 @@ SITES.boot =		https://openbsd.dead-parrot.de/distfiles/
 DIST_SUBDIR =		ghc
 
 .for m in amd64
-BINDISTFILE-$m =	ghc-${BIN_VER}-$m-unknown-openbsd.tar.xz \
+BINDISTFILE-$m =	ghc-${BIN_VER}-$m.tar.xz \
 			ghc-${BIN_VER}-shlibs-$m.tar.gz
 SUPDISTFILES.boot +=	${BINDISTFILE-$m}
 .endfor
@@ -58,7 +58,7 @@ DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES.noextract =	hadrian-sources-${GHC_VERSION}.20220830.tar.gz
+DISTFILES.noextract =	hadrian-sources-${BIN_VER}.tar.gz
 SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 # sphinx-rtd-theme update patch set
@@ -177,8 +177,7 @@ post-patch:
 # - Build hadrian
 	cd ${WRKSRC} && \
 	${MODPY_BIN} hadrian/bootstrap/bootstrap.py --no-archive -w ../bin/ghc \
-		-s ${FULLDISTDIR}/hadrian-sources-9.6.3.20220830.tar.gz
-
+		-s ${FULLDISTDIR}/hadrian-sources-${BIN_VER}.tar.gz
 do-build:
 	cd ${WRKSRC} && \
 	${AUTOCONF_ENV} \
