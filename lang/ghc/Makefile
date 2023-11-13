@@ -186,13 +186,14 @@ do-build:
 		'*.*.ghc.link.opts+=-optl-Qunused-arguments' \
 		'*.*.ghc.link.opts+=-L/usr/local/lib' \
 		--docs=none \
-		--flavour=release \
+		--flavour=release${TRANSFORMER} \
 		--no-color \
 		--jobs=${MAKE_JOBS} \
 		binary-dist-dir
+	ln -sf ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}{-x86_64-unknown-openbsd,}
 
 do-install:
-	cd ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}-x86_64-unknown-openbsd/ && \
+	cd ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION} && \
 	CONFIGURE_ENV=${CONFIGURE_ENV}  ./configure && \
 	env -i ${MAKE_ENV} ${FAKE_SETUP} ${MAKE_PROGRAM} ${ALL_FAKE_FLAGS} -f ${MAKE_FILE} ${FAKE_TARGET}
 
@@ -203,49 +204,35 @@ do-test:
 		${MAKE_PROGRAM} ${MAKE_FLAGS} \
 		PYTHON="${MODPY_BIN}"
 
-
-
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20220830
+BOOTSTRAP_DATE =	20231113
 
-# Create a bootstrapper. This compiles a stripped-down version of
-# ghc and creates a `bindist', i.e. a tarball with binaries that
-# can be used for bootstrapping.
-bootstrap: patch
-	@if [ ! -x ${LOCALBASE}/bin/autoconf-${AUTOCONF_VERSION} ]; then \
-		echo Please install autoconf-${AUTOCONF_VERSION}.; \
-		false; \
-	fi
-	@if [ ! -x ${LOCALBASE}/bin/automake-${AUTOMAKE_VERSION} ]; then \
-		echo Please install automake-${AUTOMAKE_VERSION}; \
-		false; \
-	fi
-
-	$(_PBUILD) $(MAKE) _bootstrap_prepare
-
-	env CONFIGURE_ENV=RELEASE=NO ${MAKE} configure
-
-	${MAKE} build -j $(MAKE_JOBS) ALL_TARGET="all binary-dist" \
-		AUTOCONF_VERSION=${AUTOCONF_VERSION} AUTOMAKE_VERSION=${AUTOMAKE_VERSION}
-
+# Create a bootstrapper. This compiles a stripped-down version of ghc
+# and creates a `bindist', i.e. a tarball with binaries that can be
+# used for bootstrapping. Additionally it builds a bundle of required
+# shared libraries and the sources required for building hadrian.
+bootstrap:
+	$(MAKE) rebuild 'TRANSFORMER=+no_profiled_libs'
 	$(_PBUILD) $(MAKE) _bootstrap_finish
+	${MODPY_BIN} ${WRKSRC}/hadrian/bootstrap/bootstrap.py -w ${WRKSRC}/_build/stage1/bin/ghc \
+		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-${GHC_VERSION:S/./_/g:S/3/2/}.json fetch \
+		-o hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}
+	ln -sf ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}*.?z .
+	@sha256 -b *.?z
+	@perl -e 'for (@ARGV) { $$s = (stat $$_)[7]; print "SIZE (ghc/$$_) = $$s\n"; }' *.?z
 
-_bootstrap_prepare:
-	cp ${FILESDIR}/bootstrap.mk ${WRKSRC}/mk/build.mk
-	echo ${BOOTSTRAP_DATE} > ${WRKSRC}/VERSION_DATE
-
-# The library dance is due to $ORIGIN being incorrect. It's fixed in
-# newer versions of GHC, but needed for the time being.
 _bootstrap_finish:
 	mkdir -p ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
-	env LD_LIBRARY_PATH=$$(find ${WRKBUILD} -name 'lib*.so' | while read s; do dirname $$s; done | sort -u | while read r; do printf "$$r:"; done) \
-	ldd ${WRKBUILD}/ghc/stage2/build/tmp/ghc-stage2 | \
-	awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
-	xargs -J % cp -p % ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
+	ldd ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}/bin/ghc | \
+		awk '$$NF ~ /^\/usr\/(local\/)?lib\// { print $$NF }' | \
+		xargs -J % cp -fp % ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s)
 	cd ${WRKBUILD} && \
-	pax -wzf ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,} && \
-	hadrian/bootstrap/bootstrap.py -w ../bin/ghc -s hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}.tar.gz
+		pax -wzf ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-shlibs-$$(arch -s){.tar.gz,}
+	cd ${WRKSRC}/_build/bindist && \
+		ln -sf ghc-${GHC_VERSION}{,.${BOOTSTRAP_DATE}} && \
+		pax -w ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}/* | \
+		xz -9 > ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}-$$(arch -s).tar.xz
 
 .include <bsd.port.mk>
