@@ -1,14 +1,14 @@
-Avoid -qg incompatible with 9.2 runtime
+Part of fa97703474602a079f63e3be4bd48695de33a60d for newer Cabal
 
 Index: hadrian/hadrian.cabal
 --- hadrian/hadrian.cabal.orig
 +++ hadrian/hadrian.cabal
-@@ -180,7 +180,7 @@ executable hadrian
-                        --        waiting for external processes
-                        -- * -qg: Don't use parallel GC as the synchronization
-                        --        time tends to eat any benefit.
--                       "-with-rtsopts=-I0 -qg"
-+                       "-with-rtsopts=-I0"
-                        -threaded
- 
-     if flag(selftest)
+@@ -151,7 +151,7 @@ executable hadrian
+                        , TypeOperators
+     other-extensions:    MultiParamTypeClasses
+                        , TypeFamilies
+-    build-depends:       Cabal                >= 3.2     && < 3.9
++    build-depends:       Cabal                >= 3.10    && < 3.11
+                        , base                 >= 4.11    && < 5
+                        , bytestring           >= 0.10    && < 0.13
+                        , containers           >= 0.5     && < 0.7

@@ -19,7 +19,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		9.6.4.20240321
+BIN_VER =		9.8.2.20240427
 
 # lang/python needed to bootstrap hadrian.
 MODULES =		lang/python
@@ -58,7 +58,7 @@ DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES.noextract =	hadrian-sources-9.6.4.20240426.tar.gz
+DISTFILES.noextract =	hadrian-sources-${BIN_VER}.tar.gz
 SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 EXTRACT_ONLY =		${DISTFILES} ${DISTFILES.boot}
@@ -162,7 +162,7 @@ post-patch:
 # - Build hadrian
 	cd ${WRKSRC} && \
 	${MODPY_BIN} hadrian/bootstrap/bootstrap.py --no-archive -w ../bin/ghc \
-		-s ${FULLDISTDIR}/hadrian-sources-9.6.4.20240426.tar.gz
+		-s ${FULLDISTDIR}/hadrian-sources-${BIN_VER}.tar.gz
 
 HADRIAN = \
 	env -i ${AUTOCONF_ENV} ${MAKE_ENV} \
