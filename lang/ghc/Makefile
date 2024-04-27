@@ -202,7 +202,7 @@ bootstrap:
 	$(MAKE) rebuild 'TRANSFORMER=+no_profiled_libs'
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 	${MODPY_BIN} ${WRKSRC}/hadrian/bootstrap/bootstrap.py -w ${WRKSRC}/_build/stage1/bin/ghc \
-		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-${GHC_VERSION:S/./_/g:S/5/2/}.json fetch \
+		-d ${FILESDIR}/plan-bootstrap-9_8_1.json fetch \
 		-o hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}
 	ln -sf ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}*.?z .
 	@sha256 -b *.?z
