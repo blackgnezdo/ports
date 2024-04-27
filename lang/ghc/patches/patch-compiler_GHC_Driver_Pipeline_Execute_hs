@@ -1,7 +1,7 @@
 Index: compiler/GHC/Driver/Pipeline/Execute.hs
 --- compiler/GHC/Driver/Pipeline/Execute.hs.orig
 +++ compiler/GHC/Driver/Pipeline/Execute.hs
-@@ -1126,7 +1126,7 @@ via gcc.
+@@ -1107,7 +1107,7 @@ via gcc.
  -- | See Note [Object merging].
  joinObjectFiles :: HscEnv -> [FilePath] -> FilePath -> IO ()
  joinObjectFiles hsc_env o_files output_fn

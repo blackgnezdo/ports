@@ -13,12 +13,10 @@ USE_NOEXECONLY =	Yes
 
 USE_NOBTCFI =		Yes
 
-GHC_VERSION =		9.6.5
-REVISION =		0
+GHC_VERSION =		9.8.2
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
-REVISION =		0
 
 # Version of the precompiled binaries
 BIN_VER =		9.6.4.20240321
@@ -60,7 +58,7 @@ DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES.noextract =	hadrian-sources-${BIN_VER}.tar.gz
+DISTFILES.noextract =	hadrian-sources-9.6.4.20240426.tar.gz
 SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 EXTRACT_ONLY =		${DISTFILES} ${DISTFILES.boot}
@@ -68,32 +66,33 @@ EXTRACT_ONLY =		${DISTFILES} ${DISTFILES.boot}
 # Substvars for all libraries, assuming that ghc-boot, ghc-boot-th,
 # ghc-heap and ghci will always have the same version number as ghc.
 GHC_ITEMS = \
-	CABAL			3.10.3.0	 \
+	CABAL			3.10.2.0	 \
 	ARRAY			0.5.6.0		 \
-	BASE			4.18.2.1	 \
+	BASE			4.19.1.0	 \
 	BINARY			0.8.9.1		 \
-	BYTESTRING		0.11.5.3	 \
-	CONTAINERS		0.6.7		 \
-	DEEPSEQ			1.4.8.1		 \
-	DIRECTORY		1.3.8.4		 \
+	BYTESTRING		0.12.1.0	 \
+	CONTAINERS		0.6.8		 \
+	DEEPSEQ			1.5.0.0		 \
+	DIRECTORY		1.3.8.1		 \
 	EXCEPTIONS		0.10.7		 \
-	FILEPATH		1.4.300.1	 \
-	GHC			9.6.5		 \
+	FILEPATH		1.4.200.1	 \
+	GHC			9.8.2		 \
 	GHC_BIGNUM		1.3		 \
 	GHC_COMPACT		0.1.0.0		 \
-	GHC_PRIM		0.10.0		 \
+	GHC_PRIM		0.11.0		 \
 	HASKELINE		0.8.2.1		 \
-	HPC			0.6.2.0		 \
+	HPC			0.7.0.0		 \
 	INTEGER_GMP		1.1		 \
 	MTL			2.3.1		 \
-	PARSEC			3.1.16.1	 \
+	PARSEC			3.1.17.0	 \
 	PRETTY			1.1.3.6		 \
-	PROCESS			1.6.19.0	 \
+	PROCESS			1.6.18.0	 \
 	RTS			1.0.2		 \
-	STM			2.5.1.0		 \
-	TEMPLATE-HASKELL	2.20.0.0	 \
+	SEMAPHORE-COMPAT	1.0.0 		 \
+	STM			2.5.2.1		 \
+	TEMPLATE-HASKELL	2.21.0.0	 \
 	TERMINFO		0.4.1.6		 \
-	TEXT			2.0.2		 \
+	TEXT			2.1.1		 \
 	TIME			1.12.2		 \
 	TRANSFORMERS		0.6.1.0		 \
 	UNIX			2.8.4.0		 \
@@ -163,7 +162,7 @@ post-patch:
 # - Build hadrian
 	cd ${WRKSRC} && \
 	${MODPY_BIN} hadrian/bootstrap/bootstrap.py --no-archive -w ../bin/ghc \
-		-s ${FULLDISTDIR}/hadrian-sources-${BIN_VER}.tar.gz
+		-s ${FULLDISTDIR}/hadrian-sources-9.6.4.20240426.tar.gz
 
 HADRIAN = \
 	env -i ${AUTOCONF_ENV} ${MAKE_ENV} \
@@ -193,7 +192,7 @@ do-test:
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20240321
+BOOTSTRAP_DATE =	20240427
 
 # Create a bootstrapper. This compiles a stripped-down version of ghc
 # and creates a `bindist', i.e. a tarball with binaries that can be
@@ -203,7 +202,7 @@ bootstrap:
 	$(MAKE) rebuild 'TRANSFORMER=+no_profiled_libs'
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 	${MODPY_BIN} ${WRKSRC}/hadrian/bootstrap/bootstrap.py -w ${WRKSRC}/_build/stage1/bin/ghc \
-		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-${GHC_VERSION:S/./_/g:S/4/2/}.json fetch \
+		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-${GHC_VERSION:S/./_/g:S/5/2/}.json fetch \
 		-o hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}
 	ln -sf ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}*.?z .
 	@sha256 -b *.?z
