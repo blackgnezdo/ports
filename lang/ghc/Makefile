@@ -19,7 +19,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		9.8.2.20240427
+BIN_VER =		9.8.2.20240519
 
 # lang/python needed to bootstrap hadrian.
 MODULES =		lang/python
@@ -192,7 +192,7 @@ do-test:
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20240427
+BOOTSTRAP_DATE = 20240519
 
 # Create a bootstrapper. This compiles a stripped-down version of ghc
 # and creates a `bindist', i.e. a tarball with binaries that can be
@@ -202,7 +202,7 @@ bootstrap:
 	$(MAKE) rebuild 'TRANSFORMER=+no_profiled_libs'
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 	${MODPY_BIN} ${WRKSRC}/hadrian/bootstrap/bootstrap.py -w ${WRKSRC}/_build/stage1/bin/ghc \
-		-d ${FILESDIR}/plan-bootstrap-9_8_1.json fetch \
+		-d ${FILESDIR}/plan-bootstrap-9_8_2.json fetch \
 		-o hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}
 	ln -sf ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}*.?z .
 	@sha256 -b *.?z

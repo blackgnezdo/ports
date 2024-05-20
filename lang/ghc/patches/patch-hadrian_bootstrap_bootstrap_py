@@ -1,48 +1,13 @@
 Quick hack to avoid rebuilding bootstrap. We can do better by not munging VERSION.
-A couple of hunk are straight from 2f66da16a2c7260f81dbb8b4e7e8449da9d1134
-and one more written to make things actually work.
 
 Index: hadrian/bootstrap/bootstrap.py
 --- hadrian/bootstrap/bootstrap.py.orig
 +++ hadrian/bootstrap/bootstrap.py
-@@ -149,8 +149,8 @@ def read_bootstrap_info(path: Path) -> BootstrapInfo:
+@@ -149,7 +149,5 @@ def read_bootstrap_info(path: Path) -> BootstrapInfo:
      return BootstrapInfo(dependencies=deps, builtin=builtin)
  
  def check_builtin(dep: BuiltinDep, ghc: Compiler) -> None:
 -    subprocess_run([str(ghc.ghc_pkg_path), 'describe', f'{dep.package}-{dep.version}'],
 -                   check=True, stdout=subprocess.DEVNULL)
-+#    subprocess_run([str(ghc.ghc_pkg_path), 'describe', f'{dep.package}-{dep.version}.20220830'],
-+#                   check=True, stdout=subprocess.DEVNULL)
      print(f'Using {dep.package}-{dep.version} from GHC...')
      return
- 
-@@ -175,6 +175,10 @@ def resolve_dep(dep : BootstrapDep) -> Path:
-     elif dep.source == PackageSource.LOCAL:
-         if dep.package == 'hadrian':
-             sdist_dir = Path(sys.path[0]).parent.resolve()
-+        elif dep.package == 'ghc-toolchain':
-+            sdist_dir = Path(sys.path[0]).parent.parent.resolve() / f'utils' / f'ghc-toolchain'
-+        elif dep.package == 'ghc-platform':
-+            sdist_dir = Path(sys.path[0]).parent.parent.resolve() / f'libraries' / f'ghc-platform'
-         else:
-             raise ValueError(f'Unknown local package {dep.package}')
-     return sdist_dir
-@@ -248,7 +252,8 @@ def bootstrap(info: BootstrapInfo, ghc: Compiler) -> N
-         check_builtin(dep, ghc)
- 
-     for dep in info.dependencies:
--        install_dep(dep, ghc)
-+        if not dep.package in ['ghc-platform', 'ghc-toolchain']:
-+            install_dep(dep, ghc)
- 
- # Steps
- #######################################################################
-@@ -341,7 +346,7 @@ def fetch_from_plan(plan : FetchPlan, output_dir : Pat
- def gen_fetch_plan(info : BootstrapInfo) -> FetchPlan :
-     sources_dict = {}
-     for dep in info.dependencies:
--      if dep.package != 'hadrian':
-+      if not dep.package in ['hadrian', 'ghc-platform', 'ghc-toolchain']:
-         sources_dict[f"{dep.package}-{dep.version}.tar.gz"] = FetchInfo(package_url(dep.package, dep.version), dep.src_sha256)
-         if dep.revision is not None:
-           sources_dict[f"{dep.package}.cabal"] = FetchInfo(package_cabal_url(dep.package, dep.version, dep.revision), dep.cabal_sha256)
