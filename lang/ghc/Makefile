@@ -13,12 +13,10 @@ USE_NOEXECONLY =	Yes
 
 USE_NOBTCFI =		Yes
 
-GHC_VERSION =		9.6.5
-REVISION =		0
+GHC_VERSION =		9.6.6
 DISTNAME =		ghc-${GHC_VERSION}
 CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
-REVISION =		0
 
 # Version of the precompiled binaries
 BIN_VER =		9.6.4.20240321
@@ -75,10 +73,10 @@ GHC_ITEMS = \
 	BYTESTRING		0.11.5.3	 \
 	CONTAINERS		0.6.7		 \
 	DEEPSEQ			1.4.8.1		 \
-	DIRECTORY		1.3.8.4		 \
+	DIRECTORY		1.3.8.5		 \
 	EXCEPTIONS		0.10.7		 \
 	FILEPATH		1.4.300.1	 \
-	GHC			9.6.5		 \
+	GHC			9.6.6		 \
 	GHC_BIGNUM		1.3		 \
 	GHC_COMPACT		0.1.0.0		 \
 	GHC_PRIM		0.10.0		 \
