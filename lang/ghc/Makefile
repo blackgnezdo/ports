@@ -19,7 +19,7 @@ CATEGORIES =		lang devel
 HOMEPAGE =		https://www.haskell.org/ghc/
 
 # Version of the precompiled binaries
-BIN_VER =		9.6.6.20240708
+BIN_VER =		9.8.3.20241111
 
 # lang/python needed to bootstrap hadrian.
 MODULES =		lang/python
@@ -58,7 +58,7 @@ DISTFILES =		ghc-${GHC_VERSION}-src.tar.xz \
 			ghc-${GHC_VERSION}-testsuite.tar.xz
 DISTFILES.boot = 	${BINDISTFILE-${MACHINE_ARCH}}
 
-DISTFILES.noextract =	hadrian-sources.tar.gz
+DISTFILES.noextract =	hadrian-sources-${BIN_VER}.tar.gz
 SITES.noextract =	https://openbsd.dead-parrot.de/distfiles/
 
 EXTRACT_ONLY =		${DISTFILES} ${DISTFILES.boot}
@@ -162,7 +162,8 @@ post-patch:
 # - Build hadrian
 	cd ${WRKSRC} && \
 	${MODPY_BIN} hadrian/bootstrap/bootstrap.py --no-archive -w ../bin/ghc \
-		-s ${FULLDISTDIR}/hadrian-sources.tar.gz
+		-s ${FULLDISTDIR}/hadrian-sources-${BIN_VER}.tar.gz
+
 
 HADRIAN = \
 	env -i ${AUTOCONF_ENV} ${MAKE_ENV} \
@@ -192,7 +193,7 @@ do-test:
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
 # bootstrappers have to be built.
-BOOTSTRAP_DATE =	20240708
+BOOTSTRAP_DATE =	20241111
 
 # Create a bootstrapper. This compiles a stripped-down version of ghc
 # and creates a `bindist', i.e. a tarball with binaries that can be
@@ -202,7 +203,7 @@ bootstrap:
 	$(MAKE) rebuild 'TRANSFORMER=+no_profiled_libs'
 	$(_PBUILD) $(MAKE) _bootstrap_finish
 	${MODPY_BIN} ${WRKSRC}/hadrian/bootstrap/bootstrap.py -w ${WRKSRC}/_build/stage1/bin/ghc \
-		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-9_6_2.json fetch \
+		-d ${WRKSRC}/hadrian/bootstrap/plan-bootstrap-9_8_2.json fetch \
 		-o hadrian-sources-${GHC_VERSION}.${BOOTSTRAP_DATE}
 	ln -sf ${WRKBUILD}/ghc-${GHC_VERSION}.${BOOTSTRAP_DATE}*.?z .
 	@sha256 -b *.?z
