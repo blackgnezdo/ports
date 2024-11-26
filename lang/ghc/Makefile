@@ -127,11 +127,6 @@ CONFIGURE_ENV +=	CONF_GCC_LINKER_OPTS_STAGE0="${GHC_CC_OPTS}" \
 			CONF_GCC_LINKER_OPTS_STAGE2="${GHC_CC_OPTS}" \
 			CONF_CC_OPTS_STAGE2="${GHC_CC_OPTS}"
 
-MAKE_FLAGS +=		StripLibraries=YES \
-			INSTALL_BIN_OPTS=-s \
-			HSCOLOUR_SRCS=NO \
-			BUILD_SPHINX_PDF=NO
-
 # haddock: ... <stdout>: commitBuffer: invalid argument (invalid character)
 MAKE_ENV +=	LC_ALL=en_US.UTF-8
 
