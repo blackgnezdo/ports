@@ -1,5 +1,5 @@
 # Not yet ported to other architectures (i386 bootstrap recipe is broken).
-ONLY_FOR_ARCHS =	amd64
+ONLY_FOR_ARCHS =	amd64 arm64
 
 COMMENT =		compiler for the functional language Haskell
 
@@ -48,7 +48,7 @@ SITES.boot =		https://openbsd.dead-parrot.de/distfiles/
 
 DIST_SUBDIR =		ghc
 
-.for m in amd64
+.for m in amd64 aarch64
 BINDISTFILE-$m =	ghc-${BIN_VER}-$m.tar.xz \
 			ghc-${BIN_VER}-shlibs-$m.tar.gz
 SUPDISTFILES.boot +=	${BINDISTFILE-$m}
@@ -170,6 +170,7 @@ HADRIAN = \
 	_build/bin/hadrian '*.*.ghc.link.opts+=-optl-Wl,--no-execute-only' \
 	'*.*.ghc.link.opts+=-optl-Qunused-arguments' \
 	'*.*.ghc.link.opts+=-L/usr/local/lib' \
+	'*.rts.ghc.c.opts+=-optc-fno-ret-protector' \
 	--docs=none \
 	--flavour=release${TRANSFORMER} \
 	--no-color \
@@ -178,7 +179,7 @@ HADRIAN = \
 do-build:
 	cd ${WRKSRC} && \
 	${HADRIAN} binary-dist-dir
-	ln -sf ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}{-x86_64-unknown-openbsd,}
+	ln -sf ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}{-*-unknown-openbsd,}
 
 do-install:
 	cd ${WRKSRC}/_build/bindist/ghc-${GHC_VERSION} && \
@@ -188,7 +189,7 @@ do-install:
 do-test:
 	ln -sf /usr/bin/false ${WRKDIR}/bin/git
 	cd ${WRKSRC} && \
-	ulimit -s 8192 -d 10485760 -n 1024 && env  ${HADRIAN} test
+	ulimit -s 8192 -d 10485760 -n 1024 && env ${HADRIAN} test
 
 # It doesn't matter whether this is the actual date of the bootstrapper
 # build. It's just used to get different distfiles whenever new
