@@ -3,8 +3,7 @@ BROKEN-sparc64 = libsingle_line_formatter.jar failed: Worker process did not ret
 # ./src/tools/singlejar/mapped_file_posix.inc only supports 64-bit UNIX.
 ONLY_FOR_ARCHS =	${LP64_ARCHS}
 
-VERSION =		6.3.2
-REVISION =		2
+VERSION =		7.5.0
 
 COMMENT =		polyglot build tool
 HOMEPAGE =		https://bazel.build/
@@ -28,7 +27,7 @@ ABSEIL_VER =		20230802.1
 DIST_TUPLE =		github abseil abseil-cpp ${ABSEIL_VER} .
 
 MODULES =		java lang/python
-MODJAVA_VER =		11
+MODJAVA_VER =		21
 
 BUILD_DEPENDS =		archivers/zip \
 			shells/bash
@@ -42,10 +41,13 @@ INSTALL_STRIP =
 MAKE_ENV =		VERBOSE=yes
 
 # The bundled version of abseil is from 2021 and isn't compatible with clang-16.
-# It also needs some patches we copy from devel/abseil.
+# It also needs some patches we copy from devel/abseil. The local CAM is an extra
+# bit of joy.
+ABSEIL_DIR = ${WRKSRC}/derived/repository_cache/content_addressable/sha256/987ce98f02eefbaf930d6e38ab16aa05737234d7afbab2d5c4ea7adbe50c28ed
 post-patch:
+	mkdir -p ${ABSEIL_DIR}
 	cp ${FULLDISTDIR}/abseil-abseil-cpp-${ABSEIL_VER}.tar.gz \
-		${WRKSRC}/derived/distdir/${ABSEIL_VER}.tar.gz
+		${ABSEIL_DIR}/file
 	mkdir ${WRKSRC}/third_party/abseil
 	cp ${FILESDIR}/patch-absl* ${WRKSRC}/third_party/abseil
 

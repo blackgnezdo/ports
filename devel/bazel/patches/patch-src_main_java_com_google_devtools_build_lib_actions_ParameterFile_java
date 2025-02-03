@@ -10,7 +10,7 @@ https://stackoverflow.com/questions/41265266/how-to-solve-inaccessibleobjectexce
 Index: src/main/java/com/google/devtools/build/lib/actions/ParameterFile.java
 --- src/main/java/com/google/devtools/build/lib/actions/ParameterFile.java.orig
 +++ src/main/java/com/google/devtools/build/lib/actions/ParameterFile.java
-@@ -116,11 +116,6 @@ public class ParameterFile {
+@@ -115,11 +115,6 @@ public class ParameterFile {
  
    private static void writeContent(
        OutputStream outputStream, Iterable<String> arguments, Charset charset) throws IOException {
@@ -22,7 +22,7 @@ Index: src/main/java/com/google/devtools/build/lib/actions/ParameterFile.java
        // Generic charset support
        OutputStreamWriter out = new OutputStreamWriter(outputStream, charset);
        for (String line : arguments) {
-@@ -128,7 +123,6 @@ public class ParameterFile {
+@@ -127,7 +122,6 @@ public class ParameterFile {
          out.write('\n');
        }
        out.flush();

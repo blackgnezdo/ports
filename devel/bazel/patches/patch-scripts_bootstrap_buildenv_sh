@@ -1,0 +1,13 @@
+Keep the temp directory for debug.
+
+Index: scripts/bootstrap/buildenv.sh
+--- scripts/bootstrap/buildenv.sh.orig
++++ scripts/bootstrap/buildenv.sh
+@@ -177,7 +177,6 @@ function tempdir() {
+   mkdir -p "${DIR}"
+   local DIRBASE=$(basename "${DIR}")
+   eval "cleanup_tempdir_${DIRBASE}() { rm -rf '${DIR}' >&/dev/null || true ; }"
+-  atexit cleanup_tempdir_${DIRBASE}
+   NEW_TMPDIR="${DIR}"
+ }
+ tempdir

@@ -1,4 +1,4 @@
 SHA256 (abseil-abseil-cpp-20230802.1.tar.gz) = mHzpjwLu+6+TDW44qxaqBXNyNNevurLVxOp62+UMKO0=
-SHA256 (bazel-6.3.2-dist.zip) = jNf+rFgZO+K8ukUbpmiKRoJNN8pjWf9Y4NROuY8EKUg=
+SHA256 (bazel-7.5.0-dist.zip) = nT2bdM88u6BAGHTDofcO/GUxh400FGsi1P0gknbvr90=
 SIZE (abseil-abseil-cpp-20230802.1.tar.gz) = 2157158
-SIZE (bazel-6.3.2-dist.zip) = 205660977
+SIZE (bazel-7.5.0-dist.zip) = 275608436

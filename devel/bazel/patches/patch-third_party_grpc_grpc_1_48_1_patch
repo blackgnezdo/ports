@@ -2,9 +2,9 @@ Remove unused cares with more gusto
 
 Add a missing include causing grpc to fail building due to missing type definitions.
 
-Index: third_party/grpc/grpc_1.47.0.patch
---- third_party/grpc/grpc_1.47.0.patch.orig
-+++ third_party/grpc/grpc_1.47.0.patch
+Index: third_party/grpc/grpc_1.48.1.patch
+--- third_party/grpc/grpc_1.48.1.patch.orig
++++ third_party/grpc/grpc_1.48.1.patch
 @@ -11,6 +11,26 @@ index 7bb6b8bdb9..7644107b70 100644
  
   # The set of pollers to test against if a test exercises polling
