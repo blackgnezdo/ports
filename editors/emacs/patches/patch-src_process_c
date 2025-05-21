@@ -1,0 +1,18 @@
+
+XXX debug helper
+
+Index: src/process.c
+--- src/process.c.orig
++++ src/process.c
+@@ -5770,7 +5770,10 @@ wait_reading_process_output (intmax_t time_limit, int 
+ 	  if (xerrno == EINTR)
+ 	    no_avail = 1;
+ 	  else if (xerrno == EBADF)
+-	    emacs_abort ();
++            {
++              report_file_errno ("Failed select", Qnil, xerrno);
++              emacs_abort ();
++            }
+ 	  else
+ 	    report_file_errno ("Failed select", Qnil, xerrno);
+ 	}
