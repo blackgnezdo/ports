@@ -1,10 +1,10 @@
 COMMENT=		manage resources on Google Cloud Platform
 
 V=			550.0.0
-DISTNAME=		google-cloud-sdk-${V}-linux-x86
+DISTNAME =		google-cloud-cli_${V}.orig_amd64
 PKGNAME=		google-cloud-sdk-${V}
 WRKDIST=		${WRKDIR}/google-cloud-sdk
-
+REVISION=		0
 CATEGORIES=		sysutils
 
 HOMEPAGE=		https://cloud.google.com/sdk/
@@ -14,7 +14,7 @@ MAINTAINER=		Antoine Jacoutot <ajacoutot@openbsd.org>
 # Apache 2.0
 PERMIT_PACKAGE=		Yes
 
-SITES=			https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/
+SITES=			https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/
 
 MODULES=		lang/python
 
@@ -33,10 +33,11 @@ NO_TEST=		Yes
 RUN_DEPENDS=		devel/git
 
 do-install:
+	rm -r ${WRKSRC}/platform/bundledpythonunix
 	cp -a ${WRKSRC} ${PREFIX}
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/google-cloud-sdk
 
-	find ${PREFIX} -type f \( -name '*.bat' -or -name '*.orig' \) \
+	find ${PREFIX} -type f \( -name '*.bat' -or -name '*.orig'  -or -name '*.orig.port' \) \
 		-exec rm '{}' \+
 
 # enforce python3 dependency
