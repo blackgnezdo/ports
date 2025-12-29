@@ -1,7 +1,7 @@
 COMMENT =		lexical analyser generator for Haskell
 
 MODCABAL_STEM =		alex
-MODCABAL_VERSION =	3.2.7.3
+MODCABAL_VERSION =	3.5.4.0
 MODCABAL_DATA_DIR =	data
 CATEGORIES =		devel
 
