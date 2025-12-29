@@ -14,10 +14,7 @@ WANTLIB =		X11 Xext Xinerama Xrandr Xss c ffi gmp \
 			m iconv pthread util
 
 MODULES =		devel/cabal
-MODCABAL_MANIFEST = \
-	X11	1.10.3	0	\
-	data-default-class	0.1.2.0	0	\
-	hsc2hs	0.68.10	2
+.include "cabal-manifest.inc"
 
 LIB_DEPENDS =		converters/libiconv \
 			devel/gmp \

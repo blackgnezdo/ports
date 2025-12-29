@@ -28,4 +28,6 @@ do-test:
 			-j ${MAKE_JOBS} all
 
 
+.include "cabal-manifest.inc"
+
 .include <bsd.port.mk>

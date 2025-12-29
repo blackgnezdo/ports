@@ -52,6 +52,13 @@ SUBST_VARS +=		MODCABAL_STEM MODCABAL_VERSION PKGNAME
 # Oftentime our port name and the executable name coincide.
 MODCABAL_EXECUTABLES ?=	${MODCABAL_STEM}
 
+# Support for separate cabal-manifest.inc file (preferred) or inline MODCABAL_MANIFEST
+# If cabal-manifest.inc exists in the port directory, include it.
+# This allows cleaner separation of generated manifest from manual Makefile content.
+.if exists(${.CURDIR}/cabal-manifest.inc)
+.include "${.CURDIR}/cabal-manifest.inc"
+.endif
+
 # Cabal won't download anything from hackage if config file exists.
 MODCABAL_post-extract = \
 	mkdir -p ${WRKDIR}/.cabal \

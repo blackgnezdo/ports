@@ -22,8 +22,7 @@ LIB_DEPENDS=		converters/libiconv \
 # Required for building the documentation and for the regression tests:
 USE_GMAKE=		Yes
 
-MODCABAL_MANIFEST	= \
-	happy-lib	2.1.7	0	\
+.include "cabal-manifest.inc"
 
 do-test:
 	@cd ${WRKBUILD}/tests && exec ${SETENV} ${MAKE_ENV} \
