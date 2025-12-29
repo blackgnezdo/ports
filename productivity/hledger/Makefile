@@ -15,12 +15,10 @@ LIB_DEPENDS =		converters/libiconv \
 
 MODULES =		devel/cabal
 MODCABAL_STEM =		hledger
-MODCABAL_VERSION =	1.50.3
+MODCABAL_VERSION =	1.51.1
 
 post-install:
 	@${INSTALL_MAN} ${WRKSRC}/embeddedfiles/hledger.1 ${PREFIX}/man/man1
-
-# XXX splitmix < 0.1.3 as per https://github.com/haskellari/splitmix/issues/101
 
 .include "cabal.inc"
 

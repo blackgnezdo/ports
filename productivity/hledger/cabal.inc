@@ -10,7 +10,7 @@ MODCABAL_MANIFEST	= \
 	StateVar	1.2.2	0	\
 	aeson	2.2.3.0	4	\
 	aeson-pretty	0.8.10	0	\
-	ansi-terminal	1.1.3	0	\
+	ansi-terminal	1.1.5	0	\
 	ansi-terminal-types	1.1.3	0	\
 	appar	0.1.8	0	\
 	asn1-encoding	0.9.6	2	\
@@ -19,6 +19,7 @@ MODCABAL_MANIFEST	= \
 	assoc	1.1.1	1	\
 	async	2.2.5	3	\
 	attoparsec	0.14.4	6	\
+	attoparsec-aeson	2.2.2.0	0	\
 	authenticate-oauth	1.7	1	\
 	base-compat	0.14.1	0	\
 	base-orphans	0.9.3	0	\
@@ -72,7 +73,7 @@ MODCABAL_MANIFEST	= \
 	half	0.3.3	1	\
 	hashable	1.5.0.0	1	\
 	hashtables	1.4.2	0	\
-	hledger-lib	1.50.3	0	\
+	hledger-lib	1.51.1	0	\
 	hourglass	0.2.12	1	\
 	hpke	0.0.0	0	\
 	hsc2hs	0.68.10	4	\
@@ -131,7 +132,7 @@ MODCABAL_MANIFEST	= \
 	streaming-commons	0.2.3.1	0	\
 	strict	0.5.1	1	\
 	tabular	0.2.2.8	1	\
-	tagged	0.8.9	0	\
+	tagged	0.8.10	0	\
 	tasty	1.5.3	2	\
 	tasty-hunit	0.10.2	0	\
 	temporary	1.3	0	\
@@ -152,7 +153,7 @@ MODCABAL_MANIFEST	= \
 	uglymemo	0.1.0.1	0	\
 	unix-time	0.4.17	0	\
 	unliftio-core	0.2.1.0	4	\
-	unordered-containers	0.2.20.1	0	\
+	unordered-containers	0.2.21	1	\
 	utf8-string	1.0.2	0	\
 	utility-ht	0.0.17.2	0	\
 	uuid-types	1.0.6	3	\
