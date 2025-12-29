@@ -23,8 +23,7 @@ MODULES =       	devel/cabal
 
 MODCABAL_STEM		= git-annex
 # newer versions have no docs to install
-MODCABAL_VERSION	= 10.20230802
-REVISION		= 1
+MODCABAL_VERSION =	10.20251215
 
 MAN1_STAGING_DIR = ${WRKBUILD}/man1_staging
 
