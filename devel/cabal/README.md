@@ -71,7 +71,7 @@ The cabal module (`devel/cabal/cabal.port.mk`) provides a framework for building
 The easy way (automated):
 ```sh
 cd /usr/ports
-./devel/cabal/update-cabal-port.sh category/portname
+./devel/cabal/update-cabal-port.pl category/portname
 ```
 
 The manual way:
@@ -96,22 +96,22 @@ This creates:
 - `Makefile.bak` - Backup of original Makefile
 - Updated `Makefile` - Now includes cabal-manifest.inc
 
-### update-cabal-port.sh
+### update-cabal-port.pl
 
 Updates a single port to the latest (or specified) version:
 
 ```sh
 # Update to latest version from Hackage
-./devel/cabal/update-cabal-port.sh category/portname
+./devel/cabal/update-cabal-port.pl category/portname
 
 # Update to specific version
-./devel/cabal/update-cabal-port.sh category/portname --version 2.0.0
+./devel/cabal/update-cabal-port.pl category/portname --version 2.0.0
 
 # Dry run (show what would be done)
-./devel/cabal/update-cabal-port.sh category/portname --dry-run
+./devel/cabal/update-cabal-port.pl category/portname --dry-run
 
 # Update and build package
-./devel/cabal/update-cabal-port.sh category/portname --package
+./devel/cabal/update-cabal-port.pl category/portname --package
 ```
 
 Options:
@@ -186,8 +186,8 @@ The first line preserves the cabal-bundler command used to generate the file, en
 
 - `MODCABAL_MANIFEST` - Dependency manifest (usually in cabal-manifest.inc)
 - `MODCABAL_EXECUTABLES` - Executable names (default: `${MODCABAL_STEM}`)
-- `MODCABAL_FLAGS` - Cabal build flags
-- `MODCABAL_BUILD_ARGS` - Additional cabal v2-build arguments
+- `MODCABAL_FLAGS` - Cabal build flags (preserved by update automation)
+- `MODCABAL_BUILD_ARGS` - Additional cabal v2-build arguments (**requires manual review after updates**)
 - `MODCABAL_REVISION` - Cabal file revision (if needed)
 - `MODCABAL_DATA_DIR` - Data directory (if package uses data files)
 
@@ -324,6 +324,29 @@ To regenerate manually:
 cabal-bundler --openbsd package-2.0 --executable exe1 --executable exe2 --flags "flag1 -flag2"
 ```
 
+### Ports with MODCABAL_BUILD_ARGS
+
+**Important:** Ports using `MODCABAL_BUILD_ARGS` require special attention during updates.
+
+This variable passes additional arguments to `cabal v2-build` that aren't handled by the standard
+build process. Common uses include:
+- Debug flags (`-v` for verbose output)
+- Specific build targets
+- Advanced cabal options
+
+**After updating such a port:**
+1. Review if the build args are still needed
+2. Check if the new version has different requirements
+3. Test the build with the existing args
+4. Adjust or remove args if necessary
+
+Example from a port Makefile:
+```makefile
+MODCABAL_BUILD_ARGS = -v  # Verbose build output for debugging
+```
+
+The update script will warn you when updating ports with `MODCABAL_BUILD_ARGS` set.
+
 ## Technical Details
 
 ### Offline Builds
@@ -377,8 +400,18 @@ The module supports both formats for backward compatibility.
 - Cabal Documentation: https://cabal.readthedocs.io/
 - Hackage: https://hackage.haskell.org/
 
+## Documentation Updates Needed
+
+The cabal-module man page exists in a separate repository and should be updated to reflect:
+1. The new `.inc` file pattern
+2. The automation tools
+3. Update workflows
+
+Location: Check the OpenBSD ports infrastructure documentation repository.
+
 ## See Also
 
 - `devel/cargo/cargo.port.mk` - Similar pattern for Rust ports
 - `lang/go/go.port.mk` - Similar pattern for Go ports
 - `cabal-bundler(1)` - Generate manifests for OpenBSD ports
+- https://man.openbsd.org/cabal-module - Cabal module man page (needs update)

@@ -62,7 +62,7 @@ done
 PORTS_DIR="."
 cd "$PORTS_DIR"
 
-UPDATE_SCRIPT="./devel/cabal/update-cabal-port.sh"
+UPDATE_SCRIPT="./devel/cabal/update-cabal-port.pl"
 
 if [ ! -x "$UPDATE_SCRIPT" ]; then
 	echo "Error: Update script not found or not executable: $UPDATE_SCRIPT" >&2
