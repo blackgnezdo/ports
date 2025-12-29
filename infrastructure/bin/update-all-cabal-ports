@@ -1,0 +1,74 @@
+#!/bin/ksh
+#
+# Update all cabal ports to latest versions
+#
+# Usage: update-all-cabal-ports [options]
+#
+# Options:
+#   --package          Run 'make package' for each port
+#   --git-commit       Create git commit for each successful update
+#   --help             Show this help message
+#
+
+set -e
+
+usage() {
+	sed -n '2,/^$/s/^# \?//p' < "$0"
+	exit "${1:-0}"
+}
+
+typeset -i RUN_PACKAGE=0 GIT_COMMIT=0
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		--package)    RUN_PACKAGE=1 ;;
+		--git-commit) GIT_COMMIT=1 ;;
+		--help|-h)    usage 0 ;;
+		*)            print -u2 "Unknown option: $1"; usage 1 ;;
+	esac
+	shift
+done
+
+UPDATE_SCRIPT="$(dirname $0)/update-cabal-port"
+[[ -x "$UPDATE_SCRIPT" ]] || { print -u2 "Update script not found: $UPDATE_SCRIPT"; exit 1; }
+
+CABAL_PORTS=$(grep -rl '^MODULES.*=.*devel/cabal' */*/Makefile | sed 's|/Makefile$||' | sort)
+typeset -i TOTAL=$(print "$CABAL_PORTS" | wc -l)
+
+print "Found $TOTAL cabal ports"
+
+typeset -i SUCCESS=0 SKIPPED=0 FAILED=0 CURRENT=0
+
+for port in $CABAL_PORTS; do
+	((++CURRENT))
+
+	print "==> [$CURRENT/$TOTAL] $port"
+
+	UPDATE_CMD="$UPDATE_SCRIPT $port"
+	((RUN_PACKAGE)) && UPDATE_CMD="$UPDATE_CMD --package"
+
+	if $UPDATE_CMD; then
+		cd "$port"
+		if git diff --quiet Makefile cabal.inc 2>/dev/null; then
+			((++SKIPPED))
+		else
+			((++SUCCESS))
+			if ((GIT_COMMIT)); then
+				VERSION=$(make show=MODCABAL_VERSION)
+				git add Makefile cabal.inc distinfo 2>/dev/null
+				git commit -m "$port: update to $VERSION"
+			fi
+		fi
+		cd - >/dev/null
+	else
+		print -u2 "==> FAILED: $port"
+		((++FAILED))
+		print -n "Continue? [Y/n] "
+		read response
+		[[ "$response" == [nN]* ]] && break
+	fi
+done
+
+print "==> Summary: $SUCCESS updated, $SKIPPED unchanged, $FAILED failed"
+((FAILED)) && exit 1
+exit 0
