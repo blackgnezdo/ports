@@ -23,11 +23,12 @@ sub usage($exit_code = 0) {
     exit $exit_code;
 }
 
-my %opt = (version => '', package => 0, help => 0);
+my %opt = (version => '', package => 0, help => 0, force => 0);
 
 GetOptions(
     'version=s'  => \$opt{version},
     'package'    => \$opt{package},
+    'force|f'    => \$opt{force},
     'help|h'     => \$opt{help},
 ) or usage(1);
 
@@ -46,7 +47,7 @@ my $executables = make_show('MODCABAL_EXECUTABLES');
 my $target_version = $opt{version} || get_latest_version($stem);
 die "Error: Could not determine version for $stem\n" unless $target_version;
 
-if ($current_version && $current_version eq $target_version) {
+if (!$opt{force} && $current_version && $current_version eq $target_version) {
     say "==> $port_dir: already at $target_version";
     exit 0;
 }
