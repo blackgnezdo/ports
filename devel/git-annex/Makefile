@@ -23,8 +23,7 @@ MODULES =       	devel/cabal
 
 MODCABAL_STEM		= git-annex
 # newer versions have no docs to install
-MODCABAL_VERSION	= 10.20230802
-REVISION		= 1
+MODCABAL_VERSION =	10.20260115
 
 MAN1_STAGING_DIR = ${WRKBUILD}/man1_staging
 
@@ -48,8 +47,7 @@ post-install:
 # aarch64 in old versions:
 # % cabal v2-configure --flags='-benchmark'
 # % cabal build --dry-run --allow-newer
-# % cabal-bundler --openbsd git-annex-10.20230802 --plan=dist-newstyle/cache/plan.json
-MODCABAL_BUILD_ARGS	= --allow-newer
+# % cabal-bundler --openbsd git-annex-10.20260115 --plan=dist-newstyle/cache/plan.json
 MODCABAL_FLAGS		= -benchmark
 
 .include "cabal.inc"
