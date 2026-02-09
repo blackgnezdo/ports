@@ -2,7 +2,7 @@ COMMENT =		terminal client for the Mattermost chat system
 
 MODCABAL_STEM =		matterhorn
 MODCABAL_VERSION =	90000.0.0
-REVISION =		1
+REVISION =		2
 
 CATEGORIES =		net
 
