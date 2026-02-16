@@ -13,7 +13,7 @@ my $wrksrc = $ENV{WRKSRC} // die "WRKSRC not set\n";
 my $prefix = $ENV{PREFIX} // die "PREFIX not set\n";
 my $distname = $ENV{DISTNAME} // die "DISTNAME not set\n";
 
-my ($pkgdb) = bsd_glob("$wrksrc/dist-newstyle/packagedb/ghc-*");
+my ($pkgdb) = bsd_glob("$wrksrc/../.cabal/store/ghc-*-inplace/package.db");
 die "No package database found\n" unless defined $pkgdb;
 
 my $datapath = "$prefix/share/$distname";

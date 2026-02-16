@@ -6,6 +6,9 @@ GH_ACCOUNT = 	blackgnezdo
 GH_COMMIT =	8cf734b8b4486b7f624ce6589faf50ea27092ce8
 GH_PROJECT =	cabal-extras
 
+# For non-GH packages this is defaulted in cabal.port.mk
+EXTRACT_ONLY =	${GH_DISTFILE:C/\{[^}]*\}//}
+
 # Overrides cabal.port.mk which would otherwise preempt bsd.port.mk
 DISTNAME =	${GH_PROJECT}-${V}
 DISTFILES =	${GH_DISTFILE}
@@ -31,8 +34,9 @@ MODCABAL_STEM =		${GH_PROJECT}
 MODCABAL_VERSION =	${V}
 MODCABAL_EXECUTABLES =	cabal-bundler
 
+# Injects the package into the repo
 post-patch:
-	cd ${WRKSRC} && tar zxf extras/gentle-introduction-2024.4.1.tar.gz
+	ln -sf ${WRKSRC}/extras/gentle-introduction-2024.4.1.tar.gz ${WRKDIR}/repo/
 
 # After the workaround in https://github.com/phadej/cabal-extras/issues/83,
 # the manifest produced by:

@@ -39,9 +39,9 @@ SITES.hs =		https://hackage.haskell.org/package/
 
 DIST_SUBDIR ?= 		hackage
 
-# The .cabal files are explicitly copied over the ones extracted from
-# archives by the normal extraction rules.
-EXTRACT_CASES += *.cabal) ;;
+# Only extract the main package tarball.  Dependency tarballs from
+# DISTFILES.hs are read directly by Cabal via the file+noindex repo.
+EXTRACT_ONLY ?=		${DISTNAME}.tar.gz
 
 DISTNAME ?=		${MODCABAL_STEM}-${MODCABAL_VERSION}
 HOMEPAGE ?=		${SITES.hs}${MODCABAL_STEM}
@@ -52,10 +52,32 @@ SUBST_VARS +=		MODCABAL_STEM MODCABAL_VERSION PKGNAME
 # Oftentime our port name and the executable name coincide.
 MODCABAL_EXECUTABLES ?=	${MODCABAL_STEM}
 
-# Cabal won't download anything from hackage if config file exists.
+# Manifest dependencies are served to Cabal through a local
+# file+noindex repository (a directory of .tar.gz files that Cabal
+# indexes on the fly).  This achieves three things:
+#
+#  1. Hashed unit IDs.  Cabal assigns packages from repositories a
+#     hashed unit ID (e.g. binary-0.8.9.3-d16e1c9e...) instead of the
+#     "-inplace" ID used for directory-based packages: entries.  This
+#     prevents SONAME collisions with GHC boot libraries that also use
+#     -inplace IDs -- such collisions cause undefined-symbol failures
+#     during Template Haskell evaluation on aarch64.
+#
+#  2. Native .cabal revision support.  file+noindex picks up a
+#     pkg-version.cabal file placed next to pkg-version.tar.gz as a
+#     revision override, so we never need to repack tarballs.
+#
+#  3. No network access.  The config contains only this local repo,
+#     so Cabal has nowhere to fetch from (replacing --offline).
+#
+# We cannot point the repo at FULLDISTDIR directly because file+noindex
+# indexes every .tar.gz in the directory -- that would expose unrelated
+# packages and cause solver ambiguity.  A per-port repo/ directory with
+# symlinks provides the controlled subset.
 MODCABAL_post-extract = \
-	mkdir -p ${WRKDIR}/.cabal \
-	&& touch ${WRKDIR}/.cabal/config
+	mkdir -p ${WRKDIR}/.cabal ${WRKDIR}/repo \
+	&& printf 'repository local-deps\n  url: file+noindex://%s\n' \
+		${WRKDIR}/repo > ${WRKDIR}/.cabal/config
 
 # Some packages need an updated .cabal file from hackage to overwrite
 # the one in the tar ball.
@@ -66,20 +88,18 @@ MODCABAL_post-extract += \
 		${WRKSRC}/${MODCABAL_STEM}.cabal
 .endif
 
-# The dependent sources get downloaded from hackage.
 .for _package _version _revision in ${MODCABAL_MANIFEST}
 DISTFILES.hs += {${_package}-${_version}/}${_package}-${_version}.tar.gz
 .  if ${_revision} > 0
 DISTFILES.hs += ${_package}-${_version}_${_revision}{${_package}-${_version}/revision/${_revision}}.cabal
 MODCABAL_post-extract += \
+	&& ln -sf ${FULLDISTDIR}/${_package}-${_version}.tar.gz ${WRKDIR}/repo/ \
 	&& cp ${FULLDISTDIR}/${_package}-${_version}_${_revision}.cabal \
-		${WRKDIR}/${_package}-${_version}/${_package}.cabal
-.  endif
-# References all the locally available dependencies.  Ideally these
-# should be command line options, tracking issue:
-# https://github.com/haskell/cabal/issues/3585
+		${WRKDIR}/repo/${_package}-${_version}.cabal
+.  else
 MODCABAL_post-extract += \
-	&& echo "packages: ${WRKDIR}/${_package}-${_version}/${_package}.cabal" >> ${WRKSRC}/cabal.project.local
+	&& ln -sf ${FULLDISTDIR}/${_package}-${_version}.tar.gz ${WRKDIR}/repo/
+.  endif
 .endfor  # MODCABAL_MANIFEST
 
 MODCABAL_post-extract += \
@@ -103,7 +123,7 @@ _MODCABAL_CABAL = ${SETENV} ${MAKE_ENV} HOME=${WRKDIR} ${LOCALBASE}/bin/cabal
 # Building a cabal package is merely an invocation of cabal v2-build.
 MODCABAL_BUILD_TARGET = \
 	cd ${WRKBUILD} \
-	&& ${_MODCABAL_CABAL} v2-build --offline --disable-benchmarks --disable-tests \
+	&& ${_MODCABAL_CABAL} v2-build --disable-benchmarks --disable-tests \
 		-w ${LOCALBASE}/bin/ghc \
 		-j${MAKE_JOBS} \
 		--flags="${MODCABAL_FLAGS}" ${MODCABAL_BUILD_ARGS} \
