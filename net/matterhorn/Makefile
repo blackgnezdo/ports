@@ -1,7 +1,5 @@
 COMMENT =		terminal client for the Mattermost chat system
 
-BROKEN-aarch64 =	undefined symbol 'binary..._zdfBinaryFixedzugo_closure'
-
 MODCABAL_STEM =		matterhorn
 MODCABAL_VERSION =	90000.0.0
 REVISION =		2
